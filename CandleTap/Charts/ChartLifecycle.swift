@@ -23,7 +23,7 @@ extension ChartVC {
     
     override func viewWillAppear(_ animated: Bool) {        super.viewWillAppear(animated)
         setNavBarTitle(customString: viewControllerType.getNavBarTitle())
-        setupNavBarButtons(greyIndex: 2)
+        setupNavBarButtons(greyIndex: 1)
         setupPinchToExit()
         
         justPinched = false

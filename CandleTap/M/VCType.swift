@@ -16,13 +16,13 @@ enum ViewControllerType: Int {
             return "Funds"
             
         case .pairList:
-            return "Trading Pairs"
+            return "Trading Pairs   💡Tap green prices to view charts"
             
         case .archive:
             return "Past Trades"
             
         case .chart:
-            return "CandleTap"//🔥//"1d"    /// set programmatically
+            return "ETHBTC ･ Binance ･ 1m"//"CandleTap"   /// set programmatically based on timescale selected
             
         case .popupMenu :
             return "popup menu"

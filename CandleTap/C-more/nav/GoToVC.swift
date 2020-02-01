@@ -4,12 +4,7 @@ extension UIViewController { //CollectionVC
     
     func gotoView(vc: UIViewController) {                                                   //print("\ngoing to vc \(vc)")
         
-        if self.navigationController?.viewControllers[0] != vc
-            || vc == chartVC
-        {
-            //if topVC != vc {
-            
-            //if vc == chartVC {print("re-presented chart")}
+        if self.navigationController?.viewControllers[0] != vc { ///if topVC != vc {
             
             globalWindow.backgroundColor = defaultColour
             backgroundVC.view.backgroundColor = globalWindow.backgroundColor
@@ -21,7 +16,7 @@ extension UIViewController { //CollectionVC
                 //self.setupTitleAndPresentViewController(vc: vc)
             }
             
-        } else {print("you're already looking at the \(topVC.viewControllerType)-view")}
+        } //else {print("you're already looking at the \(topVC.viewControllerType)-view")}
     }
     
     func setupTitleAndPresentViewController(vc: UIViewController, completion: () -> ()) {   //print("\ndismissing/presenting vc: \(vc)")

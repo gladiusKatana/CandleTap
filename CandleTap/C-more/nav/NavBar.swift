@@ -4,16 +4,14 @@ extension UIViewController { //CollectionVC
     
     func setupNavBarButtons(greyIndex: Int?) {  //print("setting up nav bar buttons")
         
-        let timetableButton = setupButton(selector: #selector(buttonWrapperMethodforPairListVC), title: "timetableImage")
-        let archiveButton = setupButton(selector: #selector(buttonWrapperMethodforArchiveVC), title: "calendarImage")
-        let wrenchButton = setupButton(selector: #selector(tappedWrench), title: "wrench")
-        
+        let timetableButton = setupButton(selector: #selector(buttonWrapperMethodforPairListVC), title: "calendarImage")
+        //let archiveButton = setupButton(selector: #selector(buttonWrapperMethodforArchiveVC), title: "wrench")
+        let wrenchButton = setupButton(selector: #selector(goToChartViaButton), title: "timetableImage")
         let reloadButton = setupButton(selector: #selector(reloadCVWrapperMethod), title: "reloadButton")
-        ///let barButtonColours = [graySeven, graySeven, graySeven, graySeven,]   /// hardcoding button colours (may be easier, depends how many more buttons & colour exceptions)
         
         var barButtonColours = [UIColor]()
         
-        let buttons = [timetableButton, archiveButton, wrenchButton, reloadButton]
+        let buttons = [timetableButton, /*archiveButton, */wrenchButton, reloadButton]
         
         navigationItem.rightBarButtonItems = buttons
         

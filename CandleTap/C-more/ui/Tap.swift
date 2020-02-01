@@ -22,9 +22,11 @@ extension CollectionVC {
         
         lastTappedCoordinate = [column, row]
         
-        assignCandleSubset()
+        if chartCoordinates.contains(lastTappedCoordinate) {
+            assignCandleSubset()
+            gotoView(vc: chartVC)
+        }
         
-        gotoView(vc: chartVC)
     }
 }
 

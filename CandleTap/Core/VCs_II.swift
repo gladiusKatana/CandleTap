@@ -30,5 +30,5 @@ var archiveLayout = ///--------------------------------------------------
         loadsHorizontally: false,
         squareCellMode: .noAutoSquare)
 
-var archiveVC = CollectionVC(.archive, backgroundColour: defaultColour, colourIndex: 1, collectionViewLayout: archiveLayout)
+var archiveVC = CollectionVC(.archive, backgroundColour: defaultColour, colourIndex: nil, collectionViewLayout: archiveLayout)
 

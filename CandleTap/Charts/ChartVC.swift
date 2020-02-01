@@ -21,17 +21,16 @@ func assignCandleSubset() {
     
     binanceCandleSubset = globalBinanceCandles                                                  ///; print("binance candles to plot: \(binanceCandleSubset)")
     updateMovingAverages(maLength: maLength,
-                             plottingInterval: plottingInterval, ohlcs: globalBinanceCandles)
+                         plottingInterval: plottingInterval, ohlcs: globalBinanceCandles)
     
     binanceCandleSubset.removeFirst(binanceCandleSubset.count - plottingInterval)               ///print(binanceCandles)
     ///print("binance ohlc lengths: \(binanceCandleSubset[0].count)")   ///print("\(binanceCandleSubset.count) candles plotted")
     
-    if chartCoordinates.contains(lastTappedCoordinate) {
-        switch lastTappedCoordinate {
-        case krakenCoordinate: candleSubset = krakenCandleSubset
-        case binanceCoordinate: candleSubset = binanceCandleSubset
-        default:    break
-        }
+    switch lastTappedCoordinate {
+    case krakenCoordinate: candleSubset = krakenCandleSubset
+    case binanceCoordinate: candleSubset = binanceCandleSubset
+    default: candleSubset = binanceCandleSubset /// soon will make the default chart that of XBTCAD, daily (most likely from Kraken), once dynamic timescale selection is enabled.  (Binance's ETHBTC is plotted currently by default now only because its public API is the only one used here that provides minute timescales)
     }
+    
 }
 

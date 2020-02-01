@@ -33,6 +33,7 @@ extension CollectionVC {
             if row < currentPrices.count {
                 let priceN = "\(currentPrices[row])"
                 text = priceN == "1.0" ? "..." : "\(priceN)"
+                if chartCoordinates.contains([column, row]) {cell.titleLabel.textColor = jadeGreen}
             } else {text = "."}
             
         default: cell.titleLabel.text = "."
