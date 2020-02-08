@@ -1,32 +1,25 @@
 /*🔥CandleTap_Binance💧*/import UIKit
 
-extension ApiService {
+func getBinanceCandles(urlString: String) {                             //print("fetching binance")
     
-    func getBinanceCandles(urlString: String) {                             //print("fetching binance")
+    guard let url = URL(string: urlString) else {print("error binding binance url"); return}
+    
+    URLSession.shared.dataTask(with: url) { (data, response, err) in
+        guard let data = data else { print("error binding krk  data  parameter in URLSession"); return}                             
         
-        guard let url = URL(string: urlString) else {
-            print("error with url")
-            return
-        }                                                                   //; print("ok the url is \(url)")
-        
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
+        do {
+            guard let binanceCandles
+                = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyObject]] else {
+                    print("error converting bnc json to array of dictionaries"); return
+            }                                                           //; print("ok, the json data is \(binanceCandle)")
             
-            guard let data = data else {return}                             //; print("ok, the data is \(data)")
+            globalBinanceCandles = binanceCandles
             
-            do {
-                guard let binanceCandles = try JSONSerialization.jsonObject(with:
-                    data, options: []) as? [[AnyObject]] else {             print("error binding binance json data (without keys) to array of arrays")
-                        return
-                }                                                           //; print("ok, the json data is \(binanceCandle)")
-                
-                globalBinanceCandles = binanceCandles
-                
-            } catch let error {                                             // as Error { //or as NSError
-                print("Failed to load: \(error.localizedDescription)")
-            }
+        } catch let error {                                             // as Error { //or as NSError
+            print("Failed to load: \(error.localizedDescription)")
         }
-        .resume()
     }
+    .resume()
 }
 
 /*class BinanceChunk: SafeJsonObject {

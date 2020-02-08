@@ -15,5 +15,5 @@ var tickerPairs = ["BTCCAD",
                    "XLMBTC",
                    "XTZBTC"]*/
 
-var currentPrices = [latestShakepayBTCCAD, latestKrakenXBTCAD, latestBinanceETHBTC]
+var currentPrices = [latestShakepayBTCCAD, latestKrakenXBTZCAD, latestBinanceETHBTC]
                 

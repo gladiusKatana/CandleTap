@@ -6,24 +6,35 @@
 
 //var defaultPathOutOfView = [-1, -1]
 
-let apiServ = ApiService()
-var candleSubset = [[AnyObject]]()
+//MARK: Data
 
-var krakenOHLCChunks: [KrakenOHLCChunk]?
-var krakenPair = "XXBTZCAD"
+let apiServ = ApiService()
+
+
+
+var krakenApiResponses: [KrakenApiResponse]?
+var krakenPair = "XXBTZCAD" /// hardcoded for now
+
+var latestKrakenPrices = [[AnyObject]]()            /// not asset-specific
 var krakenCandleSubset = [[AnyObject]]()
 var krakenLatestOhlc = [Double]();                  var krakenPreviousOhlc = [-1.0]
 
 var binanceCandles: [[AnyObject]]?                  //; var binanceChunks: [BinanceChunk]?
 var binanceCandleSubset = [[AnyObject]]()
 
-var shakepayPriceUpdates: [ShakepayPriceUpdate]?    //; var latestShakepayPrices: [Any]?
+var shakepayApiResponses: [ShakepayApiResponse]?    //; var latestShakepayPrices: [Any]?
 
 
-var latestKrakenXBTCAD = 1.0                        //; var latestBinanceETHBTCPrice = 1.0
+//MARK: Latest Prices
+
+var latestKrakenXBTZCAD = 1.0                        //; var latestBinanceETHBTCPrice = 1.0
 var latestShakepayBTCCAD = 1.0
 var latestBinanceETHBTC = 1.0
 
+
+//MARK: Charts
+
+var candleSubset = [[AnyObject]]()
 
 var historicalShakepayPrices = [Double]()
 
@@ -32,7 +43,7 @@ var candleWidth = CGFloat(0)
 var chartMarginY = CGFloat(0);                      var chartMarginX = CGFloat(0)
 var chartVerticalCushion = CGFloat(0)
 
-var lastTappedCoordinate = [-1,-1];                 var chartCoordinates = [/*[1,1], */[1,2]]
+var lastTappedCoordinate = [-1,-1];                 var chartCoordinates = [[1,1]]
 var krakenCoordinate = [1,1]
 var binanceCoordinate = [1,2]
 
@@ -68,12 +79,4 @@ var previousX = CGFloat(0); var previousY = CGFloat(0)
 var maPrintBoolLock = false
 
 var globalBinanceCandles = [[AnyObject]]()
-
-//var diffAbs = 0.0;                                var diffPer = 0.0
-//var diffAbsRounded = 0;                           var diffPerRounded = 0.0
-
-//var justPinchedFromCandleView = false
-
-//let headerTitlesWithoutIcons = ["Gold", "", "Bitcoin", "", "Shitcoins", "", "Stocks", "", "Fiat", ""]
-//let headerIcons = ["💎", "", "₿", "", "💩", "", "👮🏼‍♀️", "",  "📈", ""]
 
