@@ -3,17 +3,18 @@
 class ApiService: NSObject {
     
     static let sharedInstance = ApiService()
-    let baseUrl = "https://api.kraken.com/0/public/OHLC?pair="          ///ie  https://api.kraken.com/0/public/OHLC?pair=XXBTZCAD&since=0
+    
+    let baseKrakenUrl = "https://api.kraken.com/0/public/OHLC?pair="    ///ie  https://api.kraken.com/0/public/OHLC?pair=XXBTZCAD&since=0
     
     @objc func getFeeds() {                                             // ** cache data
         
         DispatchQueue.global(qos: .userInitiated).asyncAfter(           /// was .userInteractive
         deadline: .now()) { [weak self] in                              ///DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
             
-            getBinanceCandles(urlString: "https://www.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
+            fetchBinanceDirectFeedForUrlString(urlString: "https://www.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
             
             if let ethBtcCurrent = globalBinanceCandles.last?[1] {
-                latestBinanceETHBTC = Double("\(ethBtcCurrent)")!                           ///; print("binance price: \(latestBinanceETHBTC)")
+                latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")
             } ///else {print("could not cast binance price as Double")}
             
             self?.getKrakenFeed { responses in                          ///ApiService.sharedInstance.getKrakenFeed { (ohlcChunks) in

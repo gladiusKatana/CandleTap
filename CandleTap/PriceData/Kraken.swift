@@ -16,7 +16,7 @@ func fetchKrakenFeedForUrlString(urlString: String, completion: @escaping ([Krak
             completion(jsonDictionaries.map({return KrakenApiResponse(dictionary: $0)}))
             
         } catch let error {
-            print("Error serializing json:", error)
+            print("Error serializing json:", error.localizedDescription)
         }
     }
     .resume()

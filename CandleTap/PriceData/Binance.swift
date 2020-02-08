@@ -1,17 +1,17 @@
 /*🔥CandleTap_Binance💧*/import UIKit
 
-func getBinanceCandles(urlString: String) {                             //print("fetching binance")
+func fetchBinanceDirectFeedForUrlString(urlString: String) {                             //print("fetching binance")
     
     guard let url = URL(string: urlString) else {print("error binding binance url"); return}
     
-    URLSession.shared.dataTask(with: url) { (data, response, err) in
-        guard let data = data else { print("error binding krk  data  parameter in URLSession"); return}                             
+    URLSession.shared.dataTask(with: url) { (data, response, error) in
+        guard let data = data else { print("error binding krk  data  parameter in URLSession"); return}
         
         do {
             guard let binanceCandles
                 = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyObject]] else {
-                    print("error converting bnc json to array of dictionaries"); return
-            }                                                           //; print("ok, the json data is \(binanceCandle)")
+                    print("error converting bnc json to array of arrays"); return
+            }
             
             globalBinanceCandles = binanceCandles
             
@@ -22,31 +22,32 @@ func getBinanceCandles(urlString: String) {                             //print(
     .resume()
 }
 
-/*class BinanceChunk: SafeJsonObject {
- //    @objc var
- }*/
-
-//func fetchBinanceFeedForUrlString(urlString: String, completion: @escaping ([BinanceChunk]) -> ()) { print("fetching binance")
-//    guard let url = URL(string: urlString) else { print("error binding binance url")
-//        return}
+//func fetchBinanceFeedForUrlString(urlString: String, completion: @escaping ([BinanceApiResponse]) -> ()) {
 //
-//    URLSession.shared.dataTask(with: url as URL) { (data, response, error) in
-//        guard let data = data else { print("error binding binance  data  parameter in URLSession")
-//            return}
+//    guard let url = URL(string: urlString) else {print("error binding binance url"); return}
+//
+//    URLSession.shared.dataTask(with: url) { (data, response, error) in
+//        guard let data = data else { print("error binding krk  data  parameter in URLSession"); return}
+//
 //        do {
-//            guard let jsonDictionaries = try [JSONSerialization.jsonObject(with: data, options: .mutableContainers)] as? [[String]] else { print("error binding binance json-dictionaries to array of arrays (Binance API OHLC format)")
-//                return}
+//            guard let jsonDictionaries
+//                = try [JSONSerialization.jsonObject(with: data, options: .mutableContainers)] as? [[String: AnyObject]] else {
+//                    print("error converting krk json to array of dictionaries"); return
+//            }
 //
-//            completion(
-//                jsonDictionaries.map({
-//                    return BinanceChunk(dictionary: $0)})
-//            )
-//        } catch let jsonSerializationError {
-//            print("Error serializing json:", jsonSerializationError)
-//        }
+//            completion(jsonDictionaries.map({return BinanceApiResponse(dictionary: $0)}))
 //
-
+//        } catch let error {
+//            print("Error serializing json:", error.localizedDescription)
 //        }
-//        .resume()
+//    }
+//    .resume()
+//}
+//
+//class BinanceApiResponse: SafeJsonObject {
+//        init(dictionary: [String: AnyObject]) {
+//        super.init()
+//        setValuesForKeys(dictionary)
+//    }
 //}
 

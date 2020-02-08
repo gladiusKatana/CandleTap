@@ -6,10 +6,13 @@
 
 //var defaultPathOutOfView = [-1, -1]
 
+
+
 //MARK: Data
 
 let apiServ = ApiService()
 
+var shakepayApiResponses: [ShakepayApiResponse]?    //; var latestShakepayPrices: [Any]?
 
 
 var krakenApiResponses: [KrakenApiResponse]?
@@ -19,15 +22,19 @@ var latestKrakenPrices = [[AnyObject]]()            /// not asset-specific
 var krakenCandleSubset = [[AnyObject]]()
 var krakenLatestOhlc = [Double]();                  var krakenPreviousOhlc = [-1.0]
 
+
+
+
+//var binanceApiResponses: [BinanceApiResponse]?    //; var latestShakepayPrices: [Any]?
+
 var binanceCandles: [[AnyObject]]?                  //; var binanceChunks: [BinanceChunk]?
 var binanceCandleSubset = [[AnyObject]]()
 
-var shakepayApiResponses: [ShakepayApiResponse]?    //; var latestShakepayPrices: [Any]?
 
 
 //MARK: Latest Prices
 
-var latestKrakenXBTZCAD = 1.0                        //; var latestBinanceETHBTCPrice = 1.0
+var latestKrakenXBTZCAD = 1.0                       //; var latestBinanceETHBTCPrice = 1.0
 var latestShakepayBTCCAD = 1.0
 var latestBinanceETHBTC = 1.0
 
@@ -43,7 +50,7 @@ var candleWidth = CGFloat(0)
 var chartMarginY = CGFloat(0);                      var chartMarginX = CGFloat(0)
 var chartVerticalCushion = CGFloat(0)
 
-var lastTappedCoordinate = [-1,-1];                 var chartCoordinates = [[1,1]]
+var lastTappedCoordinate = [-1,-1];                 var chartCoordinates = [[1,2]]
 var krakenCoordinate = [1,1]
 var binanceCoordinate = [1,2]
 

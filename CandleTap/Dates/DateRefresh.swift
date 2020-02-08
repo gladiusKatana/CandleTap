@@ -22,13 +22,14 @@ extension CollectionVC {
     }
     
     func kickoffTimer() {
-        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.periodicDateRefresh(){self!.kickoffTimer()}
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.periodicDateRefresh(){self?.kickoffTimer()}
         }
     }
 }
 
 func getChartDataAndPrepareToPlot(plotAllCandles: Bool) {
+    
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
         
         apiServ.getFeeds()

@@ -16,29 +16,29 @@ func fetchShakepayFeedForUrlString(urlString: String, completion: @escaping ([Sh
             completion(jsonDictionaries.map({return ShakepayApiResponse(dictionary: $0)}))
             
         } catch let error {
-            print("Error serializing json:", error)
+            print("Error serializing json:", error.localizedDescription)
         }
     }
     .resume()
 }
 
 class ShakepayApiResponse: SafeJsonObject {
-    @objc var BTC_CAD: AnyObject?
-    @objc var CAD_BTC: AnyObject?
-    
     @objc var BTC_USD: AnyObject?
     @objc var USD_BTC: AnyObject?
+    
+    @objc var BTC_CAD: AnyObject?
+    @objc var CAD_BTC: AnyObject?
     
     
     @objc var ETH_BTC: AnyObject?
     @objc var BTC_ETH: AnyObject?
     
     
-    @objc var ETH_CAD: AnyObject?
-    @objc var CAD_ETH: AnyObject?
-    
     @objc var ETH_USD: AnyObject?
     @objc var USD_ETH: AnyObject?
+    
+    @objc var ETH_CAD: AnyObject?
+    @objc var CAD_ETH: AnyObject?
     
     init(dictionary: [String: AnyObject]) {
         super.init()
