@@ -50,7 +50,7 @@ var candleWidth = CGFloat(0)
 var chartMarginY = CGFloat(0);                      var chartMarginX = CGFloat(0)
 var chartVerticalCushion = CGFloat(0)
 
-var lastTappedCoordinate = [-1,-1];                 var chartCoordinates = [[1,2]]
+var lastTappedCoordinate = [-1,-1];                 var chartCoordinates = [[1,1],[1,2]]
 var krakenCoordinate = [1,1]
 var binanceCoordinate = [1,2]
 

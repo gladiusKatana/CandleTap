@@ -4,22 +4,25 @@ extension ChartVC {
     
     func getChart() {                                                               ///print("showing candles")
         
-        var highs = [Double]();  var lows = [Double]()                              ///var lowerWickRanges = [Double]();   var upperWickRanges = [Double]()
+        var highs = [Double]();  var lows = [Double]()              ///var lowerWickRanges = [Double]();   var upperWickRanges = [Double]()
         var MAs = [Double]()
         
         var i = 0
-        for arr in candleSubset {                                                   ///print(arr)
+        for arr in candleSubset {                                                   //print(arr)
             highs.append(Double("\(arr[2])")!)
             lows.append(Double("\(arr[3])")!)
-            MAs.append(MAValues[i])                                                 ///; print("appending \(MAValues[i])")
+            MAs.append(MAValues[i])                                               ///; print("appending \(MAValues[i])")
             i += 1
         }
         
-        if let absLow = lows.min(), let absHigh = highs.max(), let maxMA = MAs.max(), let minMA = MAs.min() {
+        if let absLow = lows.min(), let absHigh = highs.max() {
             
             var absMin = absLow
             var absMax = absHigh
-            if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
+            
+            if let maxMA = MAs.max(), let minMA = MAs.min() {
+                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
+            } else {print("could not get MA max and min")}
             
             let range = absMax - absMin                                             ///; print("range: \(range)\n")
             let scaledRange = Double(chartViewHeight - 2 * chartVerticalCushion)    ///print("\nscaled range: \(scaledRange)\n")
@@ -27,12 +30,12 @@ extension ChartVC {
             
             self.view.subviews.forEach({ $0.removeFromSuperview() })
             
-            for i in 0 ... candleSubset.count - 1 {                                 ///print("#\(i+1)")//🕯
+            for i in 0 ... candleSubset.count - 1 {                             ///print("#\(i+1)")//🕯
                 
-                let open = Double("\(candleSubset[i][1])")!                         /// 3, for the 'pretend there's no wick + green only' test //***
+                let open = Double("\(candleSubset[i][1])")!                     /// 3, for the 'pretend there's no wick + green only' test //***
                 let high = Double("\(candleSubset[i][2])")!
                 let low = Double("\(candleSubset[i][3])")!
-                let close = Double("\(candleSubset[i][4])")!                        /// 2, for the 'pretend there's no wick + green only' test
+                let close = Double("\(candleSubset[i][4])")!                    /// 2, for the 'pretend there's no wick + green only' test
                 let MA = MAValues[i]
                 
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: i,

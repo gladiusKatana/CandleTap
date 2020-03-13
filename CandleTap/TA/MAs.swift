@@ -6,13 +6,15 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
     var closingPrices = [Double]();     var allClosingPrices = [Double]()
     var MAsToPlot = [Double]()
     
-    maPriceArrays.removeFirst(maPriceArrays.count - maLength - plottingInterval)
+    let diff = maPriceArrays.count - maLength - plottingInterval
+    maPriceArrays.removeFirst(diff >= 0 ? diff : 0)
     
     var i = 0
     
     for _ in (0 ... maPriceArrays.count - 1) {
         
-        let close = Double("\(maPriceArrays[i][4])")!                   ///; if !maPrintBoolLock {print(close)} ///; print("closing price #\(i+1) for MA: \(close)")
+        let close = Double("\(maPriceArrays[i][4])")!
+//        if !maPrintBoolLock {print(close)} ///; print("closing price #\(i+1) for MA: \(close)")
         
         closingPrices.append(close)
         allClosingPrices.append(close)
@@ -21,7 +23,7 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
             closingPrices.removeFirst()
             
             let avg = closingPrices.average
-            ///MAValues.append(avg)                                                             ///; print("moving avg. #\(i+1), length \(closingPrices.count)/\(MAValues.count) = \(avg); i = \(i)")
+            ///MAValues.append(avg)  ///; print("moving avg. #\(i+1), length \(closingPrices.count)/\(MAValues.count) = \(avg); i = \(i)")
             MAsToPlot.append(avg)
         }
         

@@ -18,14 +18,14 @@ class ApiService: NSObject {
             } ///else {print("could not cast binance price as Double")}
             
             self?.getKrakenFeed { responses in                          ///ApiService.sharedInstance.getKrakenFeed { (ohlcChunks) in
-                krakenApiResponses = responses                          ///print("...kraken last timestamp: \(String(describing: krakenOHLCChunks?.last!.result!.last))")
+                krakenApiResponses = responses  ///print("...kraken last timestamp: \(String(describing: krakenOHLCChunks?.last!.result!.last))")
                 
                 if let krakenBtcPrices = krakenApiResponses?[0].result?.XXBTZCAD {
                     
-                    latestKrakenPrices = krakenBtcPrices                                    ///print("last Kraken OHLC: \(krakenLatestPrices.last ?? [])")
+                    latestKrakenPrices = krakenBtcPrices                ///print("last Kraken OHLC: \(krakenLatestPrices.last ?? [])")
                     
                     krakenCandleSubset = latestKrakenPrices
-                    krakenCandleSubset.removeFirst(krakenCandleSubset.count - 13 * 7)       ///; print("kraken ohlc lengths: \(krakenCandleSubset[0].count)")
+//                    krakenCandleSubset.removeFirst(krakenCandleSubset.count - 13 * 7)  ///; print("kraken ohlc lengths: \(krakenCandleSubset[0].count)")                                    ///; print("kraken prices: \(krakenCandleSubset)")
                     
                     if let last = latestKrakenPrices.last {
                         if krakenLatestOhlc != krakenPreviousOhlc {
