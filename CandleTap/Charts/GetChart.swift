@@ -15,14 +15,16 @@ extension ChartVC {
             i += 1
         }
         
-        if let absLow = lows.min(), let absHigh = highs.max() {
+        if let absLow = lows.min(), let absHigh = highs.max(), let maxMA = MAs.max(), let minMA = MAs.min() {
             
             var absMin = absLow
             var absMax = absHigh
             
-            if let maxMA = MAs.max(), let minMA = MAs.min() {
-                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
-            } else {print("could not get MA max and min")}
+            if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA}
+            
+//            if let maxMA = MAs.max(), let minMA = MAs.min() {
+//                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
+//            } else {print("could not get MA max and min")}
             
             let range = absMax - absMin                                             ///; print("range: \(range)\n")
             let scaledRange = Double(chartViewHeight - 2 * chartVerticalCushion)    ///print("\nscaled range: \(scaledRange)\n")
@@ -40,10 +42,14 @@ extension ChartVC {
                 
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: i,
                                          MA: MA)
+                
+//                print("OHLC: [\(open), \(high), \(low), \(close)]")
             }
             
+            print("\n\n")
+            
             let currentClose = Double("\(candleSubset[candleSubset.count - 1][4])")!
-            plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(priceData: MAValues, scalor: scalor, absLow: absLow)
+            plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(priceData: MAValues, scalor: scalor,...
             
             plotLine(y: chartMarginY + chartVerticalCushion)
             
@@ -67,13 +73,14 @@ extension ChartVC {
     }
     
     func showYValues(text: String, y: CGFloat) {
-        
         let height = CGFloat(13); let width = chartMarginX - 3
         let textField = UITextField()
         
         textField.frame = CGRect(x: CGFloat(frameWidth) - width, y: y - height / 2,
                                  width: width, height: height)
+        
         textField.backgroundColor = .clear//darkGray
+        textField.textColor = .white
         textField.text = text
         textField.font = UIFont.systemFont(ofSize: 10, weight: .ultraLight) /// UIFont(name: "Helvetica Neue", size: 12)
         

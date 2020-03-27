@@ -7,7 +7,7 @@ extension ApiService {
     }
     
     func getKrakenFeed(_ completion: @escaping ([KrakenApiResponse]) -> ()) {
-        fetchKrakenFeedForUrlString(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=5&since=0", completion: completion)
+        fetchKrakenFeedForUrlString(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=30", completion: completion)
     }
     
 //    func getBinanceFeed(urlString: String,

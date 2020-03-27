@@ -16,35 +16,23 @@ class ChartVC: UIViewController {
 func assignCandleSubset() {
     
     binanceCandleSubset = globalBinanceCandles                          ///; print("binance candles to plot: \(binanceCandleSubset)")
+
+    /// soon will make the default chart that of XBTCAD, daily (most likely from Kraken), once dynamic timescale selection is enabled.  (Binance's ETHBTC is plotted currently by default now only because its public API is the only one used here that provides minute timescales)
     
-//    switch lastTappedCoordinate {
-//    case krakenCoordinate: candleSubset = krakenCandleSubset
-//    case binanceCoordinate:
-    candleSubset = binanceCandleSubset
-//    default: candleSubset = binanceCandleSubset /// soon will make the default chart that of XBTCAD, daily (most likely from Kraken), once dynamic timescale selection is enabled.  (Binance's ETHBTC is plotted currently by default now only because its public API is the only one used here that provides minute timescales)
-//    }
+//        let subset = binanceCandleSubset
+        let subset = krakenCandleSubset
     
-    let plottingInterval = 25 //3 * 7
+    candleSubset = subset
     
+    let plottingInterval = 20
     let maLength = 10
     
+    candleSubset.removeFirst(candleSubset.count - plottingInterval)     //print("candle subset count: \(candleSubset.count)")
     
-    
-    candleSubset.removeFirst(candleSubset.count - plottingInterval)
-    
-    print("candle subset count: \(candleSubset.count)")
-    
-    ///print("binance ohlc lengths: \(binanceCandleSubset[0].count)")   ///print("\(binanceCandleSubset.count) candles plotted")
-    
-//    krakenCandleSubset.removeFirst(candleSubset.count - plottingInterval)
-    
+
     
     updateMovingAverages(maLength: maLength,
-                         plottingInterval: plottingInterval, ohlcs: binanceCandleSubset)
-    
-    
-//    updateMovingAverages(maLength: maLength,
-//                         plottingInterval: plottingInterval, ohlcs: candleSubset)
+                         plottingInterval: plottingInterval, ohlcs: subset)
     
 }
 

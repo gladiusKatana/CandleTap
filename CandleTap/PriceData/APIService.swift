@@ -17,17 +17,19 @@ class ApiService: NSObject {
                 latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")
             } ///else {print("could not cast binance price as Double")}
             
+            
+            
             self?.getKrakenFeed { responses in                          ///ApiService.sharedInstance.getKrakenFeed { (ohlcChunks) in
                 krakenApiResponses = responses  ///print("...kraken last timestamp: \(String(describing: krakenOHLCChunks?.last!.result!.last))")
                 
                 if let krakenBtcPrices = krakenApiResponses?[0].result?.XXBTZCAD {
                     
-                    latestKrakenPrices = krakenBtcPrices                ///print("last Kraken OHLC: \(krakenLatestPrices.last ?? [])")
+//                    latestKrakenPrices = krakenBtcPrices                ///print("last Kraken OHLC: \(krakenLatestPrices.last ?? [])")
                     
-                    krakenCandleSubset = latestKrakenPrices
-//                    krakenCandleSubset.removeFirst(krakenCandleSubset.count - 13 * 7)  ///; print("kraken ohlc lengths: \(krakenCandleSubset[0].count)")                                    ///; print("kraken prices: \(krakenCandleSubset)")
+                    krakenCandleSubset = krakenBtcPrices
+//                    krakenCandleSubset.removeLast()
                     
-                    if let last = latestKrakenPrices.last {
+                    if let last = krakenBtcPrices.last {
                         if krakenLatestOhlc != krakenPreviousOhlc {
                             krakenLatestOhlc = [Double("\(last[1])")!, Double("\(last[2])")!, Double("\(last[3])")!, Double("\(last[4])")!]
                             krakenPreviousOhlc = krakenLatestOhlc
@@ -40,6 +42,8 @@ class ApiService: NSObject {
                     latestKrakenXBTZCAD = Double("\(btcCadCurrent)")!                       ///; print("kraken price: \(latestKrakenXBTZCAD)")
                 } ///else {print("could not cast kraken price as Double")}
             }
+            
+            
             
             self?.getShakepayFeed { responses in     //getShakepayCandle(urlString: "https://api.shakepay.co/rates")
                 shakepayApiResponses = responses

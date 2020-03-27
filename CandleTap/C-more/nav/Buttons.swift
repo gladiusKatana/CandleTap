@@ -9,7 +9,7 @@ extension UIViewController { //CollectionVC
     }
     
     
-    @objc func reloadCVWrapperMethod() {    //print("↺(button)")
+    @objc func reloadCVWrapperMethod() {    print("↺(button)")
         reloadCV()
     }
     
