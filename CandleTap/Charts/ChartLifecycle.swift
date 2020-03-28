@@ -14,11 +14,6 @@ extension ChartVC {
         setupPinchToExit()
         
         justPinched = false
-        chartDisplayed = true
-        
-        
-//        candleSubset.removeFirst(candleSubset.count - 16)       //; print("kraken candle count: \(candleSubset.count)")
-        
         
         chartMarginY = CGFloat(navBarHeight)
         chartMarginX = CGFloat(navBarHeight) * 1.7
@@ -37,6 +32,11 @@ extension ChartVC {
         
 
         getChart()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        chartDisplayed = true
     }
     
     

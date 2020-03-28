@@ -10,7 +10,6 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
     maPriceArrays.removeFirst(diff >= 0 ? diff : 0)
     
     var i = 0
-    
     for _ in (0 ... maPriceArrays.count - 1) {
         
         let close = Double("\(maPriceArrays[i][4])")!
@@ -26,11 +25,10 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
             ///MAValues.append(avg)  ///; print("moving avg. #\(i+1), length \(closingPrices.count)/\(MAValues.count) = \(avg); i = \(i)")
             MAsToPlot.append(avg)
         }
-        
         i += 1
     }
     
-    MAValues = MAsToPlot
+    MAValues = MAsToPlot                                                //; print("\(maLength)-period moving average count:\(MAValues.count)")
     
     if !maPrintBoolLock { /**/
 //        let averagesNewlined = MAValues.map {"\($0)"}.joined(separator: "\n")
@@ -40,18 +38,16 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
 //        print("\nall \(allClosingPrices.count) closing prices for checking:\n\(closingPricesNewlined)", terminator: "\n")
         
         maPrintBoolLock = true
-    }                                                                 //print("\n\(maLength)-period moving averages:\n\(MAValues)")
+    }                                                                   //print("\n\(maLength)-period moving averages:\n\(MAValues)")
 }
 
 /// Following 3 extensions return the average of all elements in an array
 extension Collection where Element: Numeric {
     var total: Element { reduce(0, +) }
 }
-
 extension Collection where Element: BinaryInteger {
     var average: Double { isEmpty ? 0 : Double(total) / Double(count) }
 }
-
 extension Collection where Element: BinaryFloatingPoint {
     var average: Element { isEmpty ? 0 : total / Element(count) }
 }

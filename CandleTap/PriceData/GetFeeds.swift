@@ -17,7 +17,7 @@ extension ApiService {
     
 }
 
-enum ExchangeId: Int {
+enum ExchangeID: Int {
     case binance = 0; case kraken, shakepay
 }
 

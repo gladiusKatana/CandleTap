@@ -11,7 +11,7 @@ extension ChartVC {
         for arr in candleSubset {                                                     //print("appending highs & lows")
             highs.append(Double("\(arr[2])")!)
             lows.append(Double("\(arr[3])")!)
-//            MAs.append(MAValues[i])                                                 ///; print("appending \(MAValues[i])")
+            MAs.append(MAValues[i])                                                 ///; print("appending \(MAValues[i])")
             i += 1
         }
         
@@ -22,9 +22,9 @@ extension ChartVC {
             
 //            if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA}
             
-//            if let maxMA = MAs.max(), let minMA = MAs.min() {
-//                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
-//            } else {print("could not get MA max and min")}
+            if let maxMA = MAs.max(), let minMA = MAs.min() {
+                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
+            } else {print("could not get MA max and min")}
             
             let range = absMax - absMin                                             ///; print("range: \(range)\n")
             let scaledRange = Double(chartViewHeight - 2 * chartVerticalCushion)    ///print("\nscaled range: \(scaledRange)\n")
@@ -38,22 +38,18 @@ extension ChartVC {
                 let high = Double("\(candleSubset[i][2])")!
                 let low = Double("\(candleSubset[i][3])")!
                 let close = Double("\(candleSubset[i][4])")!                        /// 2, for the 'pretend there's no wick + green only' test
-                let MA = 0.0//MAValues[i]
+                let MA = MAValues[i]
                 
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: i,
                                          MA: MA)
                 
-                let ohlcString = "[\(open), \(high), \(low), \(close)]"
+//                let ohlcString = "[\(open), \(high), \(low), \(close)]"
 //                print("OHLC: \(ohlcString)")
-            }
-            
-//            print("\n")
+            }                                                                       //print("\n")
             
             let currentClose = Double("\(candleSubset[candleSubset.count - 1][4])")!
             plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(priceData: MAValues, scalor: scalor,...
-            
             plotLine(y: chartMarginY + chartVerticalCushion)
-            
         } else {print("max and min if-let for chart failed")}
     }
     

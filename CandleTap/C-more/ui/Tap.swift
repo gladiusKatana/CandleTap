@@ -18,12 +18,19 @@ extension CollectionVC {
              presentPopupView(column: column, row: row)
              }*/
             
-            if (column,row) == (1,2) {
-                exchangeID = ExchangeId.binance
-            }
-            else {
-                exchangeID = ExchangeId.kraken
-            }
+            
+//            if (column,row) == (1,2) {
+//                exchangeID = ExchangeID.binance
+//            }
+//                
+//            else if (column,row) == (1,1) {
+////                krakenUpdated = false
+//                exchangeID = ExchangeID.kraken
+//            }
+//            else {}
+//            
+//            apiServ.getFeeds(toPlot: exchangeID)
+            
             
         }//else {print("selected navbar-embeddd vc's header")}
         

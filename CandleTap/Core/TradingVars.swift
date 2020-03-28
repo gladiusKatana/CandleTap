@@ -12,7 +12,7 @@
 
 let apiServ = ApiService()
 
-var exchangeID = ExchangeId.kraken
+var exchangeID = ExchangeID.kraken
 
 var shakepayApiResponses: [ShakepayApiResponse]?    //; var latestShakepayPrices: [Any]?
 
@@ -43,7 +43,7 @@ var latestBinanceETHBTC = 1.0
 
 //MARK: Charts
 
-var candleSubset = [[AnyObject]]()
+var candleSubset = [[AnyObject]]();                 var candlesToPlot = 25
 
 var historicalShakepayPrices = [Double]()
 
