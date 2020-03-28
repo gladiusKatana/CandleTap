@@ -8,19 +8,19 @@ extension ChartVC {
         var MAs = [Double]()
         
         var i = 0
-        for arr in candleSubset {                                                   //print(arr)
+        for arr in candleSubset {                                                     //print("appending highs & lows")
             highs.append(Double("\(arr[2])")!)
             lows.append(Double("\(arr[3])")!)
-            MAs.append(MAValues[i])                                               ///; print("appending \(MAValues[i])")
+//            MAs.append(MAValues[i])                                                 ///; print("appending \(MAValues[i])")
             i += 1
         }
         
-        if let absLow = lows.min(), let absHigh = highs.max(), let maxMA = MAs.max(), let minMA = MAs.min() {
+        if let absLow = lows.min(), let absHigh = highs.max()/*, let maxMA = MAs.max(), let minMA = MAs.min()*/ {
             
             var absMin = absLow
             var absMax = absHigh
             
-            if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA}
+//            if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA}
             
 //            if let maxMA = MAs.max(), let minMA = MAs.min() {
 //                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
@@ -32,21 +32,22 @@ extension ChartVC {
             
             self.view.subviews.forEach({ $0.removeFromSuperview() })
             
-            for i in 0 ... candleSubset.count - 1 {                             ///print("#\(i+1)")//🕯
+            for i in 0 ... candleSubset.count - 1 {                                 ///print("#\(i+1)")//🕯
                 
-                let open = Double("\(candleSubset[i][1])")!                     /// 3, for the 'pretend there's no wick + green only' test //***
+                let open = Double("\(candleSubset[i][1])")!                         /// 3, for 'pretend there's no wick + green only' test //***
                 let high = Double("\(candleSubset[i][2])")!
                 let low = Double("\(candleSubset[i][3])")!
-                let close = Double("\(candleSubset[i][4])")!                    /// 2, for the 'pretend there's no wick + green only' test
-                let MA = MAValues[i]
+                let close = Double("\(candleSubset[i][4])")!                        /// 2, for the 'pretend there's no wick + green only' test
+                let MA = 0.0//MAValues[i]
                 
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: i,
                                          MA: MA)
                 
-//                print("OHLC: [\(open), \(high), \(low), \(close)]")
+                let ohlcString = "[\(open), \(high), \(low), \(close)]"
+//                print("OHLC: \(ohlcString)")
             }
             
-            print("\n\n")
+//            print("\n")
             
             let currentClose = Double("\(candleSubset[candleSubset.count - 1][4])")!
             plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(priceData: MAValues, scalor: scalor,...

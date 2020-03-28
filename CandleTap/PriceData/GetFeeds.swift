@@ -7,7 +7,7 @@ extension ApiService {
     }
     
     func getKrakenFeed(_ completion: @escaping ([KrakenApiResponse]) -> ()) {
-        fetchKrakenFeedForUrlString(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=30", completion: completion)
+        fetchKrakenFeedForUrlString(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=15", completion: completion)
     }
     
 //    func getBinanceFeed(urlString: String,
@@ -15,5 +15,9 @@ extension ApiService {
 //        fetchBinanceFeedForUrlString(urlString: urlString, completion: completion)
 //    }
     
+}
+
+enum ExchangeId: Int {
+    case binance = 0; case kraken, shakepay
 }
 

@@ -12,7 +12,10 @@ extension CollectionVC {
 //                getChartDataAndPrepareToPlot(plotAllCandles: false)
 //            }
         
-        getChartDataAndPrepareToPlot(plotAllCandles: true)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            apiServ.getFeeds(toPlot: exchangeID)
+        }
+//        getChartDataAndPrepareToPlot(plotAllCandles: true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             /// must be on main queue: periodic callback inside the completion handler, is called on a background thread
@@ -23,24 +26,25 @@ extension CollectionVC {
     }
     
     func kickoffTimer() {
-        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 3) { [weak self] in
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.periodicDateRefresh(){self?.kickoffTimer()}
         }
     }
 }
 
-func getChartDataAndPrepareToPlot(plotAllCandles: Bool) {
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-        
-        apiServ.getFeeds()
-        
-        if chartDisplayed {
-            
-            assignCandleSubset()
-            
-            chartVC.getChart()
-        }
-    }
-}
+//func getChartDataAndPrepareToPlot(plotAllCandles: Bool) {
+//
+////    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//
+//        apiServ.getFeeds()
+//
+////        if chartDisplayed {
+////
+////            assignCandleSubset()
+////
+////            chartVC.getChart()
+////        }
+//
+////    }
+//}
 

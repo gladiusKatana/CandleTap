@@ -18,6 +18,13 @@ extension CollectionVC {
              presentPopupView(column: column, row: row)
              }*/
             
+            if (column,row) == (1,2) {
+                exchangeID = ExchangeId.binance
+            }
+            else {
+                exchangeID = ExchangeId.kraken
+            }
+            
         }//else {print("selected navbar-embeddd vc's header")}
         
         lastTappedCoordinate = [column, row]

@@ -12,18 +12,20 @@
 
 let apiServ = ApiService()
 
+var exchangeID = ExchangeId.kraken
+
 var shakepayApiResponses: [ShakepayApiResponse]?    //; var latestShakepayPrices: [Any]?
 
 
 var krakenApiResponses: [KrakenApiResponse]?
-var krakenPair = "XXBTZCAD" /// hardcoded for now
+var krakenPair = "XXBTZUSD"//"XXBTZCAD" /// hardcoded for now
 
 var latestKrakenPrices = [[AnyObject]]()            /// not asset-specific
 var krakenCandleSubset = [[AnyObject]]()
-var krakenLatestOhlc = [Double]();                  var krakenPreviousOhlc = [-1.0]
+var krakenLatestOhlcWithTimestamp = [Double]();     var krakenPreviousOhlcWithTimestamp = [-1.0]
+var krakenPreviousTimestamp = Double();             var krakenLatestTimeStamp = Double()
 
-
-
+var krakenUpdated = false
 
 //var binanceApiResponses: [BinanceApiResponse]?    //; var latestShakepayPrices: [Any]?
 

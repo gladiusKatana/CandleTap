@@ -4,6 +4,22 @@ extension ChartVC {
     
     override func viewDidLoad() {                           super.viewDidLoad()                 //; print("\n💾chart")
         ///setTopViewController()
+
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {        super.viewWillAppear(animated)
+        setNavBarTitle(customString: viewControllerType.getNavBarTitle())
+        setupNavBarButtons(greyIndex: 1)
+        setupPinchToExit()
+        
+        justPinched = false
+        chartDisplayed = true
+        
+        
+//        candleSubset.removeFirst(candleSubset.count - 16)       //; print("kraken candle count: \(candleSubset.count)")
+        
+        
         chartMarginY = CGFloat(navBarHeight)
         chartMarginX = CGFloat(navBarHeight) * 1.7
         chartVerticalCushion = CGFloat(15) /// appears on top & bottom
@@ -18,17 +34,8 @@ extension ChartVC {
         chartViewWidth = wid
         
         chartViewHeight = hei ///= CGFloat(frameWidth); chartViewHeight = CGFloat(frameHeight)
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {        super.viewWillAppear(animated)
-        setNavBarTitle(customString: viewControllerType.getNavBarTitle())
-        setupNavBarButtons(greyIndex: 1)
-        setupPinchToExit()
         
-        justPinched = false
-        chartDisplayed = true
-        
+
         getChart()
     }
     
