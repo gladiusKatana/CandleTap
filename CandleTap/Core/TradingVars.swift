@@ -12,7 +12,8 @@
 
 let apiServ = ApiService()
 
-var exchangeID = ExchangeID.kraken
+//var exchangeID = ExchangeID.kraken
+var exchangeID = ExchangeID.binance
 
 var shakepayApiResponses: [ShakepayApiResponse]?    //; var latestShakepayPrices: [Any]?
 
@@ -25,7 +26,7 @@ var krakenCandleSubset = [[AnyObject]]()
 var krakenLatestOhlcWithTimestamp = [Double]();     var krakenPreviousOhlcWithTimestamp = [-1.0]
 var krakenPreviousTimestamp = Double();             var krakenLatestTimeStamp = Double()
 
-var krakenUpdated = false
+var chartFirstSetup = false
 
 //var binanceApiResponses: [BinanceApiResponse]?    //; var latestShakepayPrices: [Any]?
 

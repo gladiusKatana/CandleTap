@@ -213,10 +213,10 @@
 		0633169023CD2C440027CAD8 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
-				0633169123CD2C440027CAD8 /* ChartVC.swift */,
-				064658AF23D6A4E9003E1D82 /* ChartClasses.swift */,
-				0633169423CD2C440027CAD8 /* ChartLifecycle.swift */,
 				0633169523CD2C440027CAD8 /* GetChart.swift */,
+				0633169123CD2C440027CAD8 /* ChartVC.swift */,
+				0633169423CD2C440027CAD8 /* ChartLifecycle.swift */,
+				064658AF23D6A4E9003E1D82 /* ChartClasses.swift */,
 				0633169223CD2C440027CAD8 /* Plot.swift */,
 			);
 			path = Charts;

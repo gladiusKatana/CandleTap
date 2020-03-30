@@ -1,13 +1,15 @@
 /*🔥CandleTap_Dates💧*/import UIKit
 
-func dateFromComponents(_ dateComponents: [Any]) -> Date { /// Note, weekday not needed to create a Date; it's used for prints, eg in pryntLastLoginDate()
-    let yearLoaded = dateComponents[0] as! Int                              ///; print("year loaded: \(yearLoaded)")                                    // will probably replace with...
-    let monthLoaded = dateComponents[1] as! String                          ///; print("month loaded: \(monthLoaded)")                              //... conditional downcasts,...
-    let monthLoadedInt = months.firstIndex(of: monthLoaded)! + 1            ///; print("int: \(monthLoadedInt)")                                            //...rather than forced ones
-    let dayLoaded = dateComponents[2] as! Int                               ///; print("day loaded: \(dayLoaded)")                                      // --- (need to revamp date code)
-    //let weekdayLoaded = array[3] as! String                               ///; print("weekday loaded: \(weekdayLoaded)")
-    let hourLoaded = dateComponents[4] as! Int                              ///; print("hour loaded: \(hourLoaded)")
-    let minuteLoaded = dateComponents[5] as! Int                            ///; print("minute loaded: \(minuteLoaded)")
+func dateFromComponents(_ dateComponents: [Any]) -> Date {
+    /// Note, weekday not needed to create a Date; it's used for prints, eg in pryntLastLoginDate()
+    
+    let yearLoaded = dateComponents[0] as! Int                  ///; print("year loaded: \(yearLoaded)")    // will probably replace with...
+    let monthLoaded = dateComponents[1] as! String              ///; print("month loaded: \(monthLoaded)")  //... conditional downcasts,...
+    let monthLoadedInt = months.firstIndex(of: monthLoaded)! + 1    ///; print("int: \(monthLoadedInt)")    //...rather than forced ones
+    let dayLoaded = dateComponents[2] as! Int                       ///; print("day loaded: \(dayLoaded)")  // --- (need to revamp date code)
+    //let weekdayLoaded = array[3] as! String                       ///; print("weekday loaded: \(weekdayLoaded)")
+    let hourLoaded = dateComponents[4] as! Int                      ///; print("hour loaded: \(hourLoaded)")
+    let minuteLoaded = dateComponents[5] as! Int                    ///; print("minute loaded: \(minuteLoaded)")
     
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd HH:mm"

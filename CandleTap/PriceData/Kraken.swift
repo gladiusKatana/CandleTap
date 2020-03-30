@@ -22,6 +22,7 @@ func fetchKrakenFeedForUrlString(urlString: String, completion: @escaping ([Krak
     .resume()
 }
 
+
 class KrakenApiResponse: SafeJsonObject {
     @objc var error: [Any]?
     @objc var result: KrakenTradingPair?
@@ -39,6 +40,7 @@ class KrakenApiResponse: SafeJsonObject {
         setValuesForKeys(dictionary)
     }
 }
+
 
 class KrakenTradingPair: SafeJsonObject {
     @objc var XXBTZEUR: [[AnyObject]]?          // these AnyObject?  or  [[AnyObject]]?  properties below could also be  AnyObject  or  Any

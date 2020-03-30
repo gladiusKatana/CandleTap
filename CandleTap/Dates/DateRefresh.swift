@@ -4,18 +4,17 @@ extension CollectionVC {
     
     func periodicDateRefresh(completion: () -> ()) {                        //print("·", terminator: "")
         
-//            if Calendar.current.component(.second, from: Date()) == 0 {     //print("minute ticked over")
-//                print("Date: \(Date())")
-//                getChartDataAndPrepareToPlot(plotAllCandles: true)
-//            }
-//            else {
-//                getChartDataAndPrepareToPlot(plotAllCandles: false)
-//            }
+        /*if Calendar.current.component(.second, from: Date()) == 0 {       //print("minute ticked over")
+         print("Date: \(Date())")
+         apiServ.getFeeds(toPlot: exchangeID)
+         }
+         else {
+         apiServ.getFeeds(toPlot: exchangeID)
+         }*/
         
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             apiServ.getFeeds(toPlot: exchangeID)
         }
-//        getChartDataAndPrepareToPlot(plotAllCandles: true)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             /// must be on main queue: periodic callback inside the completion handler, is called on a background thread
@@ -26,25 +25,9 @@ extension CollectionVC {
     }
     
     func kickoffTimer() {
-        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.periodicDateRefresh(){self?.kickoffTimer()}
         }
     }
 }
-
-//func getChartDataAndPrepareToPlot(plotAllCandles: Bool) {
-//
-////    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//
-//        apiServ.getFeeds()
-//
-////        if chartDisplayed {
-////
-////            assignCandleSubset()
-////
-////            chartVC.getChart()
-////        }
-//
-////    }
-//}
 

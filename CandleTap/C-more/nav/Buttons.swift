@@ -15,7 +15,7 @@ extension UIViewController { //CollectionVC
     
     
     @objc func goToChartViaButton() {             //print("tapped the wrench")
-        assignCandleSubset()
+        ///assignCandleSubset()
         gotoView(vc: chartVC)
     }
     

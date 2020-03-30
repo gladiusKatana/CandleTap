@@ -4,7 +4,7 @@ class ApiService: NSObject {
     
     static let sharedInstance = ApiService()
     let baseKrakenUrl = "https://api.kraken.com/0/public/OHLC?pair="///ie https://api.kraken.com/0/public/OHLC?pair=XXBTZCAD&since=0
-    // ** cache data; use historical for kraken
+    // ** cache data; use historical for kraken (for greater accuracy)
     
     func getFeeds(toPlot: ExchangeID) {                             //print("-----------------------getting feeds for exchange \(exchangeID)")
         
@@ -16,10 +16,8 @@ class ApiService: NSObject {
                 if let krakenBtcPrices = krakenApiResponses?[0].result?.XXBTZUSD { //.result?.XXBTZCAD {
                     
                     if toPlot == .kraken
-                        && !krakenUpdated
-                    {
-                        candleSubset = krakenBtcPrices
-                    }
+                        //&& !chartFirstSetup//*
+                    {candleSubset = krakenBtcPrices}
                     
                     latestKrakenXBTZCAD = Double("\(krakenBtcPrices.last![4])")!   //; print("kraken price: \(latestKrakenXBTZCAD)")
                     /**/
@@ -34,8 +32,9 @@ class ApiService: NSObject {
             
             binanceCandleSubset = globalBinanceCandles
             
-            if toPlot == .binance {candleSubset = binanceCandleSubset}
-            
+            if toPlot == .binance
+                //&& !chartFirstSetup
+            {candleSubset = binanceCandleSubset}
             
             self?.getShakepayFeed { responses in     //getShakepayCandle(urlString: "https://api.shakepay.co/rates")
                 shakepayApiResponses = responses
@@ -48,30 +47,31 @@ class ApiService: NSObject {
         }
         
         processCandleSubset()
-        
-        if chartDisplayed { //assignCandleSubset()
-            chartVC.getChart()
-        }
     }
     
     func processCandleSubset() {
         if candleSubset.count > candlesToPlot {
             updateMovingAverages(maLength: 10, plottingInterval: candlesToPlot, ohlcs: candleSubset)
-            candleSubset.removeFirst(candleSubset.count - candlesToPlot)       //; print("kraken candle count: \(candleSubset.count)")
+            //candleSubset.removeFirst(candleSubset.count - candlesToPlot)       //; print("kraken candle count: \(candleSubset.count)")
+            
+            if chartDisplayed { //assignCandleSubset()
+                chartVC.getChart()
+            }
         }
         
         var i=0
         for _/*candle*/ in candleSubset {
-//            let open = Double("\(candle[1])")!
-//            let high = Double("\(candle[2])")!
-//            let low = Double("\(candle[3])")!
-//            let close = Double("\(candle[4])")!
             
-//            let ohlcString = "[\(open), \(high), \(low), \(close)]"
-//            if !krakenUpdated {print("OHLC: \(ohlcString)")}
+            /*let open = Double("\(candle[1])")!
+             let high = Double("\(candle[2])")!
+             let low = Double("\(candle[3])")!
+             let close = Double("\(candle[4])")!
+             
+             let ohlcString = "[\(open), \(high), \(low), \(close)]"
+             if !krakenUpdated {print("OHLC: \(ohlcString)")}*/
             
             if i == candleSubset.count - 1 { //print("last ohlc of this refresh")
-                if exchangeID == .kraken {krakenUpdated = true}
+                chartFirstSetup = true
             }
             
             i += 1
@@ -79,40 +79,3 @@ class ApiService: NSObject {
     }
 }
 
-/*
- //                    let last = krakenApiResponses?[0].result?.last          ; print("kraken latest timestamp: \(last)")
- 
- //                    if let last = krakenBtcPrices.last {
- //
- ////                        if !krakenUpdated {
- //
- //                            candleSubset = krakenBtcPrices                //; print("last Kraken OHLC: \(candleSubset.last ?? [])")
- //
- ////                            candleSubset.removeLast()
- //
- ////                            krakenUpdated = true
- ////                        } else {
- //
- ////                            krakenLatestOhlcWithTimestamp = [Double("\(last[0])")!, Double("\(last[1])")!, Double("\(last[2])")!, Double("\(last[3])")!, Double("\(last[4])")!]
- ////                            if krakenLatestOhlcWithTimestamp != krakenPreviousOhlcWithTimestamp {
- //
- //
- ////                            krakenLatestTimeStamp = Double("\(last[0])")!
- ////
- ////                            if krakenPreviousTimestamp != krakenLatestTimeStamp {
- ////                                candleSubset.removeFirst()
- ////                                candleSubset.append(last)
- ////
- //////                                krakenPreviousOhlcWithTimestamp = krakenLatestOhlcWithTimestamp
- ////                                krakenPreviousTimestamp = krakenLatestTimeStamp
- ////
- ////                            } //else {print("\nkraken previous = current ohlc\n")}
- //
- ////                        }
- //
- //                        //print("kraken candle count: \(candleSubset.count)")
- //
- ////                        krakenLast = "\(last[0])"
- //
- //                    } else {print("could not get .last of kraken array")}
- */

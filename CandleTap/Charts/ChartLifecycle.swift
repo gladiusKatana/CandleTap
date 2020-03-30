@@ -4,7 +4,7 @@ extension ChartVC {
     
     override func viewDidLoad() {                           super.viewDidLoad()                 //; print("\n💾chart")
         ///setTopViewController()
-
+        
     }
     
     
@@ -22,7 +22,7 @@ extension ChartVC {
         let wid = CGFloat(globalWindow.frame.width - chartMarginX * 2)
         let hei = CGFloat(globalWindow.frame.height - chartMarginY * 2)
         
-        candleWidth = (wid - candleGap) / CGFloat(candleSubset.count) // incl. (non-leftmost) gap (?)
+        candleWidth = (wid - candleGap) / CGFloat(candlesToPlot) // incl. (non-leftmost) gap (?)
         
         chartFrame = CGRect(x: chartMarginX, y: chartMarginY, width: wid, height: hei)    /// (inherits & has all properties of UIView)
         
@@ -30,8 +30,7 @@ extension ChartVC {
         
         chartViewHeight = hei ///= CGFloat(frameWidth); chartViewHeight = CGFloat(frameHeight)
         
-
-        getChart()
+        ///getChart()
     }
     
     override func viewDidAppear(_ animated: Bool) {

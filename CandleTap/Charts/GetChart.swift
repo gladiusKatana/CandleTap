@@ -4,23 +4,23 @@ extension ChartVC {
     
     func getChart() {                                                               ///print("showing candles")
         
-        var highs = [Double]();  var lows = [Double]()              ///var lowerWickRanges = [Double]();   var upperWickRanges = [Double]()
-        var MAs = [Double]()
+        var highs = [Double]();  var lows = [Double]()                              ///; var lowerWickRanges = [Double]()
+        var MAs = [Double]()                                                        ///; var upperWickRanges = [Double]()
+        let candleStart = candleSubset.count + 1 //; print("appending MA from \(MAValues.count) MAs, to \(MAs.count) values")
         
-        var i = 0
-        for arr in candleSubset {                                                     //print("appending highs & lows")
+        for i in candleStart - candlesToPlot ..< candleStart - 1 {
+            let arr = candleSubset[i]
             highs.append(Double("\(arr[2])")!)
             lows.append(Double("\(arr[3])")!)
-            MAs.append(MAValues[i])                                                 ///; print("appending \(MAValues[i])")
-            i += 1
+            
+            let j = i - candleStart + candlesToPlot                                 //; print("j=\(j)")
+            MAs.append(MAValues[j])                                                 ///; print("appending \(MAValues[i])")
         }
         
         if let absLow = lows.min(), let absHigh = highs.max()/*, let maxMA = MAs.max(), let minMA = MAs.min()*/ {
             
             var absMin = absLow
             var absMax = absHigh
-            
-//            if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA}
             
             if let maxMA = MAs.max(), let minMA = MAs.min() {
                 if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
@@ -30,26 +30,27 @@ extension ChartVC {
             let scaledRange = Double(chartViewHeight - 2 * chartVerticalCushion)    ///print("\nscaled range: \(scaledRange)\n")
             let scalor = scaledRange / range
             
-            self.view.subviews.forEach({ $0.removeFromSuperview() })
+            self.view.subviews.forEach({ $0.removeFromSuperview() })                //; print("will plot (O,H,L,C) \(candlesToPlot) times")
             
-            for i in 0 ... candleSubset.count - 1 {                                 ///print("#\(i+1)")//🕯
+            for i in candleStart - candlesToPlot ..< candleStart - 1 {
                 
                 let open = Double("\(candleSubset[i][1])")!                         /// 3, for 'pretend there's no wick + green only' test //***
                 let high = Double("\(candleSubset[i][2])")!
                 let low = Double("\(candleSubset[i][3])")!
                 let close = Double("\(candleSubset[i][4])")!                        /// 2, for the 'pretend there's no wick + green only' test
-                let MA = MAValues[i]
                 
-                plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: i,
+                let j = i - candleStart + candlesToPlot                             //; print("j=\(j)")
+                let MA = MAValues[j]
+                
+                plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: j,
                                          MA: MA)
-                
-//                let ohlcString = "[\(open), \(high), \(low), \(close)]"
-//                print("OHLC: \(ohlcString)")
+                //let ohlcString = "[\(open), \(high), \(low), \(close)]"           //; print("OHLC: \(ohlcString)")
             }                                                                       //print("\n")
             
             let currentClose = Double("\(candleSubset[candleSubset.count - 1][4])")!
-            plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(priceData: MAValues, scalor: scalor,...
+            plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(MAValues, scalor: scalor,...
             plotLine(y: chartMarginY + chartVerticalCushion)
+            
         } else {print("max and min if-let for chart failed")}
     }
     
@@ -59,7 +60,7 @@ extension ChartVC {
         self.view.addSubview(chartBorder)
         
         let minY = CGFloat(frameHeight) - chartMarginY - chartVerticalCushion
-
+        
         let rangeIncrement = range / 10.0;    let coordIncrement = (minY - chartMarginY) / 10.0
         
         for n in (0 ... 9) {
@@ -88,9 +89,9 @@ extension ChartVC {
     
     func plotLine(y: CGFloat) {
         let yLineFrame = CGRect(x: chartMarginX,
-                                 y: y,
-                                 width: CGFloat(frameWidth) - chartMarginX * 2,
-                                 height: CGFloat(0.5))
+                                y: y,
+                                width: CGFloat(frameWidth) - chartMarginX * 2,
+                                height: CGFloat(0.5))
         
         let yLine = Bar(frame: yLineFrame);   yLine.backgroundColor = platinumLite
         self.view.addSubview(yLine)

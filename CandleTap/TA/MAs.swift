@@ -13,7 +13,7 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
     for _ in (0 ... maPriceArrays.count - 1) {
         
         let close = Double("\(maPriceArrays[i][4])")!
-//        if !maPrintBoolLock {print(close)} ///; print("closing price #\(i+1) for MA: \(close)")
+        //if !maPrintBoolLock {print(close)} ///; print("closing price #\(i+1) for MA: \(close)")
         
         closingPrices.append(close)
         allClosingPrices.append(close)
@@ -30,15 +30,15 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
     
     MAValues = MAsToPlot                                                //; print("\(maLength)-period moving average count:\(MAValues.count)")
     
-    if !maPrintBoolLock { /**/
-//        let averagesNewlined = MAValues.map {"\($0)"}.joined(separator: "\n")
-//        print("\nall \(MAValues.count) \(maLength)-period moving averages:\n\(averagesNewlined)", terminator: "\n")
-        
-//        let closingPricesNewlined = allClosingPrices.map {"\($0)"}.joined(separator: "\n")
-//        print("\nall \(allClosingPrices.count) closing prices for checking:\n\(closingPricesNewlined)", terminator: "\n")
-        
-        maPrintBoolLock = true
-    }                                                                   //print("\n\(maLength)-period moving averages:\n\(MAValues)")
+    //    if !maPrintBoolLock { /**/
+    //        let averagesNewlined = MAValues.map {"\($0)"}.joined(separator: "\n")
+    //        print("\nall \(MAValues.count) \(maLength)-period moving averages:\n\(averagesNewlined)", terminator: "\n")
+    //
+    //        let closingPricesNewlined = allClosingPrices.map {"\($0)"}.joined(separator: "\n")
+    //        print("\nall \(allClosingPrices.count) closing prices for checking:\n\(closingPricesNewlined)", terminator: "\n")
+    //
+    //        maPrintBoolLock = true
+    //    }                                                                   //print("\n\(maLength)-period moving averages:\n\(MAValues)")
 }
 
 /// Following 3 extensions return the average of all elements in an array
@@ -58,7 +58,6 @@ extension Collection where Element: BinaryFloatingPoint {
  //            print("ohlc: \(k): \(ohlc)")
  //            k += 1
  //        }
- 
  //        print("\n")
  */
 
