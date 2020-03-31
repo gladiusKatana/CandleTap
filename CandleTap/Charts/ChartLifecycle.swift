@@ -36,10 +36,15 @@ extension ChartVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         chartDisplayed = true
+        
+//        self.periodicDateRefresh(){self.kickoffTimer()}
+        
+        apiServ.getFeeds(toPlot: exchangeID)
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {     super.viewWillDisappear(animated)
+//        self.view.subviews.forEach({ $0.removeFromSuperview() })
         chartDisplayed = false
     }
 }

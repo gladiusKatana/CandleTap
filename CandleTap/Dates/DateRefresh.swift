@@ -1,6 +1,6 @@
 /*🔥CandleTap_DateRefresh💧*/import UIKit
 
-extension CollectionVC {
+extension UIViewController {
     
     func periodicDateRefresh(completion: () -> ()) {                        //print("·", terminator: "")
         
@@ -25,7 +25,7 @@ extension CollectionVC {
     }
     
     func kickoffTimer() {
-        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 0.5) { [weak self] in
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 1) { [weak self] in
             self?.periodicDateRefresh(){self?.kickoffTimer()}
         }
     }

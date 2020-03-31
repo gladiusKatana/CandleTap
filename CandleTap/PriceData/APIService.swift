@@ -6,7 +6,7 @@ class ApiService: NSObject {
     let baseKrakenUrl = "https://api.kraken.com/0/public/OHLC?pair="///ie https://api.kraken.com/0/public/OHLC?pair=XXBTZCAD&since=0
     // ** cache data; use historical for kraken (for greater accuracy)
     
-    func getFeeds(toPlot: ExchangeID) {                             //print("-----------------------getting feeds for exchange \(exchangeID)")
+    func getFeeds(toPlot: ExchangeID) {                   //print("-----------------------getting feeds for exchange \(exchangeID)")
         
         DispatchQueue.global(qos: .userInitiated).asyncAfter(
         deadline: .now()) { [weak self] in                          ///DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
@@ -16,6 +16,7 @@ class ApiService: NSObject {
                 if let krakenBtcPrices = krakenApiResponses?[0].result?.XXBTZUSD { //.result?.XXBTZCAD {
                     
                     if toPlot == .kraken
+                        && chartDisplayed
                         //&& !chartFirstSetup//*
                     {candleSubset = krakenBtcPrices}
                     
@@ -33,6 +34,7 @@ class ApiService: NSObject {
             binanceCandleSubset = globalBinanceCandles
             
             if toPlot == .binance
+                && chartDisplayed
                 //&& !chartFirstSetup
             {candleSubset = binanceCandleSubset}
             
@@ -46,7 +48,9 @@ class ApiService: NSObject {
             currentPrices = [latestShakepayBTCCAD, latestKrakenXBTZCAD, latestBinanceETHBTC]
         }
         
-        processCandleSubset()
+        if chartDisplayed {
+            processCandleSubset()
+        }
     }
     
     func processCandleSubset() {
