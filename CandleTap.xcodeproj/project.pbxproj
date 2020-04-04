@@ -13,6 +13,7 @@
 		0633169923CD2C440027CAD8 /* ChartLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169423CD2C440027CAD8 /* ChartLifecycle.swift */; };
 		0633169A23CD2C440027CAD8 /* GetChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169523CD2C440027CAD8 /* GetChart.swift */; };
 		064658B023D6A4E9003E1D82 /* ChartClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064658AF23D6A4E9003E1D82 /* ChartClasses.swift */; };
+		06765A2A24383D6B004FDD49 /* ChartVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06765A2924383D6B004FDD49 /* ChartVars.swift */; };
 		0678FC5A23DA590C009B25B8 /* MAs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678FC5923DA590C009B25B8 /* MAs.swift */; };
 		06C0DBDB23CCEDE900159118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C0DBDA23CCEDE900159118 /* Assets.xcassets */; };
 		06C0DBDE23CCEDE900159118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C0DBDC23CCEDE900159118 /* LaunchScreen.storyboard */; };
@@ -108,6 +109,7 @@
 		0633169423CD2C440027CAD8 /* ChartLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartLifecycle.swift; sourceTree = "<group>"; };
 		0633169523CD2C440027CAD8 /* GetChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetChart.swift; sourceTree = "<group>"; };
 		064658AF23D6A4E9003E1D82 /* ChartClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartClasses.swift; sourceTree = "<group>"; };
+		06765A2924383D6B004FDD49 /* ChartVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVars.swift; sourceTree = "<group>"; };
 		0678FC5923DA590C009B25B8 /* MAs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAs.swift; sourceTree = "<group>"; };
 		06C0DBCE23CCEDE700159118 /* CandleTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandleTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C0DBDA23CCEDE900159118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				06C0DC4823CCEF0D00159118 /* Vars.swift */,
 				06C0DC4523CCEF0D00159118 /* Pairs.swift */,
 				06C0DC4223CCEF0D00159118 /* TradingVars.swift */,
+				06765A2924383D6B004FDD49 /* ChartVars.swift */,
 				06C0DC4423CCEF0D00159118 /* TimeVars.swift */,
 				06C0DC4623CCEF0D00159118 /* AppLifecycle.swift */,
 				06C0DC4923CCEF0D00159118 /* AppDelegate.swift */,
@@ -651,6 +654,7 @@
 				06E7041123D0173C00C2294F /* Dates_II.swift in Sources */,
 				06C0DC5B23CCEF0D00159118 /* Sizes.swift in Sources */,
 				06C0DC7023CCEF0E00159118 /* AddPopup.swift in Sources */,
+				06765A2A24383D6B004FDD49 /* ChartVars.swift in Sources */,
 				06C0DC7723CCEF0E00159118 /* LeftCell.swift in Sources */,
 				06C0DC4B23CCEF0D00159118 /* TestSquare.swift in Sources */,
 				06C0DC6323CCEF0E00159118 /* Colours.swift in Sources */,
