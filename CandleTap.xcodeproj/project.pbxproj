@@ -438,8 +438,8 @@
 			children = (
 				06C0DC4323CCEF0D00159118 /* VCs.swift */,
 				06C0DC4723CCEF0D00159118 /* VCs_II.swift */,
-				06C0DC4823CCEF0D00159118 /* Vars.swift */,
 				06C0DC4523CCEF0D00159118 /* Pairs.swift */,
+				06C0DC4823CCEF0D00159118 /* Vars.swift */,
 				06C0DC4223CCEF0D00159118 /* TradingVars.swift */,
 				06765A2924383D6B004FDD49 /* ChartVars.swift */,
 				06C0DC4423CCEF0D00159118 /* TimeVars.swift */,
