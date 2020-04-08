@@ -22,6 +22,7 @@ func fetchShakepayFeedForUrlString(urlString: String, completion: @escaping ([Sh
     .resume()
 }
 
+
 class ShakepayApiResponse: SafeJsonObject {
     @objc var BTC_USD: AnyObject?
     @objc var USD_BTC: AnyObject?

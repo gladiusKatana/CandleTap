@@ -17,7 +17,7 @@ extension ChartVC {
             MAs.append(MAValues[j])                                                 ///; print("appending \(MAValues[i])")
         }
         
-        if let absLow = lows.min(), let absHigh = highs.max()/*, let maxMA = MAs.max(), let minMA = MAs.min()*/ {
+        if let absLow = lows.min(), let absHigh = highs.max() {
             
             var absMin = absLow
             var absMax = absHigh
