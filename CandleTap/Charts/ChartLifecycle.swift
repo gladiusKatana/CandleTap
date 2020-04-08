@@ -4,9 +4,7 @@ extension ChartVC {
     
     override func viewDidLoad() {                           super.viewDidLoad()                 //; print("\n💾chart")
         ///setTopViewController()
-        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {        super.viewWillAppear(animated)
         setNavBarTitle(customString: viewControllerType.getNavBarTitle())
@@ -44,7 +42,9 @@ extension ChartVC {
     
     
     override func viewWillDisappear(_ animated: Bool) {     super.viewWillDisappear(animated)
+        
 //        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        
         chartDisplayed = false
     }
 }

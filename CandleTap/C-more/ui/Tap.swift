@@ -24,13 +24,13 @@ extension CollectionVC {
             if (column,row) == (1,2) {
                 exchangeID = ExchangeID.binance
             }
-
+                
             else if (column,row) == (1,1) {
-//                krakenUpdated = false
+                //krakenUpdated = false
                 exchangeID = ExchangeID.kraken
             }
             else {}
-
+            
             apiServ.getFeeds(toPlot: exchangeID)
             
             

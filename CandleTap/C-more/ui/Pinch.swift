@@ -9,7 +9,7 @@ extension UIViewController {
         
         self.view.addGestureRecognizer(dismissPinch)
         
-//        justPinched = false
+        //justPinched = false
         
     }
     

@@ -16,7 +16,7 @@ extension CollectionVC {
         
         if ![.popupMenu].contains(viewControllerType) {setupPinchToExit()}
         
-//        getChartDataAndPrepareToPlot(plotAllCandles: true)
+        //getChartDataAndPrepareToPlot(plotAllCandles: true)
         apiServ.getFeeds(toPlot: exchangeID)
         
         periodicDateRefresh(){kickoffTimer()}               /// checks the date then does the timer kickoff ('starts on the 0th callback')
