@@ -2,15 +2,22 @@
 
 func fetchShakepayFeedForUrlString(urlString: String, completion: @escaping ([ShakepayApiResponse]) -> ()) {
     
-    guard let url = URL(string: urlString) else {print("error binding shk url"); return}
+    guard let url = URL(string: urlString) else {
+        //print("error binding shk url")
+        return
+    }
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
-        guard let data = data else { print("error binding shk  data  parameter in URLSession"); return}
+        guard let data = data else {
+            //print("error binding shk  data  parameter in URLSession")
+            return
+        }
         
         do {
             guard let jsonDictionaries
                 = try [JSONSerialization.jsonObject(with: data, options: .mutableContainers)] as? [[String: AnyObject]] else {
-                    print("error converting shk json to array of dictionaries"); return
+                    print("error converting shk json to array of dictionaries")
+                    return
             }
             
             completion(jsonDictionaries.map({return ShakepayApiResponse(dictionary: $0)}))
@@ -21,7 +28,6 @@ func fetchShakepayFeedForUrlString(urlString: String, completion: @escaping ([Sh
     }
     .resume()
 }
-
 
 class ShakepayApiResponse: SafeJsonObject {
     @objc var BTC_USD: AnyObject?

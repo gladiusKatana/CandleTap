@@ -1,10 +1,11 @@
 /*🔥CandleTap💧VCs*/import UIKit
 
 var cellGap = CGFloat(0) // if nonzero, do not make this smaller than: 0.5 (iphone7), or lines drawn inconsistently
+
 var backgroundVC = UIViewController()
-var topVC = CollectionVC(.initial, backgroundColour: UIColor.clear, colourIndex: nil, collectionViewLayout: moneyManagementLayout)
-//var topVC = UIViewController()
-var initialVC = topVC
+
+var topVC = CollectionVC(.initial, backgroundColour: UIColor.clear, colourIndex: nil,
+                         collectionViewLayout: moneyManagementLayout) //= UIViewController()
 
 var chartVC = ChartVC(.chart)
 

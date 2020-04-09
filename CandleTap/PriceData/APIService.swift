@@ -58,7 +58,7 @@ class ApiService: NSObject {
             updateMovingAverages(maLength: 10, plottingInterval: candlesToPlot, ohlcs: candleSubset)
             //candleSubset.removeFirst(candleSubset.count - candlesToPlot)       //; print("kraken candle count: \(candleSubset.count)")
             
-            if chartDisplayed { //assignCandleSubset()
+            if chartDisplayed {
                 chartVC.getChart()
             }
         }
@@ -75,7 +75,7 @@ class ApiService: NSObject {
              if !krakenUpdated {print("OHLC: \(ohlcString)")}*/
             
             if i == candleSubset.count - 1 { //print("last ohlc of this refresh")
-                chartFirstSetup = true
+                ///chartFirstSetup = true
             }
             
             i += 1

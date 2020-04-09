@@ -2,15 +2,22 @@
 
 func fetchKrakenFeedForUrlString(urlString: String, completion: @escaping ([KrakenApiResponse]) -> ()) {
     
-    guard let url = URL(string: urlString) else {print("error binding krk url"); return}
+    guard let url = URL(string: urlString) else {
+        //print("error binding krk url")
+        return
+    }
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
-        guard let data = data else { print("error binding krk  data  parameter in URLSession"); return}
+        guard let data = data else {
+            //print("error binding krk  data  parameter in URLSession")
+            return
+        }
         
         do {
             guard let jsonDictionaries
                 = try [JSONSerialization.jsonObject(with: data, options: .mutableContainers)] as? [[String: AnyObject]] else {
-                    print("error converting krk json to array of dictionaries"); return
+                    print("error converting krk json to array of dictionaries")
+                    return
             }
             
             completion(jsonDictionaries.map({return KrakenApiResponse(dictionary: $0)}))
@@ -22,13 +29,12 @@ func fetchKrakenFeedForUrlString(urlString: String, completion: @escaping ([Krak
     .resume()
 }
 
-
 class KrakenApiResponse: SafeJsonObject {
     @objc var error: [Any]?
     @objc var result: KrakenTradingPair?
     
     @objc override func setValue(_ value: Any?, forKey key: String) {
-        guard key == "result" else { /// custom result setup *
+        guard key == "result" else {            /// custom result setup *
             super.setValue(value, forKey: key); return
         }
         result = KrakenTradingPair()
@@ -41,11 +47,9 @@ class KrakenApiResponse: SafeJsonObject {
     }
 }
 
-
 class KrakenTradingPair: SafeJsonObject {
-    @objc var XXBTZEUR: [[AnyObject]]?          // these AnyObject?  or  [[AnyObject]]?  properties below could also be  AnyObject  or  Any
-    @objc var XXBTZCAD: [[AnyObject]]?
-    @objc var XXBTZUSD: [[AnyObject]]?          ///@objc var XETHZXBT: [[AnyObject]]? //...  // @objc var XXETHBTZ: [[AnyObject]]?
-    @objc var last: AnyObject?                  // if Date, it crashes... will have to convert to formatted date
+    @objc var XXBTZCAD: [[AnyObject]]?      //; @objc var XETHZXBT: [[AnyObject]]?  /// ; @objc var XXETHBTZ: [[AnyObject]]?
+    @objc var XXBTZEUR: [[AnyObject]]?;     @objc var XXBTZUSD: [[AnyObject]]?
+    @objc var last: AnyObject?              // cannot be : Date ... will have to convert to formatted date
 }
 

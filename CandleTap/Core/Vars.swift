@@ -15,6 +15,7 @@ var defaultTimetableCellFont = UIFont.systemFont(ofSize: 12, weight: .regular) /
 
 var statusBarHeight = 0.0;                      var lastStatusBarHeight = 0.0
 var navBarHeight = 0.0
+
 var xOffSet = CGFloat(0);                       var yOffset = CGFloat(0)
 
 var launchWidth = 0.0;                          var launchHeight = 0.0
@@ -37,7 +38,7 @@ var lastActiveOrientation = "orientation (landscape or portrait) before sending 
 var launchOrientation = "orientation at the moment of launch"                                       //* " "
 ///var chartOrientation = ""; var previousChartOrientation = ""                                        //* " "
 
-//var loadSymbolLegend = "                                        💾 = view loaded"
+///var loadSymbolLegend = "                                        💾 = view loaded"
 ///var appearSymbolLegend = "                                        🏞 = view appeared"  /// console legend
 var truncationTrail = "…";                      ///var averageLetterWidth = CGFloat(0)
 

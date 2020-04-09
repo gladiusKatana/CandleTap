@@ -39,7 +39,6 @@ extension CollectionVC {
         lastTappedCoordinate = [column, row]
         
         if chartCoordinates.contains(lastTappedCoordinate) {
-            ///assignCandleSubset()
             gotoView(vc: chartVC)
         }
         

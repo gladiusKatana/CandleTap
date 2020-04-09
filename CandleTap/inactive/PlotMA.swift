@@ -1,4 +1,7 @@
 ///*🔥CandleTap_PlotMA💧*/import UIKit
+
+//var maPoint = Bar(frame: zeroFrame)
+
 //
 //extension ChartVC {
 //    

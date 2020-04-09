@@ -10,10 +10,10 @@ extension ApiService {
         fetchKrakenFeedForUrlString(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=15", completion: completion)
     }
     
-//    func getBinanceFeed(urlString: String,
-//                        _ completion: @escaping () -> ()) {
-//        fetchBinanceFeedForUrlString(urlString: urlString, completion: completion)
-//    }
+    //    func getBinanceFeed(urlString: String,
+    //                        _ completion: @escaping () -> ()) {
+    //        fetchBinanceFeedForUrlString(urlString: urlString, completion: completion)
+    //    }
     
 }
 

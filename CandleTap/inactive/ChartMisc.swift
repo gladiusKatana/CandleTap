@@ -1,5 +1,7 @@
 /*🔥CandleTap_ChartMisc💧*/import UIKit
 
+//var maXcoord1 = 10.0; var maXcoord2 = 30.0
+//var maYcoord1 = 10.0; var maYcoord2 = 10.0
 
 //func plotCandles(priceData: [[AnyObject]], chartViewHeight: CGFloat, chartViewWidth: CGFloat, scalor: Double, absLow: Double) {
 //
