@@ -21,7 +21,7 @@ var xOffSet = CGFloat(0);                       var yOffset = CGFloat(0)
 var launchWidth = 0.0;                          var launchHeight = 0.0
 var frameWidth = 0.0;                           var frameHeight = 0.0
 
-var lastTappedCoordinate = [-1,-1];             var chartCoordinates = [[1,1],[1,2]]
+var lastTappedCoordinate = [-1,-1];             var chartCoordinates = [[1,2]] //[[1,1],[1,2]]
 
 //var textFieldWidth = CGFloat(0);                var textFieldY = CGFloat(0)
 //var textFieldHeight = CGFloat(30)  /// will rewrite this at some point, to be reset to a size calculated from its text height, plus a bit (with an initial value of 0). See stringSize(:), in Strings.swift

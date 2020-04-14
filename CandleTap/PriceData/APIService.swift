@@ -15,10 +15,10 @@ class ApiService: NSObject {
                 krakenApiResponses = responses  ///print("...kraken last timestamp: \(String(describing: krakenOHLCChunks?.last!.result!.last))")
                 if let krakenBtcPrices = krakenApiResponses?[0].result?.XXBTZUSD { //.result?.XXBTZCAD {
                     
-                    if toPlot == .kraken
-                        && chartDisplayed
-                        //&& !chartFirstSetup//*
-                    {candleSubset = krakenBtcPrices}
+//                    if toPlot == .kraken
+//                        && chartDisplayed
+//                        //&& !chartFirstSetup//*
+//                    {candleSubset = krakenBtcPrices}
                     
                     latestKrakenXBTZCAD = Double("\(krakenBtcPrices.last![4])")!   //; print("kraken price: \(latestKrakenXBTZCAD)")
                     /**/
