@@ -22,10 +22,11 @@ class ApiService: NSObject {
                     
                     latestKrakenXBTZCAD = Double("\(krakenBtcPrices.last![4])")!   //; print("kraken price: \(latestKrakenXBTZCAD)")
                     /**/
-                } else {print("no result from Kraken API call")}
+                }
+                //else {print("no result from Kraken API call")}
             }
             
-            fetchBinanceDirectFeedForUrlString(urlString: "https://www.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
+            fetchBinanceDirectFeedForUrlString(urlString: "https://www.binance.com/api/v1/klines?symbol=ETHBTC&interval=15m")
             
             if let ethBtcCurrent = globalBinanceCandles.last?[1] {
                 latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")
@@ -55,7 +56,7 @@ class ApiService: NSObject {
     
     func processCandleSubset() {
         if candleSubset.count > candlesToPlot {
-            updateMovingAverages(maLength: 10, plottingInterval: candlesToPlot, ohlcs: candleSubset)
+            updateMovingAverages(maLength: 50, plottingInterval: candlesToPlot, ohlcs: candleSubset)
             //candleSubset.removeFirst(candleSubset.count - candlesToPlot)       //; print("kraken candle count: \(candleSubset.count)")
             
             if chartDisplayed {
