@@ -10,6 +10,10 @@ extension ApiService {
         fetchKrakenLatestOHLCs(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=15", completion: completion)
     }
     
+    func getBinanceFeed(_ completion: @escaping ([BinanceLatestPrice]) -> ()) {
+        fetchBinanceLatestPrice(urlString: "https://api.binance.com/api/v1/ticker/price?symbol=ETHBTC", completion: completion)
+    }
+    
     //    func getBinanceFeed(urlString: String,
     //                        _ completion: @escaping () -> ()) {
     //        fetchBinanceFeedForUrlString(urlString: urlString, completion: completion)

@@ -26,19 +26,27 @@ class ApiService: NSObject {
                 //else {print("no result from Kraken API call")}
             }
             
-            fetchBinanceLatestOHLCs(urlString: "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
+//            fetchBinanceLatestOHLCs(urlString: "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
 //                                                        "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1w&startTime=0"
             
-            if let ethBtcCurrent = globalBinanceCandles.last?[1] {
-                latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")
-            } ///else {print("could not cast binance price as Double")}
-
-            binanceCandleSubset = globalBinanceCandles
+//            if let ethBtcCurrent = globalBinanceCandles.last?[1] {
+//                latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")
+//            } ///else {print("could not cast binance price as Double")}
+//
+//            binanceCandleSubset = globalBinanceCandles
             
 //            if toPlot == .binance
 //                && chartDisplayed
 //                //&& !chartFirstSetup
 //            {candleSubset = binanceCandleSubset}
+            
+            self?.getBinanceFeed { responses in     //getShakepayCandle(urlString: "https://api.shakepay.co/rates")
+                binanceLatestPrice = responses
+                let bncPrice = "\(binanceLatestPrice!.last!.price!)"
+//                print("latest binance price: \(bncPrice)")
+                latestBinanceETHBTC = Double("\(bncPrice)")!                              ///; print("shakepay price: \(latestShakepayBTCCAD)")
+            }
+            
             
             self?.getShakepayFeed { responses in     //getShakepayCandle(urlString: "https://api.shakepay.co/rates")
                 shakepayApiResponses = responses

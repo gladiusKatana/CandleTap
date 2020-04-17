@@ -27,6 +27,8 @@ var binanceCandleSubset = [[AnyObject]]()
 
 var globalBinanceCandles = [[AnyObject]]()
 
+var binanceLatestPrice: [BinanceLatestPrice]?
+
 
 
 
