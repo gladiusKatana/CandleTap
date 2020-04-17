@@ -26,18 +26,19 @@ class ApiService: NSObject {
                 //else {print("no result from Kraken API call")}
             }
             
-            fetchBinanceDirectFeedForUrlString(urlString: "https://www.binance.com/api/v1/klines?symbol=ETHBTC&interval=15m")
+            fetchBinanceDirectFeedForUrlString(urlString: "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
+//                                                        "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1w&startTime=0"
             
             if let ethBtcCurrent = globalBinanceCandles.last?[1] {
                 latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")
             } ///else {print("could not cast binance price as Double")}
-            
+
             binanceCandleSubset = globalBinanceCandles
             
-            if toPlot == .binance
-                && chartDisplayed
-                //&& !chartFirstSetup
-            {candleSubset = binanceCandleSubset}
+//            if toPlot == .binance
+//                && chartDisplayed
+//                //&& !chartFirstSetup
+//            {candleSubset = binanceCandleSubset}
             
             self?.getShakepayFeed { responses in     //getShakepayCandle(urlString: "https://api.shakepay.co/rates")
                 shakepayApiResponses = responses

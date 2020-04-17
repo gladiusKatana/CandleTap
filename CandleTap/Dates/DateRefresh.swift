@@ -25,7 +25,7 @@ extension UIViewController {
     }
     
     func kickoffTimer() {
-        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 1) { [weak self] in
+        DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + 3) { [weak self] in       // .now() + 1
             self?.periodicDateRefresh(){self?.kickoffTimer()}
         }
     }
