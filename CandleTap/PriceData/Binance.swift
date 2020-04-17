@@ -1,6 +1,6 @@
 /*🔥CandleTap_Binance💧*/import UIKit
 
-func fetchBinanceDirectFeedForUrlString(urlString: String) {                                                //print("fetching binance")
+func fetchBinanceLatestOHLCs(urlString: String) {                                                //print("fetching binance")
     
     guard let url = URL(string: urlString) else {
         //print("error binding binance url")

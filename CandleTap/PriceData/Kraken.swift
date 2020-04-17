@@ -1,6 +1,6 @@
 /*🔥CandleTap_Kraken💧*/import UIKit
 
-func fetchKrakenFeedForUrlString(urlString: String, completion: @escaping ([KrakenApiResponse]) -> ()) {
+func fetchKrakenLatestOHLCs(urlString: String, completion: @escaping ([KrakenApiResponse]) -> ()) {
     
     guard let url = URL(string: urlString) else {
         //print("error binding krk url")

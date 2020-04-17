@@ -1,6 +1,6 @@
 /*🔥CandleTap_Shakepay💧*/import UIKit
 
-func fetchShakepayFeedForUrlString(urlString: String, completion: @escaping ([ShakepayApiResponse]) -> ()) {
+func fetchShakepayLatestOHLCs(urlString: String, completion: @escaping ([ShakepayApiResponse]) -> ()) {
     
     guard let url = URL(string: urlString) else {
         //print("error binding shk url")

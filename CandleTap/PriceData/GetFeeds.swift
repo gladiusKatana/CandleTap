@@ -3,11 +3,11 @@
 extension ApiService {
     
     func getShakepayFeed(_ completion: @escaping ([ShakepayApiResponse]) -> ()) {
-        fetchShakepayFeedForUrlString(urlString: "https://api.shakepay.co/rates", completion: completion)
+        fetchShakepayLatestOHLCs(urlString: "https://api.shakepay.co/rates", completion: completion)
     }
     
     func getKrakenFeed(_ completion: @escaping ([KrakenApiResponse]) -> ()) {
-        fetchKrakenFeedForUrlString(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=15", completion: completion)
+        fetchKrakenLatestOHLCs(urlString: "\(baseKrakenUrl)\(krakenPair)&interval=15", completion: completion)
     }
     
     //    func getBinanceFeed(urlString: String,
