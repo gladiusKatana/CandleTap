@@ -15,6 +15,7 @@
         frameWidth = Double(globalWindow.frame.width)
         
         setColoursFromSettings()
+        
         apiServ.getFeeds(toPlot: exchangeID)   // only needs to be called at this stage, before selecting a chart to plot, for *current* prices
         
         modelName = UIDevice.modelName
