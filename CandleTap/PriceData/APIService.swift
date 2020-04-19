@@ -27,7 +27,7 @@ class ApiService: NSObject {
             }
             
 //            fetchBinanceLatestOHLCs(urlString: "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
-//                                                        "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1w&startTime=0"
+//                                               "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1w&startTime=0"
             
 //            if let ethBtcCurrent = globalBinanceCandles.last?[1] {
 //                latestBinanceETHBTC = Double("\(ethBtcCurrent)")!       ///; print("binance price: \(latestBinanceETHBTC)")

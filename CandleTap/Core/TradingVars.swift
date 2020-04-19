@@ -26,14 +26,16 @@ var historicalShakepayPrices = [Double]()
 var binanceCandleSubset = [[AnyObject]]()
 
 var globalBinanceCandles = [[AnyObject]]()
+var historicalBinanceCandles = [[AnyObject]]()
 
 var binanceLatestPrice: [BinanceLatestPrice]?
 
 
 
+var historicalBatch = 0 //batch counter
+var lastHistoricalTimestamp = Int64(0)
 
 var latestKrakenXBTZCAD = 1.0                       //; var latestBinanceETHBTCPrice = 1.0
 var latestShakepayBTCCAD = 1.0
 var latestBinanceETHBTC = 1.0
-
 
