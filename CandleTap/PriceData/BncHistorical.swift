@@ -26,28 +26,31 @@ func fetchBinanceHistoricalOHLCs(urlString: String) {   //print("historical bina
                     return
             }
             
-            for array in binanceCandles {
-                let timestamp = Double("\(array[0])")!                  //; print("timestamp = \(timestamp)")
-                let open = Double("\(array[1])")!                       //; print("open = \(open)")
-                let high = Double("\(array[2])")!                       //; print("high = \(high)")
-                let low = Double("\(array[3])")!                        //; print("low = \(low)")
-                let close = Double("\(array[4])")!                      //; print("close = \(close)")
-                binanceETHBTCHistorical[0].append([open,high,low,close])
+            if binanceCandles.count > 1 {
+                var i=0                                                    //; print("\nbinance candle count is \(binanceCandles.count)\n")
+                for _ in 0 ... binanceCandles.count - 2 {
+                    let array = binanceCandles[i]
+                    let timestamp = Double("\(array[0])")!                  //; print("timestamp = \(timestamp)")
+                    let open = Double("\(array[1])")!                       //; print("open = \(open)")
+                    let high = Double("\(array[2])")!                       //; print("high = \(high)")
+                    let low = Double("\(array[3])")!                        //; print("low = \(low)")
+                    let close = Double("\(array[4])")!                      //; print("close = \(close)")
+                    binanceETHBTCHistorical[0].append([Double(i), open,high,low,close])
+                    i += 1
+                }
             }
             
             let lastTimestamp = Int64("\(binanceCandles.last!.first!)")!
             
-            if lastTimestamp != lastHistoricalTimestamp {
-                
-                print("> historical batch \(historicalBatch) ending at \(lastTimestamp)")
+            if lastTimestamp != lastHistoricalTimestamp {   print("> historical batch \(historicalBatch) ending at \(lastTimestamp)")
                 /**/
                 historicalBatch += 1
-                
                 //let newlinedCandles = binanceCandles.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(binanceCandles.count) historical candles starting @ 0:\n\(newlinedCandles)", terminator: "\n")
                 print("----------------------------------------------------------")
                 
-                apiServ.binanceHistoricalFetch(startTime: lastTimestamp/*, completion: {responses in }*/)
+                apiServ.binanceHistoricalFetch(startTime: lastTimestamp/* + 86400*/)
+                
                 lastHistoricalTimestamp = lastTimestamp
             }
             else { print("ok done pulling historical data")
