@@ -1,13 +1,8 @@
 /*🔥CandleTap_BinanceHistorical💧*/import UIKit
 
-extension ApiService {
-    func binanceHistoricalFetch(startTime: Int64) { //(startTime: Int64, completion: @escaping ([BinanceLatestPrice]) -> ()) {
-        fetchBinanceHistoricalOHLCs(urlString: "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1d&startTime=\(startTime)")
-    }
-}
-
-func fetchBinanceHistoricalOHLCs(urlString: String) {        //print("historical binance fetch")
+func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //print("historical binance fetch")
     
+    let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)&interval=1d&startTime=\(startTime)"
     guard let url = URL(string: urlString) else {/*print("error binding binance url; ")*/return}
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -40,7 +35,7 @@ func fetchBinanceHistoricalOHLCs(urlString: String) {        //print("historical
                 //let newlinedCandles = binanceCandles.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(binanceCandles.count) historical candles starting @ 0:\n\(newlinedCandles)", terminator: "\n")
                 historicalBatch += 1                        ; print("----------------------------------------------------------")
-                apiServ.binanceHistoricalFetch(startTime: lastTimestamp/* + 86400*/)
+                fetchBinanceHistoricalOHLCs(ticker: ticker, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
             } else { print("ok done pulling historical data")
                 let newlinedOhlcs = binanceETHBTCHistorical[0].map {"\($0)"}.joined(separator: "\n") // array index depends on timescale
@@ -50,8 +45,7 @@ func fetchBinanceHistoricalOHLCs(urlString: String) {        //print("historical
         } catch let error {
             print("Failed to load: \(error.localizedDescription)")
         }
-    }
-    .resume()
+    } .resume()
 }
 
 /*

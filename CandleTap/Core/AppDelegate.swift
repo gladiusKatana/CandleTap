@@ -18,7 +18,7 @@
         
         apiServ.getFeeds(toPlot: exchangeID)   // only needs to be called at this stage, before selecting a chart to plot, for *current* prices
         
-        apiServ.binanceHistoricalFetch(startTime: 0)
+        fetchBinanceHistoricalOHLCs(ticker: "ETHBTC", startTime: 0)
         
         modelName = UIDevice.modelName
         
