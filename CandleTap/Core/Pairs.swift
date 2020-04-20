@@ -18,3 +18,5 @@ var tickerPairs = ["BTCCAD",
 var currentPrices = [latestShakepayBTCCAD, latestKrakenXBTZCAD, latestBinanceETHBTC]
                 
 var binanceETHBTCHistorical = [[[Double]](), [[Double]](), [[Double]](), [[Double]](), [[Double]](), [[Double]]()]// W, D, 4h, h, 30m, 15m
+var binanceETHBTCHistoricalForPrinting = [[[AnyObject]](), [[AnyObject]](), [[AnyObject]](), [[AnyObject]](), [[AnyObject]](), [[AnyObject]]()]// W, D, 4h, h, 30m, 15m
+
