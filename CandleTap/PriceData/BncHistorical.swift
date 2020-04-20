@@ -6,18 +6,12 @@ extension ApiService {
     }
 }
 
-func fetchBinanceHistoricalOHLCs(urlString: String) {   //print("historical binance fetch")
+func fetchBinanceHistoricalOHLCs(urlString: String) {        //print("historical binance fetch")
     
-    guard let url = URL(string: urlString) else {
-        //print("error binding binance url")
-        return
-    }
+    guard let url = URL(string: urlString) else {/*print("error binding binance url; ")*/return}
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
-        guard let data = data else {
-            //print("error binding bnc  data  parameter in URLSession")
-            return
-        }
+        guard let data = data else {/*print("error binding bnc  data  parameter in URLSession; ")*/return}
         
         do {
             guard let binanceCandles
@@ -30,7 +24,7 @@ func fetchBinanceHistoricalOHLCs(urlString: String) {   //print("historical bina
                 var i=0                                                    //; print("\nbinance candle count is \(binanceCandles.count)\n")
                 for _ in 0 ... binanceCandles.count - 2 {
                     let array = binanceCandles[i]
-                    let timestamp = Double("\(array[0])")!                  //; print("timestamp = \(timestamp)")
+                    //let timestamp = Double("\(array[0])")!                  //; print("timestamp = \(timestamp)")
                     let open = Double("\(array[1])")!                       //; print("open = \(open)")
                     let high = Double("\(array[2])")!                       //; print("high = \(high)")
                     let low = Double("\(array[3])")!                        //; print("low = \(low)")
@@ -41,35 +35,23 @@ func fetchBinanceHistoricalOHLCs(urlString: String) {   //print("historical bina
             }
             
             let lastTimestamp = Int64("\(binanceCandles.last!.first!)")!
-            
             if lastTimestamp != lastHistoricalTimestamp {   print("> historical batch \(historicalBatch) ending at \(lastTimestamp)")
                 /**/
-                historicalBatch += 1
                 //let newlinedCandles = binanceCandles.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(binanceCandles.count) historical candles starting @ 0:\n\(newlinedCandles)", terminator: "\n")
-                print("----------------------------------------------------------")
-                
+                historicalBatch += 1                        ; print("----------------------------------------------------------")
                 apiServ.binanceHistoricalFetch(startTime: lastTimestamp/* + 86400*/)
-                
                 lastHistoricalTimestamp = lastTimestamp
-            }
-            else { print("ok done pulling historical data")
+            } else { print("ok done pulling historical data")
                 let newlinedOhlcs = binanceETHBTCHistorical[0].map {"\($0)"}.joined(separator: "\n") // array index depends on timescale
                 print("\n\(binanceETHBTCHistorical[0].count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
             }
             
-        } catch let error {                                                                                 /// as Error { //or as NSError
+        } catch let error {
             print("Failed to load: \(error.localizedDescription)")
         }
     }
     .resume()
-}
-
-func makeDateFrom(year: Int, month: Int, day: Int, hr: Int, min: Int, sec: Int) -> Date {
-    let calendar = Calendar(identifier: .gregorian)
-    // calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-    let components = DateComponents(year: year, month: month, day: day, hour: hr, minute: min, second: sec)
-    return calendar.date(from: components)!
 }
 
 /*
