@@ -39,11 +39,10 @@ func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //pr
                 historicalBatch += 1                        ; print("----------------------------------------------------------")
                 fetchBinanceHistoricalOHLCs(ticker: ticker, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
-            } else { print("ok done pulling historical data")
+            } else { //print("ok done pulling historical data")
                 
 //                let newlinedOhlcs = binanceETHBTCHistoricalForPrinting[0].map {"\($0)"}.joined(separator: "\n") // index depends on timescale
 //                print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
-                
                 print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n")
                 for ohlc in binanceETHBTCHistoricalForPrinting[0] {
                     print("\(ohlc[2]),\(ohlc[3]),\(ohlc[4]),\(ohlc[5])")
