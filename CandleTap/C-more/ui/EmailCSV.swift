@@ -24,13 +24,19 @@ extension CollectionVC {
         
         dateString = formattedDateString(Date(), roundedDown: false, showYear: true,
                                          prefix: "", suffix: "", dateFormat: .archiveCSVTitle)
-        fileName = "Tagged tasks (\(dateString)).csv" ///don't insert a space after "as of" : formattedDateString(:) already builds one in
+        fileName = "Historical OHLCs (\(dateString)).csv" ///don't insert a space after "as of" : formattedDateString(:) already builds one in
         
         var returnPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")
         if let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) {
             
             var csvText = ""
-            csvText.append("Trading Pair; Status; Timestamp (always uses GMT timezone)\n")
+            csvText.append(".; .; Open; High; Low; Close\n")
+            
+            let ohlcs = binanceETHBTCHistoricalForPrinting[0]
+            for ohlc in ohlcs { /// Comma Separated is a misnomer, exporting to Numbers-- must separate columns by semicolon
+                let dot = "."
+                csvText.append("\(dot);\(dot);\(ohlc[2]);\(ohlc[3]);\(ohlc[4]);\(ohlc[5])\n") ///;\(archiveTaskDateStrings[i])
+            }
             
             do {
                 try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)

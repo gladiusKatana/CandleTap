@@ -16,15 +16,16 @@ func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //pr
             }
             
             if binanceCandles.count > 1 {
-                var i=0                                                    //; print("\nbinance candle count is \(binanceCandles.count)\n")
+                var i=0                                                     //; print("\nbinance candle count is \(binanceCandles.count)\n")
                 for _ in 0 ... binanceCandles.count - 2 {
                     let arr = binanceCandles[i]
-                    //let timestamp = Double("\(array[0])")!                  //; print("timestamp = \(timestamp)")
-                    let open = Double("\(arr[1])")!                       //; print("open = \(open)")
-                    let high = Double("\(arr[2])")!                       //; print("high = \(high)")
-                    let low = Double("\(arr[3])")!                        //; print("low = \(low)")
-                    let close = Double("\(arr[4])")!                      //; print("close = \(close)")
-                    binanceETHBTCHistoricalForPrinting[0].append([arr[1],arr[2],arr[3],arr[4]])
+                    let timestamp = "\(arr[0])" as AnyObject                //; print("timestamp = \(timestamp)")
+                    let dot = "." as AnyObject
+                    let open = Double("\(arr[1])")!                         //; print("open = \(open)")
+                    let high = Double("\(arr[2])")!                         //; print("high = \(high)")
+                    let low = Double("\(arr[3])")!                          //; print("low = \(low)")
+                    let close = Double("\(arr[4])")!                        //; print("close = \(close)")
+                    binanceETHBTCHistoricalForPrinting[0].append([timestamp,dot,arr[1],arr[2],arr[3],arr[4]])
                     binanceETHBTCHistorical[0].append([Double(i), open,high,low,close])
                     i += 1
                 }
@@ -39,8 +40,18 @@ func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //pr
                 fetchBinanceHistoricalOHLCs(ticker: ticker, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
             } else { print("ok done pulling historical data")
-                let newlinedOhlcs = binanceETHBTCHistoricalForPrinting[0].map {"\($0)"}.joined(separator: "\n") // array index depends on timescale
-                print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
+                
+//                let newlinedOhlcs = binanceETHBTCHistoricalForPrinting[0].map {"\($0)"}.joined(separator: "\n") // index depends on timescale
+//                print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
+                
+                print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n")
+                for ohlc in binanceETHBTCHistoricalForPrinting[0] {
+                    print("\(ohlc[2]),\(ohlc[3]),\(ohlc[4]),\(ohlc[5])")
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    pairListVC.presentEmail()
+                }
             }
             
         } catch let error {
