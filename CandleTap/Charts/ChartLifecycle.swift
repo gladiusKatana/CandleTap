@@ -2,7 +2,7 @@
 
 extension ChartVC {
     
-    override func viewDidLoad() {                           super.viewDidLoad()                 //; print("\n💾chart")
+    override func viewDidLoad() {                           super.viewDidLoad()                 ; print("\n💾chart")
         ///setTopViewController()
     }
     

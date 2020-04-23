@@ -9,7 +9,7 @@
  
  
  
- 
+ cleanup current price formatting
  
  optimize api efficiency
  
@@ -33,6 +33,8 @@
  + candle recognition
  
  + fibonacci
+ 
+ 
  
  
  

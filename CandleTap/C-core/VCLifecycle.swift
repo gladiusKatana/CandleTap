@@ -36,7 +36,7 @@ extension CollectionVC {
         ///if !showLoadAndAppearIndicationInConsole {                                                                                               // if the below print hasn't been done already for this vc
         ///let str = (showConsoleLegend) ? appearSymbolLegend : ""; print("🏞\(topVC.viewControllerType)\(str)")  // picture-emoji means appeared 🏞
         ///showLoadAndAppearIndicationInConsole = true
-        if showConsoleLegend {showConsoleLegend = false}                              /// legend only needs to be shown once
+        //if showConsoleLegend {showConsoleLegend = false}                              /// legend only needs to be shown once
         ///}
         
         //reloadCV()

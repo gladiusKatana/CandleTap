@@ -14,11 +14,6 @@ extension ApiService {
         fetchBinanceLatestPrice(urlString: "https://api.binance.com/api/v1/ticker/price?symbol=ETHBTC", completion: completion)
     }
     
-    //    func getBinanceFeed(urlString: String,
-    //                        _ completion: @escaping () -> ()) {
-    //        fetchBinanceFeedForUrlString(urlString: urlString, completion: completion)
-    //    }
-    
 }
 
 enum ExchangeID: Int {
