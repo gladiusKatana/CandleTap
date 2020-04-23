@@ -2,11 +2,13 @@
 
 extension ChartVC {
     
-    override func viewDidLoad() {                           super.viewDidLoad()                 ; print("\n💾chart")
+    override func viewDidLoad() {
+        super.viewDidLoad()                                 ; print("\n💾chart")
         ///setTopViewController()
     }
     
-    override func viewWillAppear(_ animated: Bool) {        super.viewWillAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setNavBarTitle(customString: viewControllerType.getNavBarTitle())
         setupNavBarButtons(greyIndex: 1)
         setupPinchToExit()
@@ -41,7 +43,8 @@ extension ChartVC {
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {     super.viewWillDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
         ///self.view.subviews.forEach({ $0.removeFromSuperview() })
         

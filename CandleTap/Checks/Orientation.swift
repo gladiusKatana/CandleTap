@@ -28,12 +28,6 @@ extension AppDelegate {
 
 func checkOrientation() {
     
-//    frameHeight = Double(globalWindow.frame.height)
-//    frameWidth = Double(globalWindow.frame.width)
-
-//    frameHeight = min(frameWidth, frameHeight)
-//    frameWidth = max(frameWidth, frameHeight)
-    
     if frameHeight > frameWidth {
         currentOrientation = "portrait"
     }
@@ -41,9 +35,5 @@ func checkOrientation() {
         currentOrientation = "landscape"
     }
     else {print("\n\nUm, global window frame height & width are equal...")} /// shouldn't get called... unless Apple decides to make a square device
-    
-//    chartOrientation = currentOrientation
-    
-//    print("current orientation: \(currentOrientation)")
 }
 

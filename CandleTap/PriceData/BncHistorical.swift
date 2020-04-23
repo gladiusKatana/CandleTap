@@ -52,9 +52,9 @@ func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //pr
                     print("\(ohlc[2]),\(ohlc[3]),\(ohlc[4]),\(ohlc[5])")
                 }
                 
-//                DispatchQueue.main.asyncAfter(deadline: .now()) {
-//                    pairListVC.presentEmail()
-//                }
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    pairListVC.presentEmail()
+                }
             }
             
         } catch let error {
