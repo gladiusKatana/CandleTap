@@ -1,8 +1,8 @@
 /*🔥CandleTap_BinanceHistorical💧*/import UIKit
 
-func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //print("historical binance fetch")
+func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime: Int64) {        //print("historical binance fetch")
     
-    let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)&interval=1d&startTime=\(startTime)"
+    let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)&interval=\(interval.urlSymbol())&startTime=\(startTime)"
     guard let url = URL(string: urlString) else {/*print("error binding binance url; ")*/return}
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -38,13 +38,13 @@ func fetchBinanceHistoricalOHLCs(ticker: String, startTime: Int64) {        //pr
                 //print("\n\(binanceCandles.count) historical candles starting @ 0:\n\(newlinedCandles)", terminator: "\n")
                 
                 historicalBatch += 1                                        ; print("----------------------------------------------------------")
-                fetchBinanceHistoricalOHLCs(ticker: ticker, startTime: lastTimestamp/* + 86400*/)
+                fetchBinanceHistoricalOHLCs(ticker: ticker, interval: interval, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
             } else { //print("ok done pulling historical data")
                 
                 //let newlinedOhlcs = binanceETHBTCHistoricalForPrinting.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
-                print("\n\(binanceETHBTCHistoricalForPrinting.count) historical ohlcs:\n")
+                print("\n\n\(binanceETHBTCHistorical.count) historical ohlcs:\n\n")
                 //print(newlinedOhlcs)
                 
                 for ohlc in binanceETHBTCHistoricalForPrinting {

@@ -30,12 +30,13 @@ extension CollectionVC {
         if let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) {
             
             var csvText = ""
-            csvText.append(".; .; Open; High; Low; Close\n")
+            csvText.append("Timestamp; Date(UTC); Open; High; Low; Close\n")
             
-            let ohlcs = binanceETHBTCHistoricalForPrinting[0]
-            for ohlc in ohlcs { /// Comma Separated is a misnomer, exporting to Numbers-- must separate columns by semicolon
-                let dot = "."
-                csvText.append("\(dot);\(dot);\(ohlc[2]);\(ohlc[3]);\(ohlc[4]);\(ohlc[5])\n") ///;\(archiveTaskDateStrings[i])
+            let ohlcs = binanceETHBTCHistoricalForPrinting                                  // ; print("\nabout to attach csv (\(ohlcs.count) rows)")
+            for ohlc in ohlcs {
+                let ohlc = ohlc[0]
+                let dot = "."       /// "Comma Separated" Values is a misnomer, exporting to Numbers -- must separate columns by semicolon
+                csvText.append("\(ohlc[0]);\(dot);\(ohlc[2]);\(ohlc[3]);\(ohlc[4]);\(ohlc[5])\n") ///;\(archiveTaskDateStrings[i])
             }
             
             do {

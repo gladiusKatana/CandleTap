@@ -18,7 +18,7 @@
         
         apiServ.getFeeds(toPlot: exchangeID)   // only needs to be called at this stage, before selecting a chart to plot, for *current* prices
         
-        fetchBinanceHistoricalOHLCs(ticker: "ETHBTC", startTime: 0) //ETHBTC
+        fetchBinanceHistoricalOHLCs(ticker: "ETHBTC", interval: .day, startTime: 0) //ETHBTC
         
         modelName = UIDevice.modelName
         
@@ -30,10 +30,10 @@
         AppUtility.lockOrientation(.landscape)
         
         backgroundVC = UIViewController()
-        backgroundVC.view.backgroundColor = cellDefaultColour       /// must match window's background colour to be invisible when rotating landscape->portrait
+        backgroundVC.view.backgroundColor = cellDefaultColour   // must match window's background colour to be invisible when rotating landscape->portrait
         backgroundVC.view.frame = globalWindow.frame
         
-        getOrientationAtLaunch()                                    //; print("launching on \(modelName) in \(launchOrientation) orientation")
+        getOrientationAtLaunch()                                //; print("launching on \(modelName) in \(launchOrientation) orientation")
         
         if statusBarUIView!.responds(to:#selector(setter: UIView.backgroundColor)) {
             statusBarUIView!.backgroundColor = .clear

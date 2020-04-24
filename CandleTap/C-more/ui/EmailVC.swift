@@ -29,7 +29,7 @@ class EmailComposer: UIViewController, MFMailComposeViewControllerDelegate {
         
         do {
             let attachmentData = try Data(contentsOf: path)
-            emailComposeVC.addAttachmentData(attachmentData, mimeType: "text/csv", fileName: "hist_data_(\(dateString)).csv")
+            emailComposeVC.addAttachmentData(attachmentData, mimeType: "text/csv", fileName: "ohlc_hist_(\(dateString)).csv")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 ) {
                 self.present(self.emailComposeVC, animated: true, completion: nil)
