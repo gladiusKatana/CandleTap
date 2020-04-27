@@ -16,7 +16,7 @@ class EmailComposer: UIViewController, MFMailComposeViewControllerDelegate {
         emailComposeVC = MFMailComposeViewController()
         emailComposeVC.mailComposeDelegate = self                               ///as? MFMailComposeViewControllerDelegate
         
-        let tempEmails = ["garthsnyder@protonmail.com"]
+        let tempEmails = ["gkatana1@protonmail.com"]
         emailComposeVC.setToRecipients(tempEmails)
         
         let path = archiveVC.createArchiveUrl()

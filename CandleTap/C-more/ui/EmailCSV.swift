@@ -30,16 +30,17 @@ extension CollectionVC {
         if let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) {
             
             var csvText = ""
-            let s = "," //";"
-            csvText.append("Timestamp\(s)Date(UTC)\(s)Open\(s)High\(s)Low\(s)Close\n")
+            let s = "," //";"   ///If exporting to Numbers, "Comma Separated Values" is a misnomer -- must separate columns by semicolon
+            csvText.append("Timestamp\(s)Date(UTC)\(s)Open\(s)High\(s)Low\(s)Close\(s)")
+            for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
+            csvText.append("\n")
             
-            let ohlcs = binanceETHBTCHistoricalForPrinting                                  // ; print("\nabout to attach csv (\(ohlcs.count) rows)")
-            for ohlc in ohlcs {
-                let ohlc = ohlc[0]
-                let dot = "."       /// "Comma Separated" Values is a misnomer, if exporting to Numbers -- must separate columns by semicolon
-                //csvText.append("\(ohlc[0]);\(dot);\(ohlc[2]);\(ohlc[3]);\(ohlc[4]);\(ohlc[5])\n") ///;\(archiveTaskDateStrings[i])
-                csvText.append("\(ohlc[0])\(s)\(dot)\(s)\(ohlc[2])\(s)\(ohlc[3])\(s)\(ohlc[4])\(s)\(ohlc[5])\n") ///;\(archiveTaskDateStrings[i])
-            }
+            for ohlc in binanceETHBTCHistorical {
+                var csv = ohlc.map {"\($0)"}.joined(separator: s)
+                csv = csv.filter{$0 != "["}
+                csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
+                csvText.append("\(csv)\(s)\(s)\(s)\n")
+            }                                                       //; print("csv text: \(csvText)")
             
             do {
                 try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
