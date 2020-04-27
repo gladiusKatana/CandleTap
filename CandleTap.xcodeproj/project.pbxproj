@@ -230,6 +230,14 @@
 			path = Charts;
 			sourceTree = "<group>";
 		};
+		0671AD4724576F6B0048902C /* Historical */ = {
+			isa = PBXGroup;
+			children = (
+				0600F168244C0D6500471B14 /* BncHistorical.swift */,
+			);
+			path = Historical;
+			sourceTree = "<group>";
+		};
 		0678FC5823DA58EF009B25B8 /* TA */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +273,8 @@
 				06C0DC4A23CCEF0D00159118 /* Tasks.swift */,
 				06C0DC4123CCEF0D00159118 /* Core */,
 				06C0DC0B23CCEF0D00159118 /* Dates */,
-				06C0DC0F23CCEF0D00159118 /* PriceData */,
+				06C0DC0F23CCEF0D00159118 /* APIs */,
+				0671AD4724576F6B0048902C /* Historical */,
 				0678FC5823DA58EF009B25B8 /* TA */,
 				0633169023CD2C440027CAD8 /* Charts */,
 				06C0DC2323CCEF0D00159118 /* C-core */,
@@ -333,7 +342,7 @@
 			path = Dates;
 			sourceTree = "<group>";
 		};
-		06C0DC0F23CCEF0D00159118 /* PriceData */ = {
+		06C0DC0F23CCEF0D00159118 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
 				06C0DC1223CCEF0D00159118 /* APIService.swift */,
@@ -342,9 +351,8 @@
 				06C0DC1023CCEF0D00159118 /* Shakepay.swift */,
 				06C0DC1123CCEF0D00159118 /* Kraken.swift */,
 				06C0DC1323CCEF0D00159118 /* Binance.swift */,
-				0600F168244C0D6500471B14 /* BncHistorical.swift */,
 			);
-			path = PriceData;
+			path = APIs;
 			sourceTree = "<group>";
 		};
 		06C0DC1523CCEF0D00159118 /* Vm */ = {

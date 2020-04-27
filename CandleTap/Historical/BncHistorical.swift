@@ -33,11 +33,11 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     var ar = [timestamp,dot,arr[1],arr[2],arr[3],arr[4]]
                     let movingAverages = historicalMAs(latestClose: close)
                     for avg in movingAverages {
-                        var str = "\(avg)"
-//                        let sizeExcess = str.count - 12
-//                        if sizeExcess >= 0 {
-//                            str.removeLast(sizeExcess)
-//                        }
+                        let str = "\(avg)"
+                        /*let sizeExcess = str.count - 12
+                         if sizeExcess >= 0 {
+                         str.removeLast(sizeExcess)
+                         }*/
                         ar.append(str as AnyObject)
                     }
                     
@@ -58,15 +58,9 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 lastHistoricalTimestamp = lastTimestamp
             } else { //print("ok done pulling historical data")
                 
-                //let newlinedOhlcs = binanceETHBTCHistoricalForPrinting.map {"\($0)"}.joined(separator: "\n")
-                //print("\n\(binanceETHBTCHistoricalForPrinting[0].count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
-                print("\n\n\(binanceETHBTCHistorical.count) historical ohlcs:\n\n")
-                //print(newlinedOhlcs)
-                
-                for ohlc in binanceETHBTCHistoricalForPrinting {
-                    let ohlc = ohlc[0] // index depends on timescale (0th timescale usually weeks or months... final timescale is minutes)
-                    print(ohlc) //print("\(ohlc[2]),\(ohlc[3]),\(ohlc[4]),\(ohlc[5])")
-                }
+                let ohlcsToPrint = binanceETHBTCHistoricalForPrinting
+                let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
+                print("\n\(ohlcsToPrint.count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     pairListVC.presentEmail()
@@ -94,7 +88,7 @@ func historicalMAs(latestClose: Double) -> [Double] {
         }
         
         let ma = maSubsets[i].average   //; print("subset length \(period.rawValue) has \(maSubsets[i].count) values, average is \(ma)")
-        //        let maRounded = 1-((1-ma).truncate(places: 8)).truncate(places: 8)//ma.rounded(toPlaces: 8)//(round(1000000*ma)/1000000)
+        //let maRounded = ma.truncate(places: 8)//.(round(1000000*ma)/1000000)
         mas.append(ma)
         
         i+=1
@@ -104,26 +98,26 @@ func historicalMAs(latestClose: Double) -> [Double] {
     return mas
 }
 
-extension Double {
-    /// Rounds the double to decimal places value
-    func rounded(toPlaces places:Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-
-extension Double
-{
-    func truncate(places : Int)-> Double
-    {
-        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
-    }
-}
+//extension Double {
+//    /// Rounds the double to decimal places value
+//    func rounded(toPlaces places:Int) -> Double {
+//        let divisor = pow(10.0, Double(places))
+//        return (self * divisor).rounded() / divisor
+//    }
+//}
+//
+//extension Double
+//{
+//    func truncate(places : Int)-> Double
+//    {
+//        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+//    }
+//}
 
 /*
-//date-checker
-//                let day500 = makeDateFrom(year: 2018, month: 11, day: 25, hr: -5, min: 0, sec: 0)
-//                print("...& the last timestamp is \(Int64((day500.timeIntervalSince1970 * 1000.0).rounded()))")
-//                print("...& the last date is \(formattedDateString(day500, roundedDown: false, showYear: true, prefix: "", suffix: "", dateFormat: .fullDay))")
-*/
+ //date-checker
+ //                let day500 = makeDateFrom(year: 2018, month: 11, day: 25, hr: -5, min: 0, sec: 0)
+ //                print("...& the last timestamp is \(Int64((day500.timeIntervalSince1970 * 1000.0).rounded()))")
+ //                print("...& the last date is \(formattedDateString(day500, roundedDown: false, showYear: true, prefix: "", suffix: "", dateFormat: .fullDay))")
+ */
 
