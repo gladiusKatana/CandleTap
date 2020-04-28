@@ -1,5 +1,31 @@
 /*🔥CandleTap_MAs💧*/import UIKit
 
+func historicalMAs(latestClose: Double) -> [Double] {
+    var mas = [Double]()
+    var i=0
+    for period in MAPeriod.allCases {       //print("ma period to add: \(period.rawValue)")
+        
+        //if !maSubsets.isEmpty {
+        if maSubsets[i].count == period.rawValue {
+            maSubsets[i].removeFirst()
+        }
+        
+        if maSubsets[i].count <= period.rawValue {
+            maSubsets[i].append(latestClose)      //; print("appended to subset")
+        }
+        
+        let ma = maSubsets[i].average   //; print("subset length \(period.rawValue) has \(maSubsets[i].count) values, average is \(ma)")
+        //let maRounded = ma.truncate(places: 8)//.(round(1000000*ma)/1000000)
+        mas.append(ma)
+        
+        i+=1
+        //} else {print("ma subsets empty")}
+    }
+    
+    return mas
+}
+
+//moving averages on charts
 func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObject]]) {
     
     var maPriceArrays = ohlcs
@@ -39,17 +65,6 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
     //
     //        maPrintBoolLock = true
     //    }                                                                   //print("\n\(maLength)-period moving averages:\n\(MAValues)")
-}
-
-/// Following 3 extensions return the average of all elements in an array
-extension Collection where Element: Numeric {
-    var total: Element { reduce(0, +) }
-}
-extension Collection where Element: BinaryInteger {
-    var average: Double { isEmpty ? 0 : Double(total) / Double(count) }
-}
-extension Collection where Element: BinaryFloatingPoint {
-    var average: Element { isEmpty ? 0 : total / Element(count) }
 }
 
 /*

@@ -11,3 +11,15 @@ enum MAPeriod : Int, CaseIterable {
     
 }
 
+/// Following 3 extensions return the average of all elements in an array
+extension Collection where Element: Numeric {
+    var total: Element { reduce(0, +) }
+}
+
+extension Collection where Element: BinaryInteger {
+    var average: Double { isEmpty ? 0 : Double(total) / Double(count) }
+}
+
+extension Collection where Element: BinaryFloatingPoint {
+    var average: Element { isEmpty ? 0 : total / Element(count) }
+}

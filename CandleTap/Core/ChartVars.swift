@@ -29,6 +29,8 @@ var MAValues = [Double]()
 
 var previousX = CGFloat(0);             var previousY = CGFloat(0)
 
+var maSubsets = [[Double]]()
+
 //var maPrintBoolLock = false
 
 

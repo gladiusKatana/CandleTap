@@ -1,7 +1,5 @@
 /*🔥CandleTap_BinanceHistorical💧*/import UIKit
 
-var maSubsets = [[Double]]()
-
 func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime: Int64) {        //print("historical binance fetch")
     
     let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)&interval=\(interval.urlSymbol())&startTime=\(startTime)"
@@ -41,6 +39,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                         ar.append(str as AnyObject)
                     }
                     
+//                    let td
+                    
                     binanceETHBTCHistorical.append([ar])
                     binanceETHBTCHistoricalForPrinting.append([[/*rDouble(i),*/open,high,low,close]])
                     i += 1
@@ -73,30 +73,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
     } .resume()
 }
 
-func historicalMAs(latestClose: Double) -> [Double] {
-    var mas = [Double]()
-    var i=0
-    for period in MAPeriod.allCases {       //print("ma period to add: \(period.rawValue)")
-        
-        //if !maSubsets.isEmpty {
-        if maSubsets[i].count == period.rawValue {
-            maSubsets[i].removeFirst()
-        }
-        
-        if maSubsets[i].count <= period.rawValue {
-            maSubsets[i].append(latestClose)      //; print("appended to subset")
-        }
-        
-        let ma = maSubsets[i].average   //; print("subset length \(period.rawValue) has \(maSubsets[i].count) values, average is \(ma)")
-        //let maRounded = ma.truncate(places: 8)//.(round(1000000*ma)/1000000)
-        mas.append(ma)
-        
-        i+=1
-        //} else {print("ma subsets empty")}
-    }
-    
-    return mas
-}
+
 
 //extension Double {
 //    /// Rounds the double to decimal places value
