@@ -2,6 +2,43 @@
 
 extension CollectionVC {
     
+    
+    func createArchiveUrl() -> URL {
+        
+        dateString = formattedDateString(Date(), roundedDown: false, showYear: true,
+                                         prefix: "", suffix: "", dateFormat: .archiveCSVTitle)
+        fileName = "Historical OHLCs (\(dateString)).csv" ///don't insert a space after "as of" : formattedDateString(:) already builds one in
+        
+        var returnPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")
+        if let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) {
+            
+            var csvText = ""
+            let s = "," //";"   ///If exporting to Numbers, "Comma Separated Values" is a misnomer -- must separate columns by semicolon
+            csvText.append("Timestamp\(s)Date(UTC)\(s)Open\(s)High\(s)Low\(s)Close\(s)Count\(s)Colour\(s)")
+            for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
+            csvText.append("\n")
+            
+            for ohlc in binanceETHBTCHistorical {
+                var csv = ohlc.map {"\($0)"}.joined(separator: s)
+                csv = csv.filter{$0 != "["}
+                csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
+                csvText.append("\(csv)\(s)\(s)\(s)\n")
+            }                                                       //; print("csv text: \(csvText)")
+            
+            do {
+                try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
+            } catch {
+                print("Failed to create csv file, error:\n\(error)")
+            }
+            
+            returnPath = path
+        }
+            
+        else {print("failed to create url")}
+        return returnPath ?? NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")!
+    }
+    
+    
     func presentEmail() { //print("\n📪EMAIL\n")
         
         if emailComposer.canSendEmail() {
@@ -18,43 +55,6 @@ extension CollectionVC {
             }))
             present(alert, animated: true, completion: nil)
         }
-    }
-    
-    func createArchiveUrl() -> URL {
-        
-        dateString = formattedDateString(Date(), roundedDown: false, showYear: true,
-                                         prefix: "", suffix: "", dateFormat: .archiveCSVTitle)
-        fileName = "Historical OHLCs (\(dateString)).csv" ///don't insert a space after "as of" : formattedDateString(:) already builds one in
-        
-        var returnPath = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")
-        if let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) {
-            
-            var csvText = ""
-            let s = "," //";"   ///If exporting to Numbers, "Comma Separated Values" is a misnomer -- must separate columns by semicolon
-            csvText.append("Timestamp\(s)Date(UTC)\(s)Open\(s)High\(s)Low\(s)Close\(s)")
-            for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
-            csvText.append("\n")
-            
-            for ohlc in binanceETHBTCHistorical {
-                var csv = ohlc.map {"\($0)"}.joined(separator: s)
-                csv = csv.filter{$0 != "["}
-                csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
-                csvText.append("\(csv)\(s)\(s)\(s)\n")
-            }                                                       //; print("csv text: \(csvText)")
-            
-            do {
-                try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
-            } catch {
-                print("Failed to create csv file")
-                print("\(error)")
-            }
-            
-            returnPath = path
-        }
-            
-        else {print("failed to create url")}
-        
-        return returnPath ?? NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")!
     }
 }
 

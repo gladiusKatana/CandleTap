@@ -18,17 +18,35 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
             for _ in MAPeriod.allCases {maSubsets.append([])}               //; print("we have \(maSubsets.count) moving averages")
             
             if binanceCandles.count > 1 {
+                var lastFiveCloses = [Double]()
                 var i=0                                                     //; print("\nbinance candle count is \(binanceCandles.count)\n")
                 for _ in 0 ... binanceCandles.count - 2 {
                     let arr = binanceCandles[i]
                     let timestamp = "\(arr[0])" as AnyObject                //; print("timestamp = \(timestamp)")
                     let dot = "." as AnyObject
-                    let open = Double("\(arr[1])")!                         //; print("open = \(open)")
-                    let high = Double("\(arr[2])")!                         //; print("high = \(high)")
-                    let low = Double("\(arr[3])")!                          //; print("low = \(low)")
+//                    let open = Double("\(arr[1])")!                               //; print("open = \(open)")
+//                    let high = Double("\(arr[2])")!                               //; print("high = \(high)")
+//                    let low = Double("\(arr[3])")!                                //; print("low = \(low)")
                     let close = Double("\(arr[4])")!                        //; print("close = \(close)")
                     
-                    var ar = [timestamp,dot,arr[1],arr[2],arr[3],arr[4]]
+                    //-----------------------------------for Sequential
+                    if lastFiveCloses.count == 5 {
+                        lastFiveCloses.removeFirst()
+                    }
+                    if lastFiveCloses.count <= 5 {
+                        lastFiveCloses.append(close)
+                    }//----------------------------------
+                    
+                    var (count, colourString) : (Int?,String) = (0,"")
+                    if i >= 4 {
+                        (count, colourString) = sequentialHistorical(lastFiveCloses: lastFiveCloses)
+                    } //else {print("\n")}
+                    
+                    let ohlcPlusSeq = [arr[1], arr[2],arr[3], arr[4], "\(colourString)\(count ?? 0)"] as [AnyObject]
+                    binanceETHBTCHistoricalForPrinting.append([ohlcPlusSeq]) //print(ohlcPlusSeq)
+                    i += 1
+                    
+                    var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],"\(count ?? 0)" as AnyObject,"\(colourString)" as AnyObject]
                     let movingAverages = historicalMAs(latestClose: close)
                     for avg in movingAverages {
                         let str = "\(avg)"
@@ -36,14 +54,10 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                          if sizeExcess >= 0 {
                          str.removeLast(sizeExcess)
                          }*/
-                        ar.append(str as AnyObject)
+                        preCsv.append(str as AnyObject)
                     }
                     
-//                    let td
-                    
-                    binanceETHBTCHistorical.append([ar])
-                    binanceETHBTCHistoricalForPrinting.append([[/*rDouble(i),*/open,high,low,close]])
-                    i += 1
+                    binanceETHBTCHistorical.append([preCsv])
                 }
             }
             
@@ -56,8 +70,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 historicalBatch += 1                                        ; print("----------------------------------------------------------")
                 fetchBinanceHistoricalOHLCs(ticker: ticker, interval: interval, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
-            } else { //print("ok done pulling historical data")
                 
+            } else {                                                        //print("ok done pulling historical data")
                 let ohlcsToPrint = binanceETHBTCHistoricalForPrinting
                 let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
                 print("\n\(ohlcsToPrint.count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
@@ -73,7 +87,30 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
     } .resume()
 }
 
-
+func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
+    var colourString = "" //G for green, R for red
+    var returnInt = 0
+    
+    let current = lastFiveCloses[4]
+    let fourAgo = lastFiveCloses[0]
+    
+    if current > fourAgo {                      //print("----------Seq_is \(current) > \(fourAgo) ? YES\n")
+        if reds != 0 {reds = 0}
+        if greens == 9 {greens = 0}
+        greens += 1
+        colourString = "G"
+        returnInt = greens
+    }
+    else if current < fourAgo {
+        if greens != 0 {greens = 0}
+        if reds == 9 {reds = 0}
+        reds += 1
+        colourString = "R"
+        returnInt = reds
+    }
+    else {greens = 0   ; colourString = ""}
+    return (returnInt, colourString)
+}
 
 //extension Double {
 //    /// Rounds the double to decimal places value

@@ -9,6 +9,8 @@
  
  
  
+ add 20MA, 200MA
+ 
  cleanup current price formatting
  
  optimize api efficiency

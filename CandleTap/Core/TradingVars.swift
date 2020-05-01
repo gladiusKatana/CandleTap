@@ -39,3 +39,7 @@ var latestKrakenXBTZCAD = 1.0                       //; var latestBinanceETHBTCP
 var latestShakepayBTCCAD = 1.0
 var latestBinanceETHBTC = 1.0
 
+
+var greens = 0; var reds = 0
+var previousTDColour = ""
+
