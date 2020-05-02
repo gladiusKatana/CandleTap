@@ -70,9 +70,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 let candleCount = ohlcsToPrint.count
                 print("\n\(candleCount) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
                 
-                let grnNineFreq = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
-                let redNineFreq = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
-                print("\n\(greenNines) green nines (\(grnNineFreq) %) & \(redNines) red nines (\(redNineFreq) %) ")
+                displayNineFrequency(candleCount: candleCount)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     pairListVC.presentEmail()

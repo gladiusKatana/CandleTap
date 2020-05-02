@@ -39,3 +39,9 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
     return (returnInt, colourString)
 }
 
+func displayNineFrequency(candleCount: Int) {
+    let grnNineFreq = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
+    let redNineFreq = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
+    print("\n\(greenNines) green nines (\(grnNineFreq) %) & \(redNines) red nines (\(redNineFreq) %) ")
+}
+
