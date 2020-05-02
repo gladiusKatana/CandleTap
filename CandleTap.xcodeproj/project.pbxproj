@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0600F169244C0D6500471B14 /* BncHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600F168244C0D6500471B14 /* BncHistorical.swift */; };
 		0600F16B244D486200471B14 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600F16A244D486200471B14 /* Components.swift */; };
+		06269B85245E3D57007C2BD1 /* Sequential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06269B84245E3D57007C2BD1 /* Sequential.swift */; };
 		0633169623CD2C440027CAD8 /* ChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169123CD2C440027CAD8 /* ChartVC.swift */; };
 		0633169723CD2C440027CAD8 /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169223CD2C440027CAD8 /* Plot.swift */; };
 		0633169823CD2C440027CAD8 /* ChartMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169323CD2C440027CAD8 /* ChartMisc.swift */; };
@@ -108,6 +109,7 @@
 /* Begin PBXFileReference section */
 		0600F168244C0D6500471B14 /* BncHistorical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BncHistorical.swift; sourceTree = "<group>"; };
 		0600F16A244D486200471B14 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		06269B84245E3D57007C2BD1 /* Sequential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequential.swift; sourceTree = "<group>"; };
 		0633169123CD2C440027CAD8 /* ChartVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
 		0633169223CD2C440027CAD8 /* Plot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
 		0633169323CD2C440027CAD8 /* ChartMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartMisc.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		0678FC5823DA58EF009B25B8 /* TA */ = {
 			isa = PBXGroup;
 			children = (
+				06269B84245E3D57007C2BD1 /* Sequential.swift */,
 				0678FC5923DA590C009B25B8 /* MAs.swift */,
 				0671AD4524564B850048902C /* MAPeriods.swift */,
 			);
@@ -617,6 +620,7 @@
 				06C0DC7623CCEF0E00159118 /* LRSetup.swift in Sources */,
 				0678FC5A23DA590C009B25B8 /* MAs.swift in Sources */,
 				0633169923CD2C440027CAD8 /* ChartLifecycle.swift in Sources */,
+				06269B85245E3D57007C2BD1 /* Sequential.swift in Sources */,
 				06C0DC4D23CCEF0D00159118 /* DeviceType.swift in Sources */,
 				06C0DC8123CCEF0E00159118 /* TimeVars.swift in Sources */,
 				06C0DC6A23CCEF0E00159118 /* TapPopup.swift in Sources */,
