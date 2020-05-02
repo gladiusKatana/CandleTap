@@ -2,7 +2,7 @@
 
 func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime: Int64) {        //print("historical binance fetch")
     
-    let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)&interval=\(interval.urlSymbol())&startTime=\(startTime)"
+    let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)BTC&interval=\(interval.urlSymbol())&startTime=\(startTime)"
 //    print("url string: \(urlString)")
     guard let url = URL(string: urlString) else {/*print("error binding binance url; ")*/return}
     
@@ -70,12 +70,12 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
             }
             
             let lastTimestamp = Int64("\(binanceCandles.last!.first!)")!
-            if lastTimestamp != lastHistoricalTimestamp {                   print("> hist. batch \(historicalBatch) ending at \(lastTimestamp)")
+            if lastTimestamp != lastHistoricalTimestamp {                   //print("> hist. batch \(historicalBatch) ending at \(lastTimestamp)")
                 /**/
                 //let newlinedCandles = binanceCandles.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(binanceCandles.count) historical candles starting @ 0:\n\(newlinedCandles)", terminator: "\n")
                 
-                historicalBatch += 1                                        ; print("----------------------------------------------------------")
+                historicalBatch += 1                                        //; print("----------------------------------------------------------")
                 fetchBinanceHistoricalOHLCs(ticker: ticker, interval: interval, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
                 
