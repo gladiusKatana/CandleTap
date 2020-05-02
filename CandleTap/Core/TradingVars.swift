@@ -43,3 +43,5 @@ var latestBinanceETHBTC = 1.0
 var greens = 0; var reds = 0
 var previousTDColour = ""
 
+var greenNines = 0
+var redNines = 0

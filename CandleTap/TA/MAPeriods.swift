@@ -51,4 +51,3 @@ func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObje
 //        print("\n")
 */
 
-

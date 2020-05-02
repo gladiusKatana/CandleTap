@@ -3,6 +3,7 @@
 func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime: Int64) {        //print("historical binance fetch")
     
     let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)&interval=\(interval.urlSymbol())&startTime=\(startTime)"
+//    print("url string: \(urlString)")
     guard let url = URL(string: urlString) else {/*print("error binding binance url; ")*/return}
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -46,7 +47,12 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     binanceETHBTCHistoricalForPrinting.append([ohlcPlusSeq]) //print(ohlcPlusSeq)
                     i += 1
                     
-                    var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],"\(count ?? 0)" as AnyObject,"\(colourString)" as AnyObject]
+                    let cnt = "\(count ?? 0)" as AnyObject
+                    let clrString = "\(colourString)" as AnyObject
+                    let grnNines = "\(greenNines)" as AnyObject
+                    let rdNines = "\(redNines)" as AnyObject
+                    
+                    var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],cnt,clrString]
                     let movingAverages = historicalMAs(latestClose: close)
                     for avg in movingAverages {
                         let str = "\(avg)"
@@ -56,6 +62,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                          }*/
                         preCsv.append(str as AnyObject)
                     }
+                    
+                    preCsv.append(grnNines); preCsv.append(rdNines)
                     
                     binanceETHBTCHistorical.append([preCsv])
                 }
@@ -74,7 +82,12 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
             } else {                                                        //print("ok done pulling historical data")
                 let ohlcsToPrint = binanceETHBTCHistoricalForPrinting
                 let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
-                print("\n\(ohlcsToPrint.count) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
+                let candleCount = ohlcsToPrint.count
+                print("\n\(candleCount) historical ohlcs:\n\n\(newlinedOhlcs)", terminator: "\n")
+                
+                let grnNineFreq = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
+                let redNineFreq = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
+                print("\n\(greenNines) green nines (\(grnNineFreq) %) & \(redNines) red nines (\(redNineFreq) %) ")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     pairListVC.presentEmail()
@@ -96,14 +109,24 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
     
     if current > fourAgo {                      //print("----------Seq_is \(current) > \(fourAgo) ? YES\n")
         if reds != 0 {reds = 0}
-        if greens == 9 {greens = 0}
+        
+        if greens == 9 {
+            greens = 0
+            greenNines += 1
+        }
+        
         greens += 1
         colourString = "G"
         returnInt = greens
     }
     else if current < fourAgo {
         if greens != 0 {greens = 0}
-        if reds == 9 {reds = 0}
+        
+        if reds == 9 {
+            reds = 0
+            redNines += 1
+        }
+        
         reds += 1
         colourString = "R"
         returnInt = reds
