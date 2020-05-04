@@ -10,6 +10,7 @@
 		0600F169244C0D6500471B14 /* BncHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600F168244C0D6500471B14 /* BncHistorical.swift */; };
 		0600F16B244D486200471B14 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600F16A244D486200471B14 /* Components.swift */; };
 		06269B85245E3D57007C2BD1 /* Sequential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06269B84245E3D57007C2BD1 /* Sequential.swift */; };
+		06269B87245FD5E3007C2BD1 /* NineSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06269B86245FD5E2007C2BD1 /* NineSamples.swift */; };
 		0633169623CD2C440027CAD8 /* ChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169123CD2C440027CAD8 /* ChartVC.swift */; };
 		0633169723CD2C440027CAD8 /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169223CD2C440027CAD8 /* Plot.swift */; };
 		0633169823CD2C440027CAD8 /* ChartMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633169323CD2C440027CAD8 /* ChartMisc.swift */; };
@@ -110,6 +111,7 @@
 		0600F168244C0D6500471B14 /* BncHistorical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BncHistorical.swift; sourceTree = "<group>"; };
 		0600F16A244D486200471B14 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		06269B84245E3D57007C2BD1 /* Sequential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequential.swift; sourceTree = "<group>"; };
+		06269B86245FD5E2007C2BD1 /* NineSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NineSamples.swift; sourceTree = "<group>"; };
 		0633169123CD2C440027CAD8 /* ChartVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
 		0633169223CD2C440027CAD8 /* Plot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
 		0633169323CD2C440027CAD8 /* ChartMisc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartMisc.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				06269B84245E3D57007C2BD1 /* Sequential.swift */,
+				06269B86245FD5E2007C2BD1 /* NineSamples.swift */,
 				0678FC5923DA590C009B25B8 /* MAs.swift */,
 				0671AD4524564B850048902C /* MAPeriods.swift */,
 			);
@@ -677,6 +680,7 @@
 				06E7041123D0173C00C2294F /* Dates_II.swift in Sources */,
 				06C0DC5B23CCEF0D00159118 /* Sizes.swift in Sources */,
 				06C0DC7023CCEF0E00159118 /* AddPopup.swift in Sources */,
+				06269B87245FD5E3007C2BD1 /* NineSamples.swift in Sources */,
 				06765A2A24383D6B004FDD49 /* ChartVars.swift in Sources */,
 				06C0DC7723CCEF0E00159118 /* LeftCell.swift in Sources */,
 				06C0DC4B23CCEF0D00159118 /* TestSquare.swift in Sources */,
