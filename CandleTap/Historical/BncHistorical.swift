@@ -30,7 +30,6 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     let timestamp = "\(arr[0])" as AnyObject                    //; print("timestamp = \(timestamp)")
                     let dot = "." as AnyObject
                     let close = Double("\(arr[4])")!                            //; print("close = \(close)")
-                    /**/
                     
                     if lastFiveCloses.count == 5 {lastFiveCloses.removeFirst()} //for Sequential -------------------------------------------🟥🟩
                     if lastFiveCloses.count <= 5 {lastFiveCloses.append(close)} //"            "
@@ -78,8 +77,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 let ohlcsToPrint = binanceETHBTCHistoricalForPrinting
                 let candleCount = ohlcsToPrint.count                        //; print("\n\(candleCount) historical ohlcs (before padding)")
                 
-//                let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
-//                print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
+                //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
+                //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
                 
                 let size = 37//73
                 
@@ -104,22 +103,4 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
         } catch let error {print("Failed to load: \(error.localizedDescription)")}
     } .resume()
 }
-
-/*let sizeExcess = str.count - 12
- if sizeExcess >= 0 {
- str.removeLast(sizeExcess)
- }*/
-
-/*
- //                    let open = Double("\(arr[1])")!                               //; print("open = \(open)")
- //                    let high = Double("\(arr[2])")!                               //; print("high = \(high)")
- //                    let low = Double("\(arr[3])")!                                //; print("low = \(low)")
- */
-
-/*
- //date-checker
- //                let day500 = makeDateFrom(year: 2018, month: 11, day: 25, hr: -5, min: 0, sec: 0)
- //                print("...& the last timestamp is \(Int64((day500.timeIntervalSince1970 * 1000.0).rounded()))")
- //                print("...& the last date is \(formattedDateString(day500, roundedDown: false, showYear: true, prefix: "", suffix: "", dateFormat: .fullDay))")
- */
 
