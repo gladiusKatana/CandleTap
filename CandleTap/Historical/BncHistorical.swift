@@ -1,8 +1,5 @@
 /*🔥CandleTap_BinanceHistorical💧*/import UIKit
 
-var nineNeighbourSample = [[AnyObject]]()
-var ninesAndTheirNeighbours = [[[AnyObject]]]()
-
 func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime: Int64) {        //print("historical binance fetch")
     
     let urlString = "https://api.binance.com/api/v1/klines?symbol=\(ticker)BTC&interval=\(interval.urlSymbol())&startTime=\(startTime)"
@@ -64,10 +61,6 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
             
             let lastTimestamp = Int64("\(binanceCandles.last!.first!)")!
             if lastTimestamp != lastHistoricalTimestamp {                   //print("> hist. batch \(historicalBatch) ending at \(lastTimestamp)")
-                /**/
-                
-                //let newlinedCandles = binanceCandles.map {"\($0)"}.joined(separator: "\n")
-                //print("\n\(binanceCandles.count) historical candles starting @ 0:\n\(newlinedCandles)", terminator: "\n")
                 
                 historicalBatch += 1                                        //; print("----------------------------------------------------------")
                 fetchBinanceHistoricalOHLCs(ticker: ticker, interval: interval, startTime: lastTimestamp/* + 86400*/)
@@ -89,11 +82,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 
                 findAndPrintNinesAndNeighbouringCandles(size: size)
                 
-                /*let newlinedPaddedOhlcs = binanceETHBTCHistorical.map {"\($0)"}.joined(separator: "\n")
-                 print("\n\(binanceETHBTCHistorical.count) historical ohlcs (incl. \(size) as padding):\n\n\(newlinedPaddedOhlcs)", terminator: "\n")*/
-                
-                let count = binanceETHBTCHistorical.count
-                print("\n\(count) ohlcs: \(count-size) historical, \(size) padding")
+                let count = binanceETHBTCHistorical.count               ; print("\n\(count) ohlcs: \(count - size) historical, \(size) padding")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     pairListVC.presentEmail()

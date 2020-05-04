@@ -40,6 +40,9 @@ var latestShakepayBTCCAD = 1.0
 var latestBinanceETHBTC = 1.0
 
 
+var nineNeighbourSample = [[AnyObject]]()           //for Sequential🟥🟩
+var ninesAndTheirNeighbours = [[[AnyObject]]]()
+
 var greens = 0;             var reds = 0
 
 var greenNines = 0;         var redNines = 0
