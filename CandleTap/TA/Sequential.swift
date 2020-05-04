@@ -42,13 +42,14 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
 func displayNineFrequency(candleCount: Int) {
     print("")
     ninePryntHelper(greenNineInt: greenNines, redNineInt: redNines, appendString: "", candleCount: candleCount)
-    ninePryntHelper(greenNineInt: chartGreenNines, redNineInt: chartRedNines, appendString: "(check)", candleCount: candleCount)
+//    ninePryntHelper(greenNineInt: chartGreenNines, redNineInt: chartRedNines, appendString: "(check)", candleCount: candleCount)
 }
 
 func ninePryntHelper(greenNineInt: Int, redNineInt: Int, appendString: String, candleCount: Int) {
     let greenFrequency = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
     let redFrequency = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
     
-    print("\(greenNineInt) green nines (\(greenFrequency) %) & \(redNineInt) red nines (\(redFrequency) %) \(appendString)")
+    let nines = greenNines + redNines // may expand scope
+    print("\(nines) nines: \(greenNineInt) green (\(greenFrequency) %), \(redNineInt) red (\(redFrequency) %) \(appendString)")
 }
 
