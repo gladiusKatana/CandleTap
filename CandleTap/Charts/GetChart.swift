@@ -6,6 +6,7 @@ extension ChartVC {
         
         var highs = [Double]();  var lows = [Double]()                              ///; var lowerWickRanges = [Double]()
         var MAs = [Double]()                                                        ///; var upperWickRanges = [Double]()
+        
         let candleStart = candleSubset.count + 1 //; print("appending MA from \(MAValues.count) MAs, to \(MAs.count) values")
         
         for i in candleStart - candlesToPlot ..< candleStart - 1 {
@@ -19,8 +20,7 @@ extension ChartVC {
         
         if let absLow = lows.min(), let absHigh = highs.max() {
             
-            var absMin = absLow
-            var absMax = absHigh
+            var absMin = absLow  ;  var absMax = absHigh
             
             if let maxMA = MAs.max(), let minMA = MAs.min() {
                 if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")

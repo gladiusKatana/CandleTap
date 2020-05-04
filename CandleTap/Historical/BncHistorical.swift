@@ -80,7 +80,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     binanceETHBTCHistorical.append([firstHistoricalOhlc!])     // pad the historical ohlcs (for now), to catch all the 9s
                 }
                 
-                findAndPrintNinesAndNeighbouringCandles(size: size)
+                findAndPlotNinesAndNeighbouringCandles(size: size)
                 
                 let count = binanceETHBTCHistorical.count               ; print("\n\(count) ohlcs: \(count - size) historical, \(size) padding")
                 

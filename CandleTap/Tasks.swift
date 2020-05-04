@@ -25,6 +25,8 @@
  
  [charts]
  
+ Sequential
+ 
  axes
  
  MAs

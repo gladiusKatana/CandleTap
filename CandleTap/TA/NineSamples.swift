@@ -1,6 +1,6 @@
 /*🔥CandleTap_NineSamples💧*/import UIKit
 
-func findAndPrintNinesAndNeighbouringCandles(size: Int) {
+func findAndPlotNinesAndNeighbouringCandles(size: Int) {
     for ohlc in binanceETHBTCHistorical {
         let ohlcZero = ohlc[0]
         let ohlcPlusSeq = [ohlcZero[2],ohlcZero[3],ohlcZero[4],ohlcZero[5],ohlcZero[6],ohlcZero[7]] //open,high,low,close,seq,colour
