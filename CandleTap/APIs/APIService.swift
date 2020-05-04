@@ -58,7 +58,7 @@ class ApiService: NSObject {
     
     func processCandleSubset() {
         if candleSubset.count > candlesToPlot {
-            updateMovingAverages(maLength: 50, plottingInterval: candlesToPlot, ohlcs: candleSubset)
+            updateCurrentMovingAverages(maLength: 50, plottingInterval: candlesToPlot, ohlcs: candleSubset)
             //candleSubset.removeFirst(candleSubset.count - candlesToPlot)       //; print("kraken candle count: \(candleSubset.count)")
             
             if chartDisplayed {

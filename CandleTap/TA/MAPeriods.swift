@@ -1,7 +1,7 @@
 /*🔥CandleTap_ChartMAs💧*/import UIKit
 
 
-func updateMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObject]]) {
+func updateCurrentMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObject]]) {
     
     var maPriceArrays = ohlcs
     var closingPrices = [Double]();     var allClosingPrices = [Double]()
