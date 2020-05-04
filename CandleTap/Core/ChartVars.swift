@@ -5,7 +5,7 @@ var chartFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
 
 var chartViewWidth = CGFloat(0); var chartViewHeight = CGFloat(0)
 
-var chartBorder = PlotRectange(frame: zeroFrame)
+var chartBorder = ChartRectangle(frame: zeroFrame)
 
 
 

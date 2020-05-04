@@ -25,7 +25,7 @@ class Bar: UIView {
     }
 }
 
-class PlotRectange: UIView {
+class ChartRectangle: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

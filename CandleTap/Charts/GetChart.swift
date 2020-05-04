@@ -55,7 +55,7 @@ extension ChartVC {
     }
     
     func plotChartAxes(range: Double, absLow: Double, currentClose: Double) {
-        chartBorder = PlotRectange(frame: chartFrame)
+        chartBorder = ChartRectangle(frame: chartFrame)
         chartBorder.draw(CGRect(x: chartMarginY, y: 0, width: 10, height: 10))
         self.view.addSubview(chartBorder)
         
