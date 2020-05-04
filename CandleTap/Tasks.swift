@@ -2,42 +2,53 @@
  
  1st 'commit'                                       Jan 8 '20
  
- task                                               deadline                        type *          comments
+ task                                               deadline                        comments
+ 
+ 
+ 
+ 
+ 
+ [historical]
+ 
+ nines as chart images                              May 6, 2020
+ 
+ rapidfire csv email
+ 
+ rapidfire nine chart email                         May 8, 2020
+ 
+ backtesting queries (MAs + Sequential)
  
  
  
  
  
  
- add 20MA, 200MA
- 
- cleanup current price formatting
- 
- optimize api efficiency
- 
- time interval menus
+ [charts]
  
  axes
  
- volume
+ MAs
+ 
+ optimize api efficiency
+ 
+ cleanup current price formatting
 
- sequential
- 
- historical datasets
  
  
  
+  
  
+ [TA]
  
+ candle recognition
  
- + chart patterns
+ chart patterns
  
- + candle recognition
+ Fibonaccis
  
- + fibonacci
+ SAR
  
- 
- 
+ volume
  
  
  
@@ -55,11 +66,7 @@
  
  Notes
  
- ⁌o⁍ denotes bugfixes
- 
- * "type" labels may refer to development pattern categories M, V, C, VM etc. (VC = view controller)
- 
  * all .swift files in this version are aesthetically optimized for a 13" screen
  
- * this is Open Source software. Contributors welcomed. https://github.com/gladiusKatana/Nidhamu */
+ * this is Open Source software. Contributors welcomed. https://github.com/gladiusKatana/CandleTap */
 
