@@ -8,12 +8,12 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
     let current = lastFiveCloses[4]
     let fourAgo = lastFiveCloses[0]
     
-    if current > fourAgo {                      //print("----------Seq_is \(current) > \(fourAgo) ? YES\n")
+    if current > fourAgo {                                          //print("----------Seq_is \(current) > \(fourAgo) ? YES\n")
         if reds != 0 {reds = 0}
         
-        if greens == 9 {
+        if greens == 9 {                                            //print("green 9!")
             greens = 0
-            greenNines += 1
+            ///greenNines += 1  // don't do it here, causes a bug
         }
         
         greens += 1
@@ -24,9 +24,9 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
     else if current < fourAgo {
         if greens != 0 {greens = 0}
         
-        if reds == 9 {
+        if reds == 9 {                                              //print("red 9!")
             reds = 0
-            redNines += 1
+            ///redNines += 1    // don't do it here, causes a bug
         }
         
         reds += 1
@@ -40,8 +40,15 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
 }
 
 func displayNineFrequency(candleCount: Int) {
-    let grnNineFreq = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
-    let redNineFreq = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
-    print("\n\(greenNines) green nines (\(grnNineFreq) %) & \(redNines) red nines (\(redNineFreq) %) ")
+    print("")
+    ninePryntHelper(greenNineInt: greenNines, redNineInt: redNines, appendString: "", candleCount: candleCount)
+    ninePryntHelper(greenNineInt: chartGreenNines, redNineInt: chartRedNines, appendString: "(check)", candleCount: candleCount)
+}
+
+func ninePryntHelper(greenNineInt: Int, redNineInt: Int, appendString: String, candleCount: Int) {
+    let greenFrequency = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
+    let redFrequency = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
+    
+    print("\(greenNineInt) green nines (\(greenFrequency) %) & \(redNineInt) red nines (\(redFrequency) %) \(appendString)")
 }
 
