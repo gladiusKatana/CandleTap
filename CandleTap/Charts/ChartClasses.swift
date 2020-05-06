@@ -7,14 +7,14 @@ class Bar: UIView {
         return bar
     }()
     
-    var rectangleView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = .clear
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+//    var rectangleView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.backgroundColor = .clear
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.clipsToBounds = true
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    }()
     
     override init(frame: CGRect) {                                          //print("   (override init  bar graph view)")
         super.init(frame: frame)
