@@ -19,7 +19,7 @@ extension CollectionVC {
              }*/
             
             
-            candleSubset = [[AnyObject]]()
+//            candleSubset = [[AnyObject]]()
             
             if (column,row) == (1,2) {
                 exchangeID = ExchangeID.binance

@@ -9,7 +9,8 @@ extension ChartVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavBarTitle(customString: viewControllerType.getNavBarTitle())
+        setNavBarTitle(customString: "there's a 9! (\((candlesToPlot-1)/2+1)th candle)")
+        //setNavBarTitle(customString: viewControllerType.getNavBarTitle())
         setupNavBarButtons(greyIndex: 1)
         setupPinchToExit()
         
@@ -23,14 +24,12 @@ extension ChartVC {
         let hei = CGFloat(globalWindow.frame.height - chartMarginY * 2)
         
         candleWidth = (wid - candleGap) / CGFloat(candlesToPlot) // incl. (non-leftmost) gap (?)
-        
         chartFrame = CGRect(x: chartMarginX, y: chartMarginY, width: wid, height: hei)    /// (inherits & has all properties of UIView)
         
         chartViewWidth = wid
-        
         chartViewHeight = hei ///= CGFloat(frameWidth); chartViewHeight = CGFloat(frameHeight)
         
-        ///getChart()
+        getChart()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,9 +38,8 @@ extension ChartVC {
         
         ///self.periodicDateRefresh(){self.kickoffTimer()}
         
-        apiServ.getFeeds(toPlot: exchangeID)
+        //apiServ.getFeeds(toPlot: exchangeID)
     }
-    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

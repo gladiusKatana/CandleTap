@@ -35,14 +35,13 @@ func sequentialHistorical(lastFiveCloses: [Double]) -> (Int?, String) {
     }
         
     else {greens = 0   ; colourString = ""}
-    
     return (returnInt, colourString)
 }
 
 func displayNineFrequency(candleCount: Int) {
     print("")
     ninePryntHelper(greenNineInt: greenNines, redNineInt: redNines, appendString: "", candleCount: candleCount)
-    //    ninePryntHelper(greenNineInt: chartGreenNines, redNineInt: chartRedNines, appendString: "(check)", candleCount: candleCount)
+    ninePryntHelper(greenNineInt: chartGreenNines, redNineInt: chartRedNines, appendString: "(check)", candleCount: candleCount)
 }
 
 func ninePryntHelper(greenNineInt: Int, redNineInt: Int, appendString: String, candleCount: Int) {

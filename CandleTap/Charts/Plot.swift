@@ -3,7 +3,7 @@
 extension ChartVC {
     
     func plotCandlesAndIndicators(open: Double, high: Double, low: Double, close: Double, scalor: Double, absLow: Double,
-                                  candleIndex index: Int, MA: Double) {
+                                  candleIndex index: Int, MA: Double) {             //print("plotting candles & indicators")
         
         var candleColour = UIColor()                        ; let lineWidth = CGFloat(0.5)  ; let wickColour = UIColor.white
         if close < open {candleColour = .red}
@@ -53,31 +53,29 @@ extension ChartVC {
         
         let y = chartViewHeight - CGFloat(MAPointHeight) - chartVerticalCushion; let x = candleCenterX
         
-        let MAPointRect = CGRect(x: x - CGFloat(halfPointSize),
-                                 y: y,
-                                 width: CGFloat(MAPointSize),
-                                 height: CGFloat(MAPointSize))
+//        let MAPointRect = CGRect(x: x - CGFloat(halfPointSize),
+//                                 y: y,
+//                                 width: CGFloat(MAPointSize),
+//                                 height: CGFloat(MAPointSize))
         
-        let MAPoint = Bar(frame: MAPointRect);   MAPoint.backgroundColor = .purple
-        self.view.addSubview(MAPoint)
+//        let MAPoint = Bar(frame: MAPointRect);   MAPoint.backgroundColor = .purple
+//        self.view.addSubview(MAPoint)
         
         if index > 0 { // ------------------------------------------------------------------- MA lines --------------------
-            let deltaX = Double(x - previousX)  ; let deltaY = Double(y - previousY)
-            let hypotenuse = sqrt(square(deltaY) + square(deltaX))
-            let angle = CGFloat.pi / 2 + CGFloat(atan(deltaY / deltaX)) ///in radians
-            let midX = 0.5 * (x + previousX)    ; let midY = 0.5 * (y + previousY)
+//            let deltaX = Double(x - previousX)  ; let deltaY = Double(y - previousY)
+//            let hypotenuse = sqrt(square(deltaY) + square(deltaX))
+//            let angle = CGFloat.pi / 2 + CGFloat(atan(deltaY / deltaX)) ///in radians
+//            let midX = 0.5 * (x + previousX)    ; let midY = 0.5 * (y + previousY)
+//
+//            let lineFrame = CGRect(x: CGFloat(midX),
+//                                   y: CGFloat(midY) - 0.5 * CGFloat(hypotenuse) + CGFloat(halfPointSize),
+//                                   width: lineWidth * 2,
+//                                   height: CGFloat(hypotenuse))
+//
+//            let maLineSegment = Bar(frame: lineFrame)       ; maLineSegment.backgroundColor = .purple
             
-            let lineFrame = CGRect(x: CGFloat(midX),
-                                   y: CGFloat(midY) - 0.5 * CGFloat(hypotenuse) + CGFloat(halfPointSize),
-                                   width: lineWidth * 2,
-                                   height: CGFloat(hypotenuse))
-            
-            let maLineSegment = Bar(frame: lineFrame)       ; maLineSegment.backgroundColor = .purple
-            
-            maLineSegment.transform = CGAffineTransform(rotationAngle: angle)
-            //maLineSegment.transform = CGAffineTransform.identity
-            
-            self.view.addSubview(maLineSegment)
+//            maLineSegment.transform = CGAffineTransform(rotationAngle: angle) // = CGAffineTransform.identity
+//            self.view.addSubview(maLineSegment)
             
             previousX = x; previousY = y
         }

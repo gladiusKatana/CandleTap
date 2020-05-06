@@ -1,6 +1,5 @@
 /*🔥CandleTap_ChartMAs💧*/import UIKit
 
-
 func updateCurrentMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[AnyObject]]) {
     
     var maPriceArrays = ohlcs
@@ -43,11 +42,11 @@ func updateCurrentMovingAverages(maLength: Int, plottingInterval: Int, ohlcs: [[
 }
 
 /*
-//        var k = 0
-//        for ohlc in movingAvgPriceArrays {
-//            print("ohlc: \(k): \(ohlc)")
-//            k += 1
-//        }
-//        print("\n")
-*/
+ //        var k = 0
+ //        for ohlc in movingAvgPriceArrays {
+ //            print("ohlc: \(k): \(ohlc)")
+ //            k += 1
+ //        }
+ //        print("\n")
+ */
 

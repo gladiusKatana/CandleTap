@@ -2,24 +2,28 @@
 
 func historicalMAs(latestClose: Double) -> [Double] {
     var mas = [Double]()
-    var i=0
-    for period in MAPeriod.allCases {       //print("ma period to add: \(period.rawValue)")
+    var i=0                                             
+    for period in MAPeriod.allCases {
         
-        //if !maSubsets.isEmpty {
-        if maSubsets[i].count == period.rawValue {
+        let maPeriod = period.rawValue                  //print("ma period to add: \(maPeriod)")
+        
+        if maSubsets[i].count == maPeriod {
             maSubsets[i].removeFirst()
         }
         
-        if maSubsets[i].count <= period.rawValue {
-            maSubsets[i].append(latestClose)      //; print("appended to subset")
+        if maSubsets[i].count <= maPeriod {
+            maSubsets[i].append(latestClose)            //; print("appended to subset")
         }
         
-        let ma = maSubsets[i].average   //; print("subset length \(period.rawValue) has \(maSubsets[i].count) values, average is \(ma)")
-        //let maRounded = ma.truncate(places: 8)//.(round(1000000*ma)/1000000)
-        mas.append(ma)
+        var ma = -1.0
+        if maSubsets[i].count == maPeriod {
+            ma = maSubsets[i].average                   //; print("subset length \(maPeriod) has \(maSubsets[i].count) values, average is \(ma)")
+            //let maRounded = ma.truncate(places: 8)//.(round(1000000*ma)/1000000)
+        }
+        
+        mas.append(ma)                                  //; print("appending \(maPeriod)-period moving average \(ma)")
         
         i+=1
-        //} else {print("ma subsets empty")}
     }
     
     return mas

@@ -15,10 +15,10 @@ class ApiService: NSObject {
                 krakenApiResponses = responses  ///print("...kraken last timestamp: \(String(describing: krakenOHLCChunks?.last!.result!.last))")
                 if let krakenBtcPrices = krakenApiResponses?[0].result?.XXBTZUSD { //.result?.XXBTZCAD {
                     
-                    if toPlot == .kraken
-                        && chartDisplayed
-                        //&& !chartFirstSetup//*
-                    {candleSubset = krakenBtcPrices}
+//                    if toPlot == .kraken
+//                        && chartDisplayed
+//                        //&& !chartFirstSetup//*
+//                    {candleSubset = krakenBtcPrices}
                     
                     latestKrakenXBTZCAD = Double("\(krakenBtcPrices.last![4])")!   //; print("kraken price: \(latestKrakenXBTZCAD)")
                     /**/
@@ -34,11 +34,10 @@ class ApiService: NSObject {
                 fetchBinanceLatestOHLCs(urlString: "https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1m")
                 //"https://api.binance.com/api/v1/klines?symbol=ETHBTC&interval=1w&startTime=0"
                 
-                if toPlot == .binance
-                    && chartDisplayed
-                    //&& !chartFirstSetup
-                {candleSubset = globalBinanceCandles}
-                
+//                if toPlot == .binance
+//                    && chartDisplayed
+//                    //&& !chartFirstSetup
+//                {candleSubset = globalBinanceCandles}
             }
             
             self?.getShakepayFeed { responses in     //getShakepayCandle(urlString: "https://api.shakepay.co/rates")
@@ -51,9 +50,7 @@ class ApiService: NSObject {
             currentPrices = [latestShakepayBTCCAD, latestKrakenXBTZCAD, latestBinanceETHBTC]
         }
         
-        if chartDisplayed {
-            processCandleSubset()
-        }
+//        if chartDisplayed {processCandleSubset()}
     }
     
     func processCandleSubset() {
@@ -66,23 +63,23 @@ class ApiService: NSObject {
             }
         }
         
-        var i=0
-        for _/*candle*/ in candleSubset {
-            
-            /*let open = Double("\(candle[1])")!
-             let high = Double("\(candle[2])")!
-             let low = Double("\(candle[3])")!
-             let close = Double("\(candle[4])")!
-             
-             let ohlcString = "[\(open), \(high), \(low), \(close)]"
-             if !krakenUpdated {print("OHLC: \(ohlcString)")}*/
-            
-            if i == candleSubset.count - 1 { //print("last ohlc of this refresh")
-                ///chartFirstSetup = true
-            }
-            
-            i += 1
-        }
+//        var i=0
+//        for _/*candle*/ in candleSubset {
+//
+//            /*let open = Double("\(candle[1])")!
+//             let high = Double("\(candle[2])")!
+//             let low = Double("\(candle[3])")!
+//             let close = Double("\(candle[4])")!
+//
+//             let ohlcString = "[\(open), \(high), \(low), \(close)]"
+//             if !krakenUpdated {print("OHLC: \(ohlcString)")}*/
+//
+//            if i == candleSubset.count - 1 { //print("last ohlc of this refresh")
+//                ///chartFirstSetup = true
+//            }
+//
+//            i += 1
+//        }
     }
 }
 

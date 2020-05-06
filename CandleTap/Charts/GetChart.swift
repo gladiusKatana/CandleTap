@@ -2,49 +2,51 @@
 
 extension ChartVC {
     
-    func getChart() {                                                               ///print("showing candles")
+    func getChart() {                                                               //print("showing candles")
         
         var highs = [Double]();  var lows = [Double]()                              ///; var lowerWickRanges = [Double]()
-        var MAs = [Double]()                                                        ///; var upperWickRanges = [Double]()
+//        var MAs = [Double]()                                                        ///; var upperWickRanges = [Double]()
         
-        let candleStart = candleSubset.count + 1 //; print("appending MA from \(MAValues.count) MAs, to \(MAs.count) values")
+        let candleCount = candleSubset.count                                        //; print("candle count: \(candleCount)")
+        //; print("appending MA from \(MAValues.count) MAs, to \(MAs.count) values")
         
-        for i in candleStart - candlesToPlot ..< candleStart - 1 {
+        for i in candleCount + 1 - candlesToPlot ..< candleCount {
             let arr = candleSubset[i]
             highs.append(Double("\(arr[2])")!)
             lows.append(Double("\(arr[3])")!)
             
-            let j = i - candleStart + candlesToPlot                                 //; print("j=\(j)")
-            MAs.append(MAValues[j])                                                 ///; print("appending \(MAValues[i])")
+//            let j = i - candleCount + 1 + candlesToPlot                                 //; print("j=\(j)")
+//            MAs.append(MAValues[j])                                                 ///; print("appending \(MAValues[i])")
         }
         
         if let absLow = lows.min(), let absHigh = highs.max() {
             
-            var absMin = absLow  ;  var absMax = absHigh
+            let absMin = absLow  ;  let absMax = absHigh
             
-            if let maxMA = MAs.max(), let minMA = MAs.min() {
-                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
-            } else {print("could not get MA max and min")}
+//            if let maxMA = MAs.max(), let minMA = MAs.min() {
+//                if maxMA > absHigh {absMax = maxMA}; if minMA < absLow {absMin = minMA} ///; print("local max = \(absMax)")
+//            } else {print("could not get MA max and min")}
             
             let range = absMax - absMin                                             ///; print("range: \(range)\n")
             let scaledRange = Double(chartViewHeight - 2 * chartVerticalCushion)    ///print("\nscaled range: \(scaledRange)\n")
             let scalor = scaledRange / range
             
-            self.view.subviews.forEach({ $0.removeFromSuperview() })                //; print("will plot (O,H,L,C) \(candlesToPlot) times")
+            //self.view.subviews.forEach({ $0.removeFromSuperview() })                //; print("will plot (O,H,L,C) \(candlesToPlot) times")
             
-            for i in candleStart - candlesToPlot ..< candleStart - 1 {
+            for i in candleCount + 1 - candlesToPlot ..< candleCount {
                 
                 let open = Double("\(candleSubset[i][1])")!                         /// 3, for 'pretend there's no wick + green only' test //***
                 let high = Double("\(candleSubset[i][2])")!
                 let low = Double("\(candleSubset[i][3])")!
                 let close = Double("\(candleSubset[i][4])")!                        /// 2, for the 'pretend there's no wick + green only' test
                 
-                let j = i - candleStart + candlesToPlot                             //; print("j=\(j)")
-                let MA = MAValues[j]
+                let j = i - candleCount + candlesToPlot                             //; print("j=\(j)")
+//                let MA = MAValues[j]
+                let MA = 0.0
                 
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: j,
                                          MA: MA)
-                //let ohlcString = "[\(open), \(high), \(low), \(close)]"           //; print("OHLC: \(ohlcString)")
+                //let ohlcString = "[\(open), \(high), \(low), \(close)]"           ; print("OHLC: \(ohlcString)")
             }                                                                       //print("\n")
             
             let currentClose = Double("\(candleSubset[candleSubset.count - 1][4])")!

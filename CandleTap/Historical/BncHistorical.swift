@@ -28,7 +28,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     let dot = "." as AnyObject
                     let close = Double("\(arr[4])")!                            //; print("close = \(close)")
                     
-                    if lastFiveCloses.count == 5 {lastFiveCloses.removeFirst()} //for Sequential -------------------------------------------🟥🟩
+                    
+                    if lastFiveCloses.count == 5 {lastFiveCloses.removeFirst()} //🟥🟩for Sequential
                     if lastFiveCloses.count <= 5 {lastFiveCloses.append(close)} //"            "
                     
                     var (count, colourString) : (Int?,String) = (0,"")
@@ -40,8 +41,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     if countAndColour == "R9" { redNines += 1 /*; print("RED 9!")*/ }
                     if countAndColour == "G9" { greenNines += 1 /*; print("GREEN 9!")*/ }
                     
-                    let cnt = "\(count ?? 0)" as AnyObject      ; let clrString = "\(colourString)" as AnyObject
-                    let grnNines = "\(greenNines)" as AnyObject ; let rdNines = "\(redNines)" as AnyObject //-----------------------------🟩🟥
+                    let cnt = "\(count ?? 0)" as AnyObject
+                    let clrString = "\(colourString)" as AnyObject              //🟩🟥
                     
                     
                     let ohlcPlusSeq = [arr[1],arr[2],arr[3],arr[4],countAndColour] as [AnyObject]
@@ -49,12 +50,13 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     i += 1
                     
                     
-                    var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],cnt,clrString]
+                    var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],cnt,clrString]          //; print("\n-----------------(\(i))")
                     let movingAverages = historicalMAs(latestClose: close)
                     for avg in movingAverages {
                         preCsv.append("\(avg)" as AnyObject)
                     }
-                    preCsv.append(grnNines); preCsv.append(rdNines)
+                    //let grnNines = "\(greenNines)" as AnyObject ; let rdNines = "\(redNines)" as AnyObject
+                    //preCsv.append(grnNines); preCsv.append(rdNines) // just used as (yet another) way to double check the number of nines
                     binanceETHBTCHistorical.append([preCsv])
                 }
             }
@@ -67,13 +69,13 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 lastHistoricalTimestamp = lastTimestamp
                 
             } else {                                                        //print("ok done pulling historical data")
-                let ohlcsToPrint = binanceETHBTCHistoricalForPrinting
+                let ohlcsToPrint = binanceETHBTCHistorical//ForPrinting
                 let candleCount = ohlcsToPrint.count                        //; print("\n\(candleCount) historical ohlcs (before padding)")
                 
                 //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
                 
-                let size = 37//73
+                let size = 37 ; candlesToPlot = size + 1 // try to refactor out this offset by 1
                 
                 let firstHistoricalOhlc = binanceETHBTCHistorical.first?.first // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
                 for _ in 1...size {
@@ -81,13 +83,16 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 }
                 
                 findAndPlotNinesAndNeighbouringCandles(size: size)
+                candleSubset = nineCenteredOHLCs[0] //index 0 only, is just for plotting single chart containing nine, at one time (to start)
                 
-                let count = binanceETHBTCHistorical.count               ; print("\n\(count) ohlcs: \(count - size) historical, \(size) padding")
+                let count = binanceETHBTCHistorical.count               ; print("\(count) ohlcs: \(count - size) historical, \(size) padding")
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    pairListVC.presentEmail()
+                    //pairListVC.presentEmail()
+                    pairListVC.gotoView(vc: chartVC)
                     displayNineFrequency(candleCount: candleCount)
                 }
+                
             }
         } catch let error {print("Failed to load: \(error.localizedDescription)")}
     } .resume()

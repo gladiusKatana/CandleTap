@@ -40,8 +40,9 @@ var latestShakepayBTCCAD = 1.0
 var latestBinanceETHBTC = 1.0
 
 
-var nineNeighbourSample = [[AnyObject]]()           //for Sequential🟥🟩
-var ninesAndTheirNeighbours = [[[AnyObject]]]()
+var nineNeighbourSample = [[AnyObject]]();          var ninesAndTheirNeighbours = [[[AnyObject]]]() //for Sequential🟥🟩
+var nineNeighbourPlotSample = [[AnyObject]]();      var nineCenteredOHLCs = [[[AnyObject]]]()
+//var nineNeighbourPlotSample = [[Double]]();         var nineCenteredOHLCs = [[[Double]]]()
 
 var greens = 0;             var reds = 0
 
@@ -49,3 +50,4 @@ var greenNines = 0;         var redNines = 0
 var chartGreenNines = 0;    var chartRedNines = 0
 
 var previousTDColour = ""
+
