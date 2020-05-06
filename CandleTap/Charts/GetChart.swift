@@ -44,8 +44,10 @@ extension ChartVC {
 //                let MA = MAValues[j]
                 let MA = 0.0
                 
+                let sequential = Int("\(candleSubset[i][5])")! ; let colour = "\(candleSubset[i][6])"
+                
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: j,
-                                         MA: MA)
+                                         MA: MA, sequential: sequential, colour: colour)
                 //let ohlcString = "[\(open), \(high), \(low), \(close)]"           ; print("OHLC: \(ohlcString)")
             }                                                                       //print("\n")
             

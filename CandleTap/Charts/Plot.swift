@@ -3,7 +3,7 @@
 extension ChartVC {
     
     func plotCandlesAndIndicators(open: Double, high: Double, low: Double, close: Double, scalor: Double, absLow: Double,
-                                  candleIndex index: Int, MA: Double) {             //print("plotting candles & indicators")
+                                  candleIndex index: Int, MA: Double, sequential: Int, colour: String) { //print("plotting candles & indicators")
         
         var candleColour = UIColor()                        ; let lineWidth = CGFloat(0.5)  ; let wickColour = UIColor.white
         if close < open {candleColour = .red}
@@ -47,7 +47,14 @@ extension ChartVC {
         bottomWick = Bar(frame: lowerWickRect);   bottomWick.backgroundColor = wickColour
         self.view.addSubview(bottomWick)
         
-        // --------------------------------------------------------------------------------- MA points --------------------
+        // -------------------------------------------------------------------------------------------------------------------- Sequential
+        let sequentialCount = SequentialCountField(); sequentialCount.text = sequential != 0 ? "\(sequential)" : "-"
+        let size = Double(10)
+        sequentialCount.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 1.5, width: size, height: size)
+        sequentialCount.textColor = colour == "G" ? .green : .red
+        self.view.addSubview(sequentialCount)
+        
+        // -------------------------------------------------------------------------------------------------------------------- MA points
         let MAPointYScaled = scalor * (MA - absLow)
         let MAPointHeight = margin + halfPointSize + MAPointYScaled
         
@@ -61,7 +68,7 @@ extension ChartVC {
 //        let MAPoint = Bar(frame: MAPointRect);   MAPoint.backgroundColor = .purple
 //        self.view.addSubview(MAPoint)
         
-        if index > 0 { // ------------------------------------------------------------------- MA lines --------------------
+        if index > 0 { // ---------------------------------------------------------------------------------------------------- MA lines
 //            let deltaX = Double(x - previousX)  ; let deltaY = Double(y - previousY)
 //            let hypotenuse = sqrt(square(deltaY) + square(deltaX))
 //            let angle = CGFloat.pi / 2 + CGFloat(atan(deltaY / deltaX)) ///in radians

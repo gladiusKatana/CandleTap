@@ -14,7 +14,7 @@ func findAndPlotNinesAndNeighbouringCandles(size: Int) {
         let ohlcToPlot
             = [ohlcZero[0],                                         //0th item is the timestamp
                 ohlcZero[2],ohlcZero[3],ohlcZero[4],ohlcZero[5],    //O,H,L,C
-                ohlcZero[6],                                        //Sequential count (an Int; truncate)
+                ohlcZero[6],ohlcZero[7],                            //Sequential count & colour
                 ohlcZero[11],ohlcZero[13],ohlcZero[16]]             // last 3 items are the 20, 50 & 200 MAs
         
         if nineNeighbourSample.count == size {      //for Sequential : analyzing neighbourhood of 9's

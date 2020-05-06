@@ -7,14 +7,14 @@ class Bar: UIView {
         return bar
     }()
     
-//    var rectangleView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.backgroundColor = .clear
-//        imageView.contentMode = .scaleAspectFill
-//        imageView.clipsToBounds = true
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        return imageView
-//    }()
+    //    var rectangleView: UIImageView = {
+    //        let imageView = UIImageView()
+    //        imageView.backgroundColor = .clear
+    //        imageView.contentMode = .scaleAspectFill
+    //        imageView.clipsToBounds = true
+    //        imageView.translatesAutoresizingMaskIntoConstraints = false
+    //        return imageView
+    //    }()
     
     override init(frame: CGRect) {                                          //print("   (override init  bar graph view)")
         super.init(frame: frame)
@@ -47,6 +47,21 @@ class ChartRectangle: UIView {
         
         //print("it ran")
         NSLog("drawRect has updated the view")
+    }
+}
+
+class SequentialCountField : UITextField {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = .clear
+        self.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        self.sizeToFit()
+        self.adjustsFontSizeToFitWidth = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
