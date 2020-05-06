@@ -48,7 +48,7 @@ func ninePryntHelper(greenNineInt: Int, redNineInt: Int, appendString: String, c
     let greenFrequency = (100 * Double(greenNines) / Double(candleCount)).rounded(toPlaces: 2)
     let redFrequency = (100 * Double(redNines) / Double(candleCount)).rounded(toPlaces: 2)
     
-    let nines = greenNines + redNines // may expand scope
+    let nines = greenNineInt + redNineInt // may expand scope
     print("\(nines) nines: \(greenNineInt) green (\(greenFrequency) %), \(redNineInt) red (\(redFrequency) %) \(appendString)")
 }
 

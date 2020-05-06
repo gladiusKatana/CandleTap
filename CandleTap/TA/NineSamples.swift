@@ -33,17 +33,17 @@ func findAndPlotNinesAndNeighbouringCandles(size: Int) {
         }                                                                                      //; print(ohlcPlusSeq)
     }
     
-    //pryntNineCenteredOHLCs()
+//    pryntNineCenteredOHLCs()
 }
 
 extension UIViewController {
-    @objc func jumpBetweenNines() {     //print("TAP")
+    @objc func jumpBetweenNines() {
         
         if nineChartIndex < nineCenteredOHLCs.count - 1 {
             nineChartIndex += 1
         } else {nineChartIndex = 0}
         
-        candleSubset = nineCenteredOHLCs[nineChartIndex]
+        candleSubset = nineCenteredOHLCs[nineChartIndex]            //; print("\nTAP (index \(nineChartIndex))")
         
         if chartDisplayed {
             chartVC.getChart()
@@ -53,15 +53,13 @@ extension UIViewController {
 
 func pryntNineCenteredOHLCs() {
     
-    //print("ok there are \(ninesAndTheirNeighbours.count) nines and their neighbours")
+//    print("\nok there are \(ninesAndTheirNeighbours.count) nines and their neighbours")
     
-    let historicalOHLCs = ninesAndTheirNeighbours[0] //index 0 only, is just for printing single ohlc array sample one at a time
-    
-    let newlinedNinesAndNeighbourhood = historicalOHLCs.map {"\($0)"}.joined(separator: "\n")
-    print("first nine with \((historicalOHLCs.count-1)/2) candles on either side:\n\n\(newlinedNinesAndNeighbourhood)")
-    
-    let historicalOHLCDoubles = nineCenteredOHLCs[0] //index 0 only, is just for printing single ohlc array sample one at a time
-    
+//    let historicalOHLCs = ninesAndTheirNeighbours[0] //index 0 only, is just for printing single ohlc array sample one at a time
+//    let newlinedNinesAndNeighbourhood = historicalOHLCs.map {"\($0)"}.joined(separator: "\n")
+//    print("first nine with \((historicalOHLCs.count-1)/2) candles on either side:\n\n\(newlinedNinesAndNeighbourhood)")
+
+    let historicalOHLCDoubles = nineCenteredOHLCs[6] //index 0 only, is just for printing single ohlc array sample one at a time
     let doubleNewlinedNinesAndMAs = historicalOHLCDoubles.map {"\($0)"}.joined(separator: "\n")
     print("\nfirst nine with \((historicalOHLCDoubles.count-1)/2) candles on either side:\n\n\(doubleNewlinedNinesAndMAs)")
 }

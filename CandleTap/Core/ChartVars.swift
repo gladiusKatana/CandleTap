@@ -13,7 +13,7 @@ var candle = Bar(frame: zeroFrame);     var bottomWick = Bar(frame: zeroFrame); 
 
 var candleSubset = [[AnyObject]]()
 
-var candlesToPlot = 50
+var nineSampleSize = 0;                 var candlesToPlot = 50
 
 var candleGap = CGFloat(1)
 

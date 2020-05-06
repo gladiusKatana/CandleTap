@@ -15,6 +15,8 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     return
             }
             
+            nineSampleSize = 51 ; candlesToPlot = nineSampleSize + 1 // try to refactor out this offset by 1
+            
             for _ in MAPeriod.allCases {maSubsets.append([])}                   //; print("we have \(maSubsets.count) moving averages")
             
             if binanceCandles.count > 1 {
@@ -47,7 +49,6 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     
                     let ohlcPlusSeq = [arr[1],arr[2],arr[3],arr[4],countAndColour] as [AnyObject]
                     binanceETHBTCHistoricalForPrinting.append([ohlcPlusSeq]) //print(ohlcPlusSeq)
-                    i += 1
                     
                     
                     var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],cnt,clrString]          //; print("\n-----------------(\(i))")
@@ -57,35 +58,36 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     }
                     //let grnNines = "\(greenNines)" as AnyObject ; let rdNines = "\(redNines)" as AnyObject
                     //preCsv.append(grnNines); preCsv.append(rdNines) // just used as (yet another) way to double check the number of nines
+                    if i == 0 {padHistoricalOHLCs([preCsv], size: nineSampleSize)}
                     binanceETHBTCHistorical.append([preCsv])
+                    
+                    i += 1
                 }
             }
             
             let lastTimestamp = Int64("\(binanceCandles.last!.first!)")!
-            if lastTimestamp != lastHistoricalTimestamp {                   //print("> hist. batch \(historicalBatch) ending at \(lastTimestamp)")
+            if lastTimestamp != lastHistoricalTimestamp {                       //print("> hist. batch \(historicalBatch) ending at \(lastTimestamp)")
                 
-                historicalBatch += 1                                        //; print("----------------------------------------------------------")
+                historicalBatch += 1                                            //; print("----------------------------------------------------------")
                 fetchBinanceHistoricalOHLCs(ticker: ticker, interval: interval, startTime: lastTimestamp/* + 86400*/)
                 lastHistoricalTimestamp = lastTimestamp
                 
-            } else {                                                        //print("ok done pulling historical data")
+            } else {                                                            //print("ok done pulling historical data")
                 let ohlcsToPrint = binanceETHBTCHistorical//ForPrinting
-                let candleCount = ohlcsToPrint.count                        //; print("\n\(candleCount) historical ohlcs (before padding)")
+                let candleCount = ohlcsToPrint.count                            //; print("\n\(candleCount) historical ohlcs (before padding)")
                 
                 //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
                 
-                let size = 73 ; candlesToPlot = size + 1 // try to refactor out this offset by 1
+                let firstHistoricalOhlc = binanceETHBTCHistorical.first?.first  // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
+                padHistoricalOHLCs([firstHistoricalOhlc!], size: nineSampleSize)
                 
-                let firstHistoricalOhlc = binanceETHBTCHistorical.first?.first // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
-                for _ in 1...size {
-                    binanceETHBTCHistorical.append([firstHistoricalOhlc!])     // pad the historical ohlcs (for now), to catch all the 9s
-                }
+                let count = binanceETHBTCHistorical.count
+                print("\(count) ohlcs: \(count - nineSampleSize) historical, \(nineSampleSize) padding")
                 
-                let count = binanceETHBTCHistorical.count               ; print("\(count) ohlcs: \(count - size) historical, \(size) padding")
+                findAndPlotNinesAndNeighbouringCandles(size: nineSampleSize)
+                
                 displayNineFrequency(candleCount: candleCount)
-                
-                findAndPlotNinesAndNeighbouringCandles(size: size)
                 
                 candleSubset = nineCenteredOHLCs[nineChartIndex]
                 
@@ -100,5 +102,11 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
             }
         } catch let error {print("Failed to load: \(error.localizedDescription)")}
     } .resume()
+}
+
+func padHistoricalOHLCs(_ paddingArray: [[AnyObject]], size: Int) {
+    for _ in 1...size {
+        binanceETHBTCHistorical.append(paddingArray)      // pad the historical ohlcs (for now), to catch all the 9s
+    }
 }
 
