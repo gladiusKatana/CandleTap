@@ -54,6 +54,8 @@ extension ChartVC {
         sequentialCount.textColor = colour == "G" ? .green : .red
         self.view.addSubview(sequentialCount)
         
+        if sequential == 9 && index == candlesToPlot / 2 {print("the 9 is at: \(open), \(high), \(low), \(close)")}
+        
         // -------------------------------------------------------------------------------------------------------------------- MA points
         let MAPointYScaled = scalor * (MA - absLow)
         let MAPointHeight = margin + halfPointSize + MAPointYScaled

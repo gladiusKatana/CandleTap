@@ -2,7 +2,7 @@
 
 extension ChartVC {
     
-    func getChart() {                                                               //print("showing candles")
+    func getChart() {                                                               //print("getting chart")
         
         var highs = [Double]();  var lows = [Double]()                              ///; var lowerWickRanges = [Double]()
 //        var MAs = [Double]()                                                        ///; var upperWickRanges = [Double]()
@@ -31,7 +31,7 @@ extension ChartVC {
             let scaledRange = Double(chartViewHeight - 2 * chartVerticalCushion)    ///print("\nscaled range: \(scaledRange)\n")
             let scalor = scaledRange / range
             
-            //self.view.subviews.forEach({ $0.removeFromSuperview() })                //; print("will plot (O,H,L,C) \(candlesToPlot) times")
+            self.view.subviews.forEach({ $0.removeFromSuperview() })                //; print("will plot (O,H,L,C) \(candlesToPlot) times")
             
             for i in candleCount + 1 - candlesToPlot ..< candleCount {
                 

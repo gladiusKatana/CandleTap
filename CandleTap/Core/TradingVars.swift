@@ -45,9 +45,9 @@ var nineNeighbourPlotSample = [[AnyObject]]();      var nineCenteredOHLCs = [[[A
 //var nineNeighbourPlotSample = [[Double]]();         var nineCenteredOHLCs = [[[Double]]]()
 
 var greens = 0;             var reds = 0
-
 var greenNines = 0;         var redNines = 0
 var chartGreenNines = 0;    var chartRedNines = 0
+var nineChartIndex = 0
 
 var previousTDColour = ""
 

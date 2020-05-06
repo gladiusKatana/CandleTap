@@ -5,12 +5,7 @@ func findAndPlotNinesAndNeighbouringCandles(size: Int) {
     for ohlc in binanceETHBTCHistorical { // refactor later so this second loop through the array is avoided, instead do all this as the array is populated
         let ohlcZero = ohlc[0]
         let ohlcPlusSeq = [ohlcZero[2], ohlcZero[3], ohlcZero[4], ohlcZero[5], ohlcZero[6], ohlcZero[7]] //open,high,low,close,seq,colour
-//        let ohlcToPlot
-//            = [Double("\(ohlcZero[0])")!,                                                                   //0th item is the timestamp
-//                Double("\(ohlcZero[2])")!, Double("\(ohlcZero[3])")!, Double("\(ohlcZero[4])")!, Double("\(ohlcZero[5])")!, //O,H,L,C
-//                Double("\(ohlcZero[6])")!,                                                                  //Sequential count (an Int; truncate)
-//                Double("\(ohlcZero[11])")!, Double("\(ohlcZero[13])")!, Double("\(ohlcZero[16])")!]         // last 3 items are the 20, 50 & 200 MAs
-        
+        /**/
         let ohlcToPlot
             = [ohlcZero[0],                                         //0th item is the timestamp
                 ohlcZero[2],ohlcZero[3],ohlcZero[4],ohlcZero[5],    //O,H,L,C
@@ -38,16 +33,44 @@ func findAndPlotNinesAndNeighbouringCandles(size: Int) {
         }                                                                                      //; print(ohlcPlusSeq)
     }
     
+    //pryntNineCenteredOHLCs()
+}
+
+extension UIViewController {
+    @objc func jumpBetweenNines() {     //print("TAP")
+        
+        if nineChartIndex < nineCenteredOHLCs.count - 1 {
+            nineChartIndex += 1
+        } else {nineChartIndex = 0}
+        
+        candleSubset = nineCenteredOHLCs[nineChartIndex]
+        
+        if chartDisplayed {
+            chartVC.getChart()
+        }
+    }
+}
+
+func pryntNineCenteredOHLCs() {
+    
     //print("ok there are \(ninesAndTheirNeighbours.count) nines and their neighbours")
     
-    //    let historicalOHLCs = ninesAndTheirNeighbours[0] //index 0 only, is just for printing single ohlc array sample one at a time
-    //
-    //    let newlinedNinesAndNeighbourhood = historicalOHLCs.map {"\($0)"}.joined(separator: "\n")
-    //    print("first nine with \((historicalOHLCs.count-1)/2) candles on either side:\n\n\(newlinedNinesAndNeighbourhood)")
+    let historicalOHLCs = ninesAndTheirNeighbours[0] //index 0 only, is just for printing single ohlc array sample one at a time
     
-    //    let historicalOHLCDoubles = nineCenteredOHLCs[0] //index 0 only, is just for printing single ohlc array sample one at a time
-    //
-    //    let doubleNewlinedNinesAndMAs = historicalOHLCDoubles.map {"\($0)"}.joined(separator: "\n")
-    //    print("\nfirst nine with \((historicalOHLCDoubles.count-1)/2) candles on either side:\n\n\(doubleNewlinedNinesAndMAs)")
+    let newlinedNinesAndNeighbourhood = historicalOHLCs.map {"\($0)"}.joined(separator: "\n")
+    print("first nine with \((historicalOHLCs.count-1)/2) candles on either side:\n\n\(newlinedNinesAndNeighbourhood)")
+    
+    let historicalOHLCDoubles = nineCenteredOHLCs[0] //index 0 only, is just for printing single ohlc array sample one at a time
+    
+    let doubleNewlinedNinesAndMAs = historicalOHLCDoubles.map {"\($0)"}.joined(separator: "\n")
+    print("\nfirst nine with \((historicalOHLCDoubles.count-1)/2) candles on either side:\n\n\(doubleNewlinedNinesAndMAs)")
 }
+
+/*
+ //        let ohlcToPlot
+ //            = [Double("\(ohlcZero[0])")!,                                                                   //0th item is the timestamp
+ //                Double("\(ohlcZero[2])")!, Double("\(ohlcZero[3])")!, Double("\(ohlcZero[4])")!, Double("\(ohlcZero[5])")!, //O,H,L,C
+ //                Double("\(ohlcZero[6])")!,                                                                  //Sequential count (an Int; truncate)
+ //                Double("\(ohlcZero[11])")!, Double("\(ohlcZero[13])")!, Double("\(ohlcZero[16])")!]         // last 3 items are the 20, 50 & 200 MAs
+ */
 

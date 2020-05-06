@@ -7,10 +7,9 @@ var globalWindow = UIWindow(frame: UIScreen.main.bounds)
 var navController: UINavigationController? = UINavigationController()
 
 var dismissPinch = UIPinchGestureRecognizer()
+var nineSkipTap = UITapGestureRecognizer()
 
 var emailComposer = EmailComposer();            ///var timerForShowingScrollIndicator: Timer?
-
-var defaultTimetableCellFont = UIFont.systemFont(ofSize: 12, weight: .regular) /// UIFont(name: "Helvetica Neue", size: 12)
 
 
 var statusBarHeight = 0.0;                      var lastStatusBarHeight = 0.0
@@ -31,6 +30,9 @@ var popupMenuDisplayed = false;                 var globalSwitchBool = false
 var tempRescalingBool = false;                  var showConsoleLegend = true
 ///var firstBecameActive = false                ///var rotatedFromResignActive = false
 //var reloadedFromHourTickingOver = true
+
+
+var defaultTimetableCellFont = UIFont.systemFont(ofSize: 12, weight: .regular) /// UIFont(name: "Helvetica Neue", size: 12)
 
 var currentOrientation = "orientation (landscape or portrait) for prepare-layout logic"             //* will change this to an enum at some point
 var previousOrientation = "previous orientation (landscape or portrait) for prepare-layout logic"   //* " "

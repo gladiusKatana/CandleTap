@@ -75,23 +75,27 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
                 
-                let size = 37 ; candlesToPlot = size + 1 // try to refactor out this offset by 1
+                let size = 73 ; candlesToPlot = size + 1 // try to refactor out this offset by 1
                 
                 let firstHistoricalOhlc = binanceETHBTCHistorical.first?.first // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
                 for _ in 1...size {
                     binanceETHBTCHistorical.append([firstHistoricalOhlc!])     // pad the historical ohlcs (for now), to catch all the 9s
                 }
                 
-                findAndPlotNinesAndNeighbouringCandles(size: size)
-                candleSubset = nineCenteredOHLCs[0] //index 0 only, is just for plotting single chart containing nine, at one time (to start)
-                
                 let count = binanceETHBTCHistorical.count               ; print("\(count) ohlcs: \(count - size) historical, \(size) padding")
+                displayNineFrequency(candleCount: candleCount)
+                
+                findAndPlotNinesAndNeighbouringCandles(size: size)
+                
+                candleSubset = nineCenteredOHLCs[nineChartIndex]
                 
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    //pairListVC.presentEmail()
                     pairListVC.gotoView(vc: chartVC)
-                    displayNineFrequency(candleCount: candleCount)
                 }
+                
+//                DispatchQueue.main.asyncAfter(deadline: .now()) {
+//                    pairListVC.presentEmail()
+//                }
                 
             }
         } catch let error {print("Failed to load: \(error.localizedDescription)")}

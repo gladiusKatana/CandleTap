@@ -12,7 +12,9 @@ extension ChartVC {
         setNavBarTitle(customString: "there's a 9! (\((candlesToPlot-1)/2+1)th candle)")
         //setNavBarTitle(customString: viewControllerType.getNavBarTitle())
         setupNavBarButtons(greyIndex: 1)
+        
         setupPinchToExit()
+        setupTapToJumpBetweenNines()
         
         justPinched = false
         

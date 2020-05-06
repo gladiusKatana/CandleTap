@@ -56,9 +56,9 @@
 		06C0DC6823CCEF0E00159118 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2523CCEF0D00159118 /* CollectionVC.swift */; };
 		06C0DC6923CCEF0E00159118 /* CellPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2623CCEF0D00159118 /* CellPath.swift */; };
 		06C0DC6A23CCEF0E00159118 /* TapPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2923CCEF0D00159118 /* TapPopup.swift */; };
-		06C0DC6B23CCEF0E00159118 /* Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2A23CCEF0D00159118 /* Tap.swift */; };
+		06C0DC6B23CCEF0E00159118 /* TapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2A23CCEF0D00159118 /* TapCell.swift */; };
 		06C0DC6C23CCEF0E00159118 /* EmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2B23CCEF0D00159118 /* EmailVC.swift */; };
-		06C0DC6D23CCEF0E00159118 /* Pinch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2C23CCEF0D00159118 /* Pinch.swift */; };
+		06C0DC6D23CCEF0E00159118 /* Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2C23CCEF0D00159118 /* Gestures.swift */; };
 		06C0DC6E23CCEF0E00159118 /* UINotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2D23CCEF0D00159118 /* UINotify.swift */; };
 		06C0DC6F23CCEF0E00159118 /* EmailCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC2E23CCEF0D00159118 /* EmailCSV.swift */; };
 		06C0DC7023CCEF0E00159118 /* AddPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0DC3023CCEF0D00159118 /* AddPopup.swift */; };
@@ -163,9 +163,9 @@
 		06C0DC2523CCEF0D00159118 /* CollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		06C0DC2623CCEF0D00159118 /* CellPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPath.swift; sourceTree = "<group>"; };
 		06C0DC2923CCEF0D00159118 /* TapPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapPopup.swift; sourceTree = "<group>"; };
-		06C0DC2A23CCEF0D00159118 /* Tap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tap.swift; sourceTree = "<group>"; };
+		06C0DC2A23CCEF0D00159118 /* TapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapCell.swift; sourceTree = "<group>"; };
 		06C0DC2B23CCEF0D00159118 /* EmailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailVC.swift; sourceTree = "<group>"; };
-		06C0DC2C23CCEF0D00159118 /* Pinch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pinch.swift; sourceTree = "<group>"; };
+		06C0DC2C23CCEF0D00159118 /* Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gestures.swift; sourceTree = "<group>"; };
 		06C0DC2D23CCEF0D00159118 /* UINotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINotify.swift; sourceTree = "<group>"; };
 		06C0DC2E23CCEF0D00159118 /* EmailCSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailCSV.swift; sourceTree = "<group>"; };
 		06C0DC3023CCEF0D00159118 /* AddPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPopup.swift; sourceTree = "<group>"; };
@@ -410,8 +410,8 @@
 		06C0DC2823CCEF0D00159118 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				06C0DC2A23CCEF0D00159118 /* Tap.swift */,
-				06C0DC2C23CCEF0D00159118 /* Pinch.swift */,
+				06C0DC2C23CCEF0D00159118 /* Gestures.swift */,
+				06C0DC2A23CCEF0D00159118 /* TapCell.swift */,
 				06C0DC2B23CCEF0D00159118 /* EmailVC.swift */,
 				06C0DC2E23CCEF0D00159118 /* EmailCSV.swift */,
 			);
@@ -641,7 +641,7 @@
 				06C0DC5423CCEF0D00159118 /* Dates.swift in Sources */,
 				06C0DC5023CCEF0D00159118 /* TradingPair.swift in Sources */,
 				06C0DC7223CCEF0E00159118 /* PopupVC.swift in Sources */,
-				06C0DC6D23CCEF0E00159118 /* Pinch.swift in Sources */,
+				06C0DC6D23CCEF0E00159118 /* Gestures.swift in Sources */,
 				06C0DC6923CCEF0E00159118 /* CellPath.swift in Sources */,
 				06C0DC8223CCEF0E00159118 /* Pairs.swift in Sources */,
 				06DCDFB223DBFEF300456419 /* PlotMA.swift in Sources */,
@@ -663,7 +663,7 @@
 				06C0DC4C23CCEF0D00159118 /* Orientation.swift in Sources */,
 				06C0DC6C23CCEF0E00159118 /* EmailVC.swift in Sources */,
 				06C0DC7523CCEF0E00159118 /* Cell.swift in Sources */,
-				06C0DC6B23CCEF0E00159118 /* Tap.swift in Sources */,
+				06C0DC6B23CCEF0E00159118 /* TapCell.swift in Sources */,
 				06D4384223ED249300108E56 /* AllFeeds.swift in Sources */,
 				06C0DC7B23CCEF0E00159118 /* NavTitle.swift in Sources */,
 				06C0DC6F23CCEF0E00159118 /* EmailCSV.swift in Sources */,
