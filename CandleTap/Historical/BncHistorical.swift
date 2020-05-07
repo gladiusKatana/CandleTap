@@ -16,6 +16,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
             }
             
             nineSampleSize = 51 ; candlesToPlot = nineSampleSize + 1 // try to refactor out this offset by 1
+            var paddingCSV: [AnyObject] = []; for _ in 1...18 {paddingCSV.append("0" as AnyObject)}
             
             for _ in MAPeriod.allCases {maSubsets.append([])}                   //; print("we have \(maSubsets.count) moving averages")
             
@@ -58,7 +59,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     }
                     //let grnNines = "\(greenNines)" as AnyObject ; let rdNines = "\(redNines)" as AnyObject
                     //preCsv.append(grnNines); preCsv.append(rdNines) // just used as (yet another) way to double check the number of nines
-                    if i == 0 {padHistoricalOHLCs([preCsv], size: nineSampleSize)}
+                    if i == 0 {padHistoricalOHLCs([paddingCSV], size: nineSampleSize)}
                     binanceETHBTCHistorical.append([preCsv])
                     
                     i += 1

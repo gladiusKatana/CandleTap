@@ -48,7 +48,7 @@ extension ChartVC {
         self.view.addSubview(bottomWick)
         
         // -------------------------------------------------------------------------------------------------------------------- Sequential
-        let sequentialCount = SequentialCountField(); sequentialCount.text = sequential != 0 ? "\(sequential)" : "-"
+        let sequentialCount = SequentialCountField(); sequentialCount.text = sequential != 0 ? "\(sequential)" : "."
         let size = Double(10)
         sequentialCount.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 1.5, width: size, height: size)
         sequentialCount.textColor = colour == "G" ? .green : .red
