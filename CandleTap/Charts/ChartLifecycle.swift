@@ -20,7 +20,7 @@ extension ChartVC {
         
         chartMarginY = CGFloat(navBarHeight)
         chartMarginX = CGFloat(navBarHeight) * 1.7
-        chartVerticalCushion = CGFloat(15) /// appears on top & bottom
+        chartVerticalCushion = CGFloat(40) /// appears on top & bottom
         
         let wid = CGFloat(globalWindow.frame.width - chartMarginX * 2)
         let hei = CGFloat(globalWindow.frame.height - chartMarginY * 2)

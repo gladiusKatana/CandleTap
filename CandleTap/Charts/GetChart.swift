@@ -53,7 +53,8 @@ extension ChartVC {
             
             let currentClose = Double("\(candleSubset[candleSubset.count - 1][4])")!
             plotChartAxes(range: range, absLow: absLow, currentClose: currentClose) ///plotMovingAverage(MAValues, scalor: scalor,...
-            plotLine(y: chartMarginY + chartVerticalCushion)
+//            let localYMax = chartMarginY + chartVerticalCushion
+//            plotLine(y: localYMax)
             
         } else {print("max and min if-let for chart failed")}
     }
@@ -65,7 +66,7 @@ extension ChartVC {
         
         let minY = CGFloat(frameHeight) - chartMarginY - chartVerticalCushion
         
-        let rangeIncrement = range / 10.0;    let coordIncrement = (minY - chartMarginY) / 10.0
+        let rangeIncrement = range / 10.0;    let coordIncrement = (minY - chartMarginY) / 10.0 //; print("y-scale increments: \(coordIncrement)")
         
         for n in (0 ... 9) {
             let value = absLow + Double(n) * rangeIncrement

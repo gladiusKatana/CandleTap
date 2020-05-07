@@ -15,7 +15,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     return
             }
             
-            nineSampleSize = 51 ; candlesToPlot = nineSampleSize + 1 // try to refactor out this offset by 1
+            nineSampleSize = 73 ; candlesToPlot = nineSampleSize + 1 // try to refactor out this offset by 1
             var paddingCSV: [AnyObject] = []; for _ in 1...18 {paddingCSV.append("0" as AnyObject)}
             
             for _ in MAPeriod.allCases {maSubsets.append([])}                   //; print("we have \(maSubsets.count) moving averages")
