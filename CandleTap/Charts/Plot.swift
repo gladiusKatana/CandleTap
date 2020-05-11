@@ -54,7 +54,13 @@ extension ChartVC {
         sequentialCount.textColor = colour == "G" ? .green : .red
         self.view.addSubview(sequentialCount)
         
-        if sequential == 9 && index == candlesToPlot / 2 {print("the 9 is at: \(open), \(high), \(low), \(close)")}
+        if sequential == 9 && index == candlesToPlot / 2 {                          //print("the 9 is at: \(open), \(high), \(low), \(close)")
+            let nineArrow = SequentialCountField(); nineArrow.text = "↓"
+            nineArrow.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 4, width: size, height: size)
+            nineArrow.textColor = .white//colour == "G" ? .green : .red
+            nineArrow.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+            self.view.addSubview(nineArrow)
+        }
         
         // -------------------------------------------------------------------------------------------------------------------- MA points
         let MAPointYScaled = scalor * (MA - absLow)
