@@ -19,6 +19,7 @@
 		064658B023D6A4E9003E1D82 /* ChartClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064658AF23D6A4E9003E1D82 /* ChartClasses.swift */; };
 		0671AD4624564B850048902C /* ChartMAs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0671AD4524564B850048902C /* ChartMAs.swift */; };
 		06765A2A24383D6B004FDD49 /* ChartVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06765A2924383D6B004FDD49 /* ChartVars.swift */; };
+		06773E8B246A4A670003A7D3 /* KrkHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06773E8A246A4A670003A7D3 /* KrkHistorical.swift */; };
 		0678FC5A23DA590C009B25B8 /* MAs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0678FC5923DA590C009B25B8 /* MAs.swift */; };
 		06C0DBDB23CCEDE900159118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06C0DBDA23CCEDE900159118 /* Assets.xcassets */; };
 		06C0DBDE23CCEDE900159118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06C0DBDC23CCEDE900159118 /* LaunchScreen.storyboard */; };
@@ -120,6 +121,7 @@
 		064658AF23D6A4E9003E1D82 /* ChartClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartClasses.swift; sourceTree = "<group>"; };
 		0671AD4524564B850048902C /* ChartMAs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMAs.swift; sourceTree = "<group>"; };
 		06765A2924383D6B004FDD49 /* ChartVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVars.swift; sourceTree = "<group>"; };
+		06773E8A246A4A670003A7D3 /* KrkHistorical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KrkHistorical.swift; sourceTree = "<group>"; };
 		0678FC5923DA590C009B25B8 /* MAs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MAs.swift; sourceTree = "<group>"; };
 		06C0DBCE23CCEDE700159118 /* CandleTap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CandleTap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C0DBDA23CCEDE900159118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		0671AD4724576F6B0048902C /* Historical */ = {
 			isa = PBXGroup;
 			children = (
+				06773E8A246A4A670003A7D3 /* KrkHistorical.swift */,
 				0600F168244C0D6500471B14 /* BncHistorical.swift */,
 			);
 			path = Historical;
@@ -669,6 +672,7 @@
 				06C0DC6F23CCEF0E00159118 /* EmailCSV.swift in Sources */,
 				06C0DC5823CCEF0D00159118 /* APIService.swift in Sources */,
 				06C0DC5D23CCEF0E00159118 /* SizeEnums.swift in Sources */,
+				06773E8B246A4A670003A7D3 /* KrkHistorical.swift in Sources */,
 				06C0DC5123CCEF0D00159118 /* DefaultSave.swift in Sources */,
 				06C0DC8323CCEF0E00159118 /* AppLifecycle.swift in Sources */,
 				06C0DC5323CCEF0D00159118 /* FormatDate.swift in Sources */,
@@ -786,7 +790,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -840,7 +844,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

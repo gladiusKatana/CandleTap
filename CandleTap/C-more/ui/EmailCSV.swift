@@ -18,7 +18,7 @@ extension CollectionVC {
             for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
             csvText.append("\n")
             
-            for ohlc in binanceETHBTCHistorical {
+            for ohlc in krakenETHBTCHistorical { //binanceETHBTCHistorical {
                 var csv = ohlc.map {"\($0)"}.joined(separator: s)
                 csv = csv.filter{$0 != "["}
                 csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
@@ -39,7 +39,7 @@ extension CollectionVC {
     }
     
     
-    func presentEmail() { //print("\n📪EMAIL\n")
+    func presentEmail() { print("\n📪EMAIL\n")
         
         if emailComposer.canSendEmail() {
             emailComposer.emailComposeVC = emailComposer.configureEmailComposeVC()

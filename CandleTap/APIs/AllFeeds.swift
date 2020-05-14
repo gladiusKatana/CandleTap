@@ -14,6 +14,12 @@ extension ApiService {
         fetchBinanceLatestPrice(urlString: "https://api.binance.com/api/v1/ticker/price?symbol=ETHBTC", completion: completion)
     }
     
+    
+    func getKrakenHistoricalFeed(ticker: String, interval: Timescale, startTime: Int64,
+                                 completion: @escaping ([KrakenApiResponse]) -> ()) {
+        fetchKrakenHistoricalOHLCs(ticker: ticker, interval: interval, startTime: startTime, completion: completion)
+    }
+    
 }
 
 enum ExchangeID: Int {

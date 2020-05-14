@@ -49,7 +49,8 @@ class KrakenApiResponse: SafeJsonObject {
 
 class KrakenTradingPair: SafeJsonObject {
     @objc var XXBTZCAD: [[AnyObject]]?      //; @objc var XETHZXBT: [[AnyObject]]?  /// ; @objc var XXETHBTZ: [[AnyObject]]?
-    @objc var XXBTZEUR: [[AnyObject]]?;     @objc var XXBTZUSD: [[AnyObject]]?
+    @objc var XXBTZEUR: [[AnyObject]]?
+    @objc var XXBTZUSD: [[AnyObject]]?
     @objc var last: AnyObject?              // cannot be : Date ... will have to convert to formatted date
 }
 

@@ -3,20 +3,20 @@
 func fetchBinanceLatestPrice(urlString: String, completion: @escaping ([BinanceLatestPrice]) -> ()) {
     
     guard let url = URL(string: urlString) else {
-        //print("error binding shk url")
+        //print("error binding bnc url")
         return
     }
     
     URLSession.shared.dataTask(with: url) { (data, response, error) in
         guard let data = data else {
-            //print("error binding shk  data  parameter in URLSession")
+            //print("error binding bnc  data  parameter in URLSession")
             return
         }
         
         do {
             guard let jsonDictionaries
                 = try [JSONSerialization.jsonObject(with: data, options: .mutableContainers)] as? [[String: AnyObject]] else {
-                    print("error converting shk json to array of dictionaries")
+                    print("error converting bnc json to array of dictionaries")
                     return
             }
             
