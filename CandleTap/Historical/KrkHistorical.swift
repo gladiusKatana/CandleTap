@@ -22,7 +22,7 @@ func fetchKrakenHistoricalOHLCs(ticker: String, interval: Timescale, startTime: 
             
             completion(jsonDictionaries.map({return KrakenApiResponse(dictionary: $0)}))
             
-            
+            /*
             //        do {
             //            guard let krakenCandles
             //                = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyObject]] else {
@@ -57,7 +57,7 @@ func fetchKrakenHistoricalOHLCs(ticker: String, interval: Timescale, startTime: 
 //            DispatchQueue.main.asyncAfter(deadline: .now()) {
 //                pairListVC.presentEmail()
 //            }
-            
+            */
             
             
         } catch let error {print("Failed to load: \(error.localizedDescription)")}

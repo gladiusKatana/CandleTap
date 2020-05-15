@@ -18,11 +18,9 @@
         
         apiServ.getFeeds(toPlot: exchangeID)   // only needs to be called at this stage, before selecting a chart to plot, for *current* prices
         
-        //fetchBinanceHistoricalOHLCs(ticker: "LTC", interval: .week, startTime: 0) //ETHBTC
+        fetchBinanceHistoricalOHLCs(ticker: "LTC", interval: .week, startTime: 0) //ETHBTC
         
-        ///krakenBatchedApiCall()
-        
-        krakenBatchedApiCall(startTime: globalKrakenTimestamp) { historicalBatchCallback() }
+        //krakenBatchedApiCall(startTime: globalKrakenTimestamp) { historicalBatchCallback() }
         
         modelName = UIDevice.modelName
         
@@ -79,19 +77,6 @@
     }
 }
 
-
-//func krakenBatchedApiCall() {
-//
-//    DispatchQueue.global(qos: .userInitiated).asyncAfter(   ///DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-//    deadline: .now()) { //[weak self] in
-//
-//        apiServ.getKrakenHistoricalFeed(ticker: "xbtusd", interval: .week, startTime: 0) { responses in
-//            krakenApiResponses = responses
-//        }
-//    }
-//}
-
-
 func krakenBatchedApiCall(startTime: Int64, completion: @escaping/**/ () -> ()) {          print("start time: \(startTime)")
     
     apiServ.getKrakenHistoricalFeed(ticker: "xbtcad", interval: .month, startTime: globalKrakenTimestamp) { responses in
@@ -133,21 +118,16 @@ func historicalBatchCallback() { print("------------------")
     }
 }
 
-
 /*
- if let krakenBtcPrices = responses[0].result?.XXBTZUSD { //.result?.XXBTZCAD {
- ///latestKrakenXBTZCAD = Double("\(krakenBtcPrices.last![0])")!   ; print("kraken price: \(latestKrakenXBTZCAD)")
- 
- let lastTimestamp = Double("\(krakenBtcPrices.last![0])")! ; print("> hist. batch \(historicalBatch) ending at \(lastTimestamp)")
- 
- //    if lastTimestamp != lastHistoricalTimestamp {
+ //func krakenBatchedApiCall() {
  //
- //        historicalBatch += 1                                            //; print("----------------------------------------------------------")
- //        fetchBinanceHistoricalOHLCs(ticker: ticker, interval: interval, startTime: lastTimestamp/* + 86400*/)
- //        lastHistoricalTimestamp = lastTimestamp
+ //    DispatchQueue.global(qos: .userInitiated).asyncAfter(   ///DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+ //    deadline: .now()) { //[weak self] in
  //
- //    } else {                                                            //print("ok done pulling historical data")
- 
- } else {print("no result from Kraken historical API call")}
+ //        apiServ.getKrakenHistoricalFeed(ticker: "xbtusd", interval: .week, startTime: 0) { responses in
+ //            krakenApiResponses = responses
+ //        }
+ //    }
+ //}
  */
 
