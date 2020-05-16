@@ -18,7 +18,7 @@
         
         apiServ.getFeeds(toPlot: exchangeID)   // only needs to be called at this stage, before selecting a chart to plot, for *current* prices
         
-        fetchBinanceHistoricalOHLCs(ticker: "LTC", interval: .week, startTime: 0) //ETHBTC
+        fetchBinanceHistoricalOHLCs(ticker: "LTC", interval: .week, startTime: 0) //ETH
         
         //krakenBatchedApiCall(startTime: globalKrakenTimestamp) { historicalBatchCallback() }
         

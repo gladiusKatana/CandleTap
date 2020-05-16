@@ -17,10 +17,10 @@ extension CollectionVC {
             for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
             csvText.append("\n")
             
-            var bncHistorical = binanceETHBTCHistorical
-            bncHistorical.removeFirst(nineSampleSize); bncHistorical.removeLast(nineSampleSize) //remove padding (0's) items that were used for charts
+            var historicalData = binanceHistorical // krakenHistorical {
+            historicalData.removeFirst(nineSampleSize); historicalData.removeLast(nineSampleSize) //remove padding items (were used for charts)
             
-            for ohlc in bncHistorical { // krakenETHBTCHistorical {
+            for ohlc in historicalData {
                 var csv = ohlc.map {"\($0)"}.joined(separator: s)
                 csv = csv.filter{$0 != "["}
                 csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")

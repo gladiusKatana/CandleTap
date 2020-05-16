@@ -17,8 +17,8 @@ var tickerPairs = ["BTCCAD",
 
 var currentPrices = [latestShakepayBTCCAD, latestKrakenXBTZCAD, latestBinanceETHBTC]
 
-var binanceETHBTCHistorical = [[[AnyObject]]]();    var binanceETHBTCHistoricalForPrinting = [[[AnyObject]]]()
-var krakenETHBTCHistorical = [[[AnyObject]]]();     var krakenETHBTCHistoricalForPrinting = [[[AnyObject]]]()
+var binanceHistorical = [[[AnyObject]]]();    var binanceHistoricalForPrinting = [[[AnyObject]]]()
+var krakenHistorical = [[[AnyObject]]]();     var krakenHistoricalForPrinting = [[[AnyObject]]]()
 
 enum Timescale : String {
 

@@ -49,7 +49,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     
                     
                     let ohlcPlusSeq = [arr[1],arr[2],arr[3],arr[4],countAndColour] as [AnyObject]
-                    binanceETHBTCHistoricalForPrinting.append([ohlcPlusSeq]) //print(ohlcPlusSeq)
+                    binanceHistoricalForPrinting.append([ohlcPlusSeq]) //print(ohlcPlusSeq)
                     
                     
                     var preCsv = [timestamp,dot,arr[1],arr[2],arr[3],arr[4],cnt,clrString]          //; print("\n-----------------(\(i))")
@@ -60,7 +60,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                     //let grnNines = "\(greenNines)" as AnyObject ; let rdNines = "\(redNines)" as AnyObject
                     //preCsv.append(grnNines); preCsv.append(rdNines) // just used as (yet another) way to double check the number of nines
                     if i == 0 {padHistoricalOHLCs([paddingCSV], size: nineSampleSize)}
-                    binanceETHBTCHistorical.append([preCsv])
+                    binanceHistorical.append([preCsv])
                     
                     i += 1
                 }
@@ -74,16 +74,16 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 lastHistoricalTimestamp = lastTimestamp
                 
             } else {                                                            //print("ok done pulling historical data")
-                let ohlcsToPrint = binanceETHBTCHistorical//ForPrinting
+                let ohlcsToPrint = binanceHistorical//ForPrinting
                 let candleCount = ohlcsToPrint.count                            //; print("\n\(candleCount) historical ohlcs (before padding)")
                 
                 //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
                 //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
                 
-                let firstHistoricalOhlc = binanceETHBTCHistorical.first?.first  // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
+                let firstHistoricalOhlc = binanceHistorical.first?.first  // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
                 padHistoricalOHLCs([firstHistoricalOhlc!], size: nineSampleSize)
                 
-                let count = binanceETHBTCHistorical.count
+                let count = binanceHistorical.count
                 print("\(count) ohlcs: \(count - nineSampleSize) historical, \(nineSampleSize) padding")
                 
                 findAndPlotNinesAndNeighbouringCandles(size: nineSampleSize)
@@ -107,7 +107,7 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
 
 func padHistoricalOHLCs(_ paddingArray: [[AnyObject]], size: Int) {
     for _ in 1...size {
-        binanceETHBTCHistorical.append(paddingArray)      // pad the historical ohlcs (for now), to catch all the 9s
+        binanceHistorical.append(paddingArray)      // pad the historical ohlcs (for now), to catch all the 9s
     }
 }
 

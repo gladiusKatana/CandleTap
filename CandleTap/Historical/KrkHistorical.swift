@@ -47,7 +47,7 @@ func fetchKrakenHistoricalOHLCs(ticker: String, interval: Timescale, startTime: 
 //                    let orderType = arr[4]  //Double("\(arr[4])")!
 //
 //                    let preCsv = [price,volume,time,dot,type,orderType]
-//                    krakenETHBTCHistorical.append([preCsv])
+//                    krakenHistorical.append([preCsv])
 //
 //                    i += 1
 //                }

@@ -2,7 +2,7 @@
 
 func findAndPlotNinesAndNeighbouringCandles(size: Int) {
     
-    for ohlc in binanceETHBTCHistorical { // refactor later so this second loop through the array is avoided, instead do all this as the array is populated
+    for ohlc in binanceHistorical { // refactor later so this second loop through the array is avoided, instead do all this as the array is populated
         let ohlcZero = ohlc[0]
         let ohlcPlusSeq = [ohlcZero[2], ohlcZero[3], ohlcZero[4], ohlcZero[5], ohlcZero[6], ohlcZero[7]] //open,high,low,close,seq,colour
         /**/
