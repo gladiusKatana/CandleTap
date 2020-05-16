@@ -49,20 +49,23 @@ extension ChartVC {
         
         // -------------------------------------------------------------------------------------------------------------------- Sequential
         let sequentialCount = SequentialCountField(); sequentialCount.text = sequential != 0 ? "\(sequential)" : "."
-        let size = Double(10)
+        let size = Double(10); var mult = Double(3)
+        
         sequentialCount.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 1.5, width: size, height: size)
         sequentialCount.textColor = colour == "G" ? .green : .red
         self.view.addSubview(sequentialCount)
         
         if sequential == 9 {                          //print("the 9 is at: \(open), \(high), \(low), \(close)")
             let nineArrow = SequentialCountField(); nineArrow.text = "↓"
-            nineArrow.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 4, width: size, height: size)
+            
             nineArrow.textColor = .white//colour == "G" ? .green : .red
             if index == candlesToPlot / 2 {
+                mult = 4
                 nineArrow.font = UIFont.systemFont(ofSize: 12, weight: .bold)
                 nineArrow.textColor = platinum
-            }
-            else {nineArrow.font = UIFont.systemFont(ofSize: 9, weight: .regular)}
+            } else {nineArrow.font = UIFont.systemFont(ofSize: 9, weight: .regular)}
+            
+            nineArrow.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * mult, width: size, height: size)
             self.view.addSubview(nineArrow)
         }
         
