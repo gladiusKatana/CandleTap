@@ -2,7 +2,6 @@
 
 extension CollectionVC {
     
-    
     func createArchiveUrl() -> URL {
         
         dateString = formattedDateString(Date(), roundedDown: false, showYear: true,
@@ -18,12 +17,12 @@ extension CollectionVC {
             for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
             csvText.append("\n")
             
-            for ohlc in krakenETHBTCHistorical { //binanceETHBTCHistorical {
+            for ohlc in binanceETHBTCHistorical { // krakenETHBTCHistorical {
                 var csv = ohlc.map {"\($0)"}.joined(separator: s)
                 csv = csv.filter{$0 != "["}
                 csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
                 csvText.append("\(csv)\(s)\(s)\(s)\n")
-            }                                                       //; print("csv text: \(csvText)")
+            }                                                       ; print("csv text: \(csvText)")
             
             do {
                 try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
