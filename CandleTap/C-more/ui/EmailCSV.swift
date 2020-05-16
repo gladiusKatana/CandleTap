@@ -17,18 +17,19 @@ extension CollectionVC {
             for period in MAPeriod.allCases {csvText.append("\(period.rawValue)MA\(s)")}//last \(s) causes extra column @ end but it's actually useful
             csvText.append("\n")
             
-            for ohlc in binanceETHBTCHistorical { // krakenETHBTCHistorical {
+            var bncHistorical = binanceETHBTCHistorical
+            bncHistorical.removeFirst(nineSampleSize); bncHistorical.removeLast(nineSampleSize) //remove padding (0's) items that were used for charts
+            
+            for ohlc in bncHistorical { // krakenETHBTCHistorical {
                 var csv = ohlc.map {"\($0)"}.joined(separator: s)
                 csv = csv.filter{$0 != "["}
                 csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
                 csvText.append("\(csv)\(s)\(s)\(s)\n")
-            }                                                       ; print("csv text: \(csvText)")
+            }                                                       //; print("csv text: \(csvText)")
             
             do {
                 try csvText.write(to: path, atomically: true, encoding: String.Encoding.utf8)
-            } catch {
-                print("Failed to create csv file, error:\n\(error)")
-            }
+            } catch {print("Failed to create csv file, error:\n\(error)")}
             
             returnPath = path
         }
@@ -36,7 +37,6 @@ extension CollectionVC {
         else {print("failed to create url")}
         return returnPath ?? NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")!
     }
-    
     
     func presentEmail() { print("\n📪EMAIL\n")
         
