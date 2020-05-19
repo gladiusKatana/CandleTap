@@ -7,6 +7,11 @@ var chartViewWidth = CGFloat(0); var chartViewHeight = CGFloat(0)
 
 var chartBorder = ChartRectangle(frame: zeroFrame)
 
+let defaultImage = UIImage(named: "plusForMenuBar")?.withRenderingMode(.alwaysTemplate)
+var latestNineScreenshot = defaultImage
+var feedBackgroundImage = defaultImage
+var nineScreenshots = [UIImage]()
+
 
 
 var candle = Bar(frame: zeroFrame);     var bottomWick = Bar(frame: zeroFrame);     var topWick = Bar(frame: zeroFrame)
@@ -37,5 +42,6 @@ var maSubsets = [[Double]]()
 
 
 var chartDisplayed = false
+var initialManualIncrement = false
 //var chartFirstSetup = false
 

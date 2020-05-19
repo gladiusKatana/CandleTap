@@ -38,7 +38,7 @@ extension CollectionVC {
         return returnPath ?? NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("☹️")!
     }
     
-    func presentEmail() { print("\n📪EMAIL\n")
+    func presentEmail() {                                           print("📪EMAIL")
         
         if emailComposer.canSendEmail() {
             emailComposer.emailComposeVC = emailComposer.configureEmailComposeVC()

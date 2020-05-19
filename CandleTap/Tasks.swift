@@ -2,19 +2,17 @@
  
  1st 'commit'                                       Jan 8 '20
  
- task                                               deadline                        comments
+ task                                               deadline                        category                    comment
  
  
  
  
  
- [historical]
+ rounded/truncated MAs in csv                                                       historical
  
- nines as chart images                              May 6, 2020
+ reports (csv, nines, nineStats csv)
  
- rapidfire csv email
- 
- rapidfire nine chart email                         May 8, 2020
+ rapidfire reports email across timeframes/assets
  
  backtesting queries (MAs + Sequential)
  
@@ -22,10 +20,7 @@
  
  
  
- 
- [charts]
- 
- Sequential
+ Sequential on live chart; price flips                                              charts
  
  axes
  
@@ -38,28 +33,19 @@
  
  
  
-  
- 
- [TA]
- 
- candle recognition
+   
+ candle recognition                                                                 TA
  
  chart patterns
  
- Fibonaccis
+ volume
+ 
+ fibs
  
  SAR
  
- volume
  
- 
- 
- 
- 
- 
- 
- 
- 
+
  
  
  

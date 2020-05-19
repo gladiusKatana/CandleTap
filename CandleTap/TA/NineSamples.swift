@@ -33,32 +33,92 @@ func findAndPlotNinesAndNeighbouringCandles(size: Int) {
         }                                                                                      //; print(ohlcPlusSeq)
     }
     
-//    pryntNineCenteredOHLCs()
+    //    pryntNineCenteredOHLCs()
 }
 
 extension UIViewController {
-    @objc func jumpBetweenNines() {
+    @objc func jumpBetweenNines(forSnapshotting: Bool) {
         
-        if nineChartIndex < nineCenteredOHLCs.count - 1 {
-            nineChartIndex += 1
-        } else {nineChartIndex = 0}
+        if !initialManualIncrement && !forSnapshotting {
+            nineChartIndex += 1; candleSubset = nineCenteredOHLCs[nineChartIndex]
+            initialManualIncrement = true
+        }                                                       //; print("jumping between 9s; index \(nineChartIndex)")
         
-        candleSubset = nineCenteredOHLCs[nineChartIndex]            //; print("\nTAP (index \(nineChartIndex))")
+        let delay = forSnapshotting ? DispatchTime.now() + 1 : DispatchTime.now() + 0
+        
+        if nineChartIndex <= nineCenteredOHLCs.count - 1 {
+            
+            DispatchQueue.main.asyncAfter(deadline: delay) {
+                self.goToNextNineChart()
+                
+                if forSnapshotting {
+                    self.jumpBetweenNines(forSnapshotting: true)
+                }
+            }
+        } else {
+            nineChartIndex = 0
+            candleSubset = nineCenteredOHLCs[0]
+            
+            if forSnapshotting {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                    self.gotoView(vc: pairListVC)
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {       print("\nthere are \(nineScreenshots.count) screenshots\n")
+                    pairListVC.presentEmail()
+                }
+            } else {goToNextNineChart()}
+        }
+    }
+    
+    func goToNextNineChart() {
         
         if chartDisplayed {
             chartVC.getChart()
+            snapshotView(view: chartVC.view)
+        }
+        
+        nineChartIndex += 1
+        if nineChartIndex <= nineCenteredOHLCs.count - 1 {
+            candleSubset = nineCenteredOHLCs[nineChartIndex]
+        }
+    }
+    
+    func snapshotView(view: UIView) {                                       //print("taking screenshot; chart # \(nineChartIndex)")
+        let snapshot = view.snapshotView(afterScreenUpdates: false)!
+        
+        snapshot.translatesAutoresizingMaskIntoConstraints = false
+        
+        let frac = CGFloat(1)
+        let testFrame = CGRect(x: 0, y: 0, width: view.frame.width / frac, height: view.frame.height / frac)
+        snapshot.frame = testFrame
+        
+        ///pairListVC.view.addSubview(snapshot)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+            let bounds = UIScreen.main.bounds
+            UIGraphicsBeginImageContextWithOptions(bounds.size, true, 1.0)
+            view.drawHierarchy(in: bounds, afterScreenUpdates: false)
+            latestNineScreenshot = UIGraphicsGetImageFromCurrentImageContext()
+            nineScreenshots.append(latestNineScreenshot!)
+            UIGraphicsEndImageContext()                                     //; print("screenshot: \(nineScreenshot!)")
+            
+            /*let testImageView = UIImageView()
+             testImageView.frame = CGRect(x: 0, y: 0, width: globalWindow.frame.width / 2, height: globalWindow.frame.height / 2)
+             testImageView.image = nineScreenshot
+             pairListVC.view.addSubview(testImageView)*/
         }
     }
 }
 
 func pryntNineCenteredOHLCs() {
     
-//    print("\nok there are \(ninesAndTheirNeighbours.count) nines and their neighbours")
+    //    print("\nok there are \(ninesAndTheirNeighbours.count) nines and their neighbours")
     
-//    let historicalOHLCs = ninesAndTheirNeighbours[0] //index 0 only, is just for printing single ohlc array sample one at a time
-//    let newlinedNinesAndNeighbourhood = historicalOHLCs.map {"\($0)"}.joined(separator: "\n")
-//    print("first nine with \((historicalOHLCs.count-1)/2) candles on either side:\n\n\(newlinedNinesAndNeighbourhood)")
-
+    //    let historicalOHLCs = ninesAndTheirNeighbours[0] //index 0 only, is just for printing single ohlc array sample one at a time
+    //    let newlinedNinesAndNeighbourhood = historicalOHLCs.map {"\($0)"}.joined(separator: "\n")
+    //    print("first nine with \((historicalOHLCs.count-1)/2) candles on either side:\n\n\(newlinedNinesAndNeighbourhood)")
+    
     let historicalOHLCDoubles = nineCenteredOHLCs[6] //index 0 only, is just for printing single ohlc array sample one at a time
     let doubleNewlinedNinesAndMAs = historicalOHLCDoubles.map {"\($0)"}.joined(separator: "\n")
     print("\nfirst nine with \((historicalOHLCDoubles.count-1)/2) candles on either side:\n\n\(doubleNewlinedNinesAndMAs)")

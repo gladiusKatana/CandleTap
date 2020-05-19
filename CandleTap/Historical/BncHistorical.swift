@@ -92,13 +92,14 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 
                 candleSubset = nineCenteredOHLCs[nineChartIndex]
                 
-//                DispatchQueue.main.asyncAfter(deadline: .now()) {
-//                    pairListVC.gotoView(vc: chartVC)
-//                }
-                
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    pairListVC.presentEmail()
+                    pairListVC.gotoView(vc: chartVC)
+                    pairListVC.jumpBetweenNines(forSnapshotting: true)
                 }
+                
+//                DispatchQueue.main.asyncAfter(deadline: .now()) {
+//                    pairListVC.presentEmail()
+//                }
                 
             }
         } catch let error {print("Failed to load: \(error.localizedDescription)")}

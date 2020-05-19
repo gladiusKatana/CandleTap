@@ -4,7 +4,6 @@ extension UIViewController {
     
     
     func setupPinchToExit() {
-        
         dismissPinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinch))
         self.view.addGestureRecognizer(dismissPinch)
         //justPinched = false
@@ -12,7 +11,6 @@ extension UIViewController {
     }
     
     @objc func handlePinch() {
-        
         if !justPinched { justPinched = true
             self.gotoView(vc: pairListVC) ///pairListVC.setupAndPresent(vc: pairListVC)
         }
@@ -21,9 +19,12 @@ extension UIViewController {
     
     
     @objc func setupTapToJumpBetweenNines() {
-        
-        nineSkipTap = UITapGestureRecognizer(target: self, action: #selector(jumpBetweenNines))
+        nineSkipTap = UITapGestureRecognizer(target: self, action: #selector(jumpBetweenNinesWrapper))
         self.view.addGestureRecognizer(nineSkipTap)
+    }
+    
+    @objc func jumpBetweenNinesWrapper() {
+        jumpBetweenNines(forSnapshotting: false)
     }
     
 }

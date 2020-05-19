@@ -31,6 +31,12 @@ class EmailComposer: UIViewController, MFMailComposeViewControllerDelegate {
             let attachmentData = try Data(contentsOf: path)
             emailComposeVC.addAttachmentData(attachmentData, mimeType: "text/csv", fileName: "ohlc_hist_(\(dateString)).csv")
             
+            for chartImage in nineScreenshots {
+                ///let defaultImageData = feedBackgroundImage?.jpegData(compressionQuality: 1.0)
+                let imageData = chartImage.jpegData(compressionQuality: 1.0)! // or .pngData()!
+                emailComposeVC.addAttachmentData(imageData, mimeType: "image/jpg", fileName: "nine.jpg")
+            }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.25 ) {
                 self.present(self.emailComposeVC, animated: true, completion: nil)
             }
