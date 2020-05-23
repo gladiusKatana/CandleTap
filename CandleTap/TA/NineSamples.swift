@@ -24,13 +24,13 @@ func findAndPlotNinesAndNeighbouringCandles(size: Int) {
         
         let midIndex = (size-1)/2
         if nineNeighbourSample.count == size {
-            if "\(nineNeighbourSample[midIndex][4])" == "9" {                                  //print("there's a 9!")
-                if "\(nineNeighbourSample[midIndex][5])" == "G" {chartGreenNines += 1}         //print("there's a green 9!")
-                if "\(nineNeighbourSample[midIndex][5])" == "R" {chartRedNines += 1}           //print("there's a red 9!")
+            if "\(nineNeighbourSample[midIndex][4])" == "9" {                               //print("there's a 9!")
+                if "\(nineNeighbourSample[midIndex][5])" == "G" {chartGreenNines += 1}      //print("there's a green 9!")
+                if "\(nineNeighbourSample[midIndex][5])" == "R" {chartRedNines += 1}        //print("there's a red 9!")
                 ninesAndTheirNeighbours.append(nineNeighbourSample)
                 nineCenteredOHLCs.append(nineNeighbourPlotSample)
             }
-        }                                                                                      //; print(ohlcPlusSeq)
+        }                                                                                   //; print(ohlcPlusSeq)
     }
     
     //    pryntNineCenteredOHLCs()
@@ -42,7 +42,7 @@ extension UIViewController {
         if !initialManualIncrement && !forSnapshotting {
             nineChartIndex += 1; candleSubset = nineCenteredOHLCs[nineChartIndex]
             initialManualIncrement = true
-        }                                                       //; print("jumping between 9s; index \(nineChartIndex)")
+        }                                                                                   //; print("jumping between 9s; index \(nineChartIndex)")
         
         let delay = forSnapshotting ? DispatchTime.now() + 1 : DispatchTime.now() + 0
         
@@ -64,7 +64,7 @@ extension UIViewController {
                     self.gotoView(vc: pairListVC)
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {       print("\nthere are \(nineScreenshots.count) screenshots\n")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {                       print("\n\(nineScreenshots.count) screenshots\n")
                     pairListVC.presentEmail()
                 }
             } else {goToNextNineChart()}
@@ -84,7 +84,7 @@ extension UIViewController {
         }
     }
     
-    func snapshotView(view: UIView) {                                       //print("taking screenshot; chart # \(nineChartIndex)")
+    func snapshotView(view: UIView) {                                                       //print("taking screenshot; chart # \(nineChartIndex)")
         let snapshot = view.snapshotView(afterScreenUpdates: false)!
         
         snapshot.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ extension UIViewController {
             view.drawHierarchy(in: bounds, afterScreenUpdates: false)
             latestNineScreenshot = UIGraphicsGetImageFromCurrentImageContext()
             nineScreenshots.append(latestNineScreenshot!)
-            UIGraphicsEndImageContext()                                     //; print("screenshot: \(nineScreenshot!)")
+            UIGraphicsEndImageContext()                                                     //; print("screenshot: \(nineScreenshot!)")
             
             /*let testImageView = UIImageView()
              testImageView.frame = CGRect(x: 0, y: 0, width: globalWindow.frame.width / 2, height: globalWindow.frame.height / 2)

@@ -20,8 +20,8 @@ extension CollectionVC {
             var historicalData = binanceHistorical // krakenHistorical {
             historicalData.removeFirst(nineSampleSize); historicalData.removeLast(nineSampleSize) //remove padding items (were used for charts)
             
-            for ohlc in historicalData {
-                var csv = ohlc.map {"\($0)"}.joined(separator: s)
+            for datum in historicalData {
+                var csv = datum.map {"\($0)"}.joined(separator: s)
                 csv = csv.filter{$0 != "["}
                 csv = csv.filter{$0 != "]"}                         //; print("csv: \(csv)")
                 csvText.append("\(csv)\(s)\(s)\(s)\n")

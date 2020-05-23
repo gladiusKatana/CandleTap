@@ -15,13 +15,14 @@ func historicalMAs(latestClose: Double) -> [Double] {
             maSubsets[i].append(latestClose)            //; print("appended to subset")
         }
         
-        var ma = -1.0
+        var ma = -1.0; var maRounded = -1.0
+        
         if maSubsets[i].count == maPeriod {
             ma = maSubsets[i].average                   //; print("subset length \(maPeriod) has \(maSubsets[i].count) values, average is \(ma)")
-            //let maRounded = ma.truncate(places: 8)//.(round(1000000*ma)/1000000)
+            maRounded = ma.rounded(toPlaces: 10)
         }
         
-        mas.append(ma)                                  //; print("appending \(maPeriod)-period moving average \(ma)")
+        mas.append(maRounded)                           //; print("appending \(maPeriod)-period moving average \(ma)")
         
         i+=1
     }
