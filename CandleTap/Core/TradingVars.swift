@@ -17,10 +17,10 @@ var historicalShakepayPrices = [Double]()
 
 
 
-var binanceCandleSubset = [[AnyObject]]()
-var globalBinanceCandles = [[AnyObject]]()
-var historicalBinanceCandles = [[AnyObject]]()
 var binanceLatestPrice: [BinanceLatestPrice]?
+var globalBinanceCandles = [[AnyObject]]()
+//var binanceCandleSubset = [[AnyObject]]()
+//var historicalBinanceCandles = [[AnyObject]]()
 
 
 
@@ -42,6 +42,4 @@ var greens = 0;             var reds = 0
 var greenNines = 0;         var redNines = 0
 var chartGreenNines = 0;    var chartRedNines = 0
 var nineChartIndex = 0
-
-var previousTDColour = ""
 

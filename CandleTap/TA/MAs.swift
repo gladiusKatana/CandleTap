@@ -19,7 +19,7 @@ func historicalMAs(latestClose: Double) -> [Double] {
         
         if maSubsets[i].count == maPeriod {
             ma = maSubsets[i].average                   //; print("subset length \(maPeriod) has \(maSubsets[i].count) values, average is \(ma)")
-            maRounded = ma.rounded(toPlaces: 10)
+            maRounded = ma.rounded(toPlaces: 10)        ///P134−ROUND(AVERAGE(F7:F134),10) //<- template Numbers formula for MA correctness tests
         }
         
         mas.append(maRounded)                           //; print("appending \(maPeriod)-period moving average \(ma)")

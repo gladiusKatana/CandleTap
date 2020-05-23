@@ -18,7 +18,9 @@ var tickerPairs = ["BTCCAD",
 var currentPrices = [latestShakepayBTCCAD, latestKrakenXBTZCAD, latestBinanceETHBTC]
 
 var binanceHistorical = [[[AnyObject]]]();    var binanceHistoricalForPrinting = [[[AnyObject]]]()
+
 var krakenHistorical = [[[AnyObject]]]();     var krakenHistoricalForPrinting = [[[AnyObject]]]()
+
 
 enum Timescale : String {
 
@@ -42,22 +44,26 @@ enum Timescale : String {
         }
     }
     
-    func description() -> String {
-        switch self {
-        case .minute:           return "1 minute"
-        case .fiveMinute:       return "5 minutes"
-        case .fifteenMinute:    return "15 minutes"
-        case .thirtyMinute:     return "30 minutes"
-        case .hour:             return "1 hour"
-        case .fourHour:         return "4 hours"
-        case .twelveHour:       return "12 hours"
-        case .day:              return "1 day"
-        case .threeDay:         return "3 days"
-        case .week:             return "1 week"
-        case .month:            return "1 month"
-        case .year:             return "1 year"
-            
-        }
-    }
+    /**/
 }
+
+/*
+ func description() -> String {
+     switch self {
+     case .minute:           return "1 minute"
+     case .fiveMinute:       return "5 minutes"
+     case .fifteenMinute:    return "15 minutes"
+     case .thirtyMinute:     return "30 minutes"
+     case .hour:             return "1 hour"
+     case .fourHour:         return "4 hours"
+     case .twelveHour:       return "12 hours"
+     case .day:              return "1 day"
+     case .threeDay:         return "3 days"
+     case .week:             return "1 week"
+     case .month:            return "1 month"
+     case .year:             return "1 year"
+         
+     }
+ }
+ */
 

@@ -9,24 +9,17 @@ extension AppDelegate {
         /*if firstBecameActive {print("🔅became active")}
          else {firstBecameActive = true}*/
         
-        checkOrientation()
         defaultLoadData(showDate: false)
-        topVC.reloadCV()
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {                 print("🌔will enter foreground\n")
-        checkOrientation()
-        //if currentOrientation == "landscape" {print("returned from landscape")}
     }
     
     func applicationWillResignActive(_ application: UIApplication) {                    ///customApplicationStatusPrint("⏸will resign active")
-        if !popupMenuDisplayed {
-            defaultSaveData(saveDate: true, resetLastLogin: false, showDate: false, pryntDictionary: true)
-        }
+        defaultSaveData(saveDate: true, resetLastLogin: false, showDate: false, pryntDictionary: true)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {                  print("\n🌘entered background")
-        lastActiveOrientation = currentOrientation                                      ///customApplicationStatusPrint("🌘entered background")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

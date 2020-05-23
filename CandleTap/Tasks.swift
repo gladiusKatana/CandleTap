@@ -8,8 +8,6 @@
  
  
  
- rounded/truncated MAs in csv                                                       historical
- 
  reports (csv, nines, nineStats csv)
  
  rapidfire reports email across timeframes/assets

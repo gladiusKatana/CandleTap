@@ -34,8 +34,7 @@ func leftOrRightCellSetup(_ cell: BaseCell, indexPath: IndexPath, paths: [(Int, 
     else {cell.titleLabel.textColor = defaultTextColour; cell.titleLabel.text = ""}
     
     if currentOrientation == "landscape" {
-        var size = 0
-        if textFieldDisplayed{size = 7} else {size = 9}
+        let size = 9
         cell.titleLabel.font = UIFont.systemFont(ofSize: CGFloat(size), weight: weight)
     }
     else {cell.titleLabel.font = UIFont.systemFont(ofSize: 9, weight: weight)}
