@@ -44,7 +44,8 @@ extension UIViewController {
             initialManualIncrement = true
         }                                                                                   //; print("jumping between 9s; index \(nineChartIndex)")
         
-        let delay = forSnapshotting ? DispatchTime.now() + 1 : DispatchTime.now() + 0
+        let t = 0.5
+        let delay = forSnapshotting ? DispatchTime.now() + t : DispatchTime.now() + 0
         
         if nineChartIndex <= nineCenteredOHLCs.count - 1 {
             
@@ -64,7 +65,7 @@ extension UIViewController {
                     self.gotoView(vc: pairListVC)
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {                       print("\n\(nineScreenshots.count) screenshots\n")
+                DispatchQueue.main.asyncAfter(deadline: .now() + t) {                       print("\n\(nineScreenshots.count) screenshots\n")
                     pairListVC.presentEmail()
                 }
             } else {goToNextNineChart()}
