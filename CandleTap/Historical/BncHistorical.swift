@@ -74,33 +74,32 @@ func fetchBinanceHistoricalOHLCs(ticker: String, interval: Timescale, startTime:
                 lastHistoricalTimestamp = lastTimestamp
                 
             } else {                                                            //print("ok done pulling historical data")
-                let ohlcsToPrint = binanceHistorical//ForPrinting
-                let candleCount = ohlcsToPrint.count                            //; print("\n\(candleCount) historical ohlcs (before padding)")
-                
-                //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
-                //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
-                
-                let firstHistoricalOhlc = binanceHistorical.first?.first  // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
-                padHistoricalOHLCs([firstHistoricalOhlc!], size: nineSampleSize)
-                
-                let count = binanceHistorical.count
-                print("\(count) ohlcs: \(count - nineSampleSize) historical, \(nineSampleSize) padding")
-                
-                findAndPlotNinesAndNeighbouringCandles(size: nineSampleSize)
-                
-                displayNineFrequency(candleCount: candleCount)
-                
-                candleSubset = nineCenteredOHLCs[nineChartIndex]
-                
-                DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    pairListVC.gotoView(vc: chartVC)
-                    pairListVC.jumpBetweenNines(forSnapshotting: true)
+                if fetchHistoricalDataAutomatically {
+                    let ohlcsToPrint = binanceHistorical//ForPrinting
+                    let candleCount = ohlcsToPrint.count                            //; print("\n\(candleCount) historical ohlcs (before padding)")
+                    
+                    //let newlinedOhlcs = ohlcsToPrint.map {"\($0)"}.joined(separator: "\n")
+                    //print("\n\(candleCount) historical ohlcs (before padding):\n\n\(newlinedOhlcs)", terminator: "\n")
+                    
+                    let firstHistoricalOhlc = binanceHistorical.first?.first  // or .first?.last as the [[[]]] has 1 item only thus is a [[]] thus far
+                    padHistoricalOHLCs([firstHistoricalOhlc!], size: nineSampleSize)
+                    
+                    let count = binanceHistorical.count
+                    print("\(count) ohlcs: \(count - nineSampleSize) historical, \(nineSampleSize) padding")
+                    
+                    findAndPlotNinesAndNeighbouringCandles(size: nineSampleSize)
+                    
+                    displayNineFrequency(candleCount: candleCount)
+                    
+                    candleSubset = nineCenteredOHLCs[nineChartIndex]
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        pairListVC.gotoView(vc: chartVC)
+                        pairListVC.jumpBetweenNines(forSnapshotting: true)
+                    }
+                    
+                    /*DispatchQueue.main.asyncAfter(deadline: .now()) {pairListVC.presentEmail()}*/
                 }
-                
-//                DispatchQueue.main.asyncAfter(deadline: .now()) {
-//                    pairListVC.presentEmail()
-//                }
-                
             }
         } catch let error {print("Failed to load: \(error.localizedDescription)")}
     } .resume()

@@ -3,7 +3,7 @@
 extension ChartVC {
     
     func plotCandlesAndIndicators(open: Double, high: Double, low: Double, close: Double, scalor: Double, absLow: Double,
-                                  candleIndex index: Int, MA: Double, sequential: Int, colour: String) { //print("plotting candles & indicators")
+                                  candleIndex index: Int, MA: Double, sequential: Int?, colour: String?) { //print("plotting candles & indicators")
         
         var candleColour = UIColor()                        ; let lineWidth = CGFloat(0.5)  ; let wickColour = UIColor.white
         if close < open {candleColour = .red}
@@ -48,25 +48,27 @@ extension ChartVC {
         self.view.addSubview(bottomWick)
         
         // -------------------------------------------------------------------------------------------------------------------- Sequential
-        let sequentialCount = SequentialCountField(); sequentialCount.text = sequential != 0 ? "\(sequential)" : "."
-        let size = Double(10); var mult = Double(3)
-        
-        sequentialCount.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 1.5, width: size, height: size)
-        sequentialCount.textColor = colour == "G" ? .green : .red
-        self.view.addSubview(sequentialCount)
-        
-        if sequential == 9 {                          //print("the 9 is at: \(open), \(high), \(low), \(close)")
-            let nineArrow = SequentialCountField(); nineArrow.text = "↓"
+        if sequential != nil {
+            let sequentialCount = SequentialCountField(); sequentialCount.text = sequential != 0 ? "\(sequential!)" : "."
+            let size = Double(10); var mult = Double(3)
             
-            nineArrow.textColor = .white//colour == "G" ? .green : .red
-            if index == candlesToPlot / 2 {
-                mult = 4
-                nineArrow.font = UIFont.systemFont(ofSize: 12, weight: .bold)
-                nineArrow.textColor = platinum
-            } else {nineArrow.font = UIFont.systemFont(ofSize: 9, weight: .regular)}
+            sequentialCount.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * 1.5, width: size, height: size)
+            sequentialCount.textColor = colour == "G" ? .green : .red
+            self.view.addSubview(sequentialCount)
             
-            nineArrow.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * mult, width: size, height: size)
-            self.view.addSubview(nineArrow)
+            if sequential == 9 {                          //print("the 9 is at: \(open), \(high), \(low), \(close)")
+                let nineArrow = SequentialCountField(); nineArrow.text = "↓"
+                
+                nineArrow.textColor = .white//colour == "G" ? .green : .red
+                if index == candlesToPlot / 2 {
+                    mult = 4
+                    nineArrow.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+                    nineArrow.textColor = platinum
+                } else {nineArrow.font = UIFont.systemFont(ofSize: 9, weight: .regular)}
+                
+                nineArrow.frame = CGRect(x: Double(candleCenterX) - size/4, y: Double(upperWickRect.minY) - size * mult, width: size, height: size)
+                self.view.addSubview(nineArrow)
+            }
         }
         
         // -------------------------------------------------------------------------------------------------------------------- MA points

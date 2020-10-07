@@ -19,6 +19,8 @@ var xOffSet = CGFloat(0);                       var yOffset = CGFloat(0)
 
 var lastTappedCoordinate = [-1,-1];             var chartCoordinates = [[1,2]] //[[1,1],[1,2]]
 
+var fetchHistoricalDataAutomatically = false /// for demo purposes
+
 var popupMenuDisplayed = false;                 var globalSwitchBool = false
 var justPinched = false                         //; var textFieldDisplayed = false
 var tempRescalingBool = false                   //; var showConsoleLegend = true

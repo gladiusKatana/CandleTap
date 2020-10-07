@@ -10,6 +10,8 @@ extension ChartVC {
         let candleCount = candleSubset.count                                        //; print("candle count: \(candleCount)")
         //; print("appending MA from \(MAValues.count) MAs, to \(MAs.count) values")
         
+        guard candleCount != 0 else {print("candle count for chart = 0"); return}
+        
         for i in candleCount + 1 - candlesToPlot ..< candleCount {
             let arr = candleSubset[i]
             highs.append(Double("\(arr[2])")!)
@@ -44,7 +46,8 @@ extension ChartVC {
 //                let MA = MAValues[j]
                 let MA = 0.0
                 
-                let sequential = Int("\(candleSubset[i][5])")! ; let colour = "\(candleSubset[i][6])"
+                let sequential = fetchHistoricalDataAutomatically ? Int("\(candleSubset[i][5])")! : nil
+                let colour = fetchHistoricalDataAutomatically ? "\(candleSubset[i][6])" : nil
                 
                 plotCandlesAndIndicators(open: open, high: high, low: low, close: close, scalor: scalor, absLow: absLow, candleIndex: j,
                                          MA: MA, sequential: sequential, colour: colour)

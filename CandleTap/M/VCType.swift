@@ -22,7 +22,7 @@ enum ViewControllerType: Int {
             return "Past Trades"
             
         case .chart:
-            return ""//"CandleTap"//"ETHBTC ･ Binance ･ 1m"//"CandleTap"   /// set programmatically based on timescale selected
+            return "ETHBTC ･ Binance ･ 1m" // ""      /// can be set programmatically based on timescale selected
             
         case .popupMenu :
             return "popup menu"

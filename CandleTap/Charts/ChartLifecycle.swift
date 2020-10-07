@@ -9,10 +9,11 @@ extension ChartVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNavBarTitle(customString: "there's a 9! (\((candlesToPlot-1)/2+1)th candle)")
-        //setNavBarTitle(customString: viewControllerType.getNavBarTitle())
-        setupNavBarButtons(greyIndex: 1)
         
+        let str = fetchHistoricalDataAutomatically ? "there's a 9! (\((candlesToPlot-1)/2+1)th candle)" : viewControllerType.getNavBarTitle()
+        setNavBarTitle(customString: str)
+        
+        setupNavBarButtons(greyIndex: 1)
         setupPinchToExit()
         setupTapToJumpBetweenNines()
         
@@ -39,15 +40,12 @@ extension ChartVC {
         chartDisplayed = true
         
         ///self.periodicDateRefresh(){self.kickoffTimer()}
-        
         //apiServ.getFeeds(toPlot: exchangeID)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         ///self.view.subviews.forEach({ $0.removeFromSuperview() })
-        
         chartDisplayed = false
     }
 }
